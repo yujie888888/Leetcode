@@ -1,0 +1,32 @@
+/*** Arrays 类 ***/
+    介绍：
+        Arrays 类是 Java 中 java.util 包的一部分，主要用于操作"数组"，如排序、搜索、比较、填充等。
+        这个类包含的都是静态方法，意味着你无需创建 Arrays 类的实例就可以使用这些方法。
+    常用方法：
+        Arrays.sort()
+            对数组进行排序，支持所有的原始数据类型数组以及对象数组
+            注意Arrays.sort()是不返回任何值的
+        Arrays.sort(array,fromIndex,toIndex)
+            对"指定范围"内的元素进行排序
+        Arrays.binarySearch()
+            在"已排序"的数组中使用二分查找算法搜索特定元素的索引。如果元素不存在，则返回负值。
+            int[] arr = {1, 2, 3};
+            int index = Arrays.binarySearch(arr, 2); // 返回index1
+        Arrays.equals()
+            比较两个数组的内容是否相同
+        Arrays.fill(arr,val)
+            将数组的所有元素设置为给定的值
+        Arrays.fill(array, fromIndex, toIndex, value)
+            设置数组指定范围内的元素为特定值
+        Arrays.copyOf()
+            复制整个数组
+        Arrays.copyOfRange()
+            复制指定范围的元素。新数组的长度可以是原数组的长度或指定的长度。
+            int[] arr = {1, 2, 3};
+            int[] copy = Arrays.copyOf(arr, 5); // {1, 2, 3, 0, 0}
+        Arrays.toString()
+            返回数组内容的字符串表示形式。
+        Arrays.asList()
+            将数组转换为固定大小的列表。注意：此方法返回的列表不支持add或remove操作
+            String[] strArray = {"a", "b", "c"};
+            List<String> list = Arrays.asList(strArray); // 返回固定大小的列表

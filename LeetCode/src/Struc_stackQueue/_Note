@@ -1,0 +1,161 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/** Stack **/
+    介绍:
+        Last In First Out, LIFO
+        java.util.Stack 类：Java 提供了 Stack 类，该类继承自 Vector，包含各种操作栈的方法，如 push、pop、peek 等。
+        java.util.Stack类存在线程同步的开销
+    Method:
+        push(E item)        将元素推入栈顶。
+        pop()               移除并返回栈顶元素。如果栈为空，尝试执行 pop() 操作会导致抛出一个 EmptyStackException 异常。
+        peek()              返回栈顶元素而不移除它。
+        empty()             检查栈是否为空。
+        search(Object o)    返回对象在栈中的位置，以1为基底. 返回：从栈顶到该对象的位置，栈顶位置为 1；如果不在堆栈中，则返回 -1。
+    推荐实现
+        1、LinkedList
+            频繁插入和删除时
+            Ex.
+                Deque<Integer> stack = new LinkedList<>();
+        2、使用Deque接口的实现类ArrayDeque
+            Adv:
+                更快的性能：ArrayDeque 是基于数组实现的，提供了更快的性能和更少的内存开销。
+                没有容量限制：ArrayDeque 会根据需要动态扩展和收缩，而不像 Stack 那样固定容量。
+                更灵活：ArrayDeque 同时支持栈和队列的操作。
+            Ex.
+                Deque<Integer> stack = new ArrayDeque<>();
+                stack.push(1); // 添加元素到栈顶
+                stack.push(2);
+                int top = stack.pop(); // 移除并返回栈顶元素，此时 top = 2
+            Method：
+                push(E e) - 将元素 e 压入栈顶。这实际上是 addFirst(E e) 方法的一个别名，用于将元素插入到双端队列的前端。
+                pop() - 移除并返回栈顶元素。这对应于 removeFirst() 方法，从双端队列的前端移除并返回元素。
+                peek() - 返回栈顶元素而不移除它，对应于 peekFirst() 方法，它仅仅查看而不移除双端队列的第一个元素。
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/** Queue **/
+    介绍:
+        First In First Out, FIFO
+        java.util.Queue 接口：Queue 是一个接口，提供了队列操作的基本方法
+        Java 的 Queue 接口在 java.util 包中，并且有多种实现，如 LinkedList、PriorityQueue 等。
+    Method:
+        add(E e)        将元素添加到队列尾部，如果成功返回 true，如果没有空间则抛出 IllegalStateException。
+        offer(E e)      将元素添加到队列尾部，如果成功返回 true，如果没有空间则返回 false。
+        remove()        移除并返回队列头部的元素，如果队列为空，则抛出 NoSuchElementException。
+        poll()          移除并返回队列头部的元素，如果队列为空，则返回 null。
+        element()       返回队列头部的元素但不移除，如果队列为空，则抛出 NoSuchElementException。
+        peek()          返回队列头部的元素但不移除，如果队列为空，则返回 null。
+    推荐实现
+        1、LinkedList：实现了 List 和 Queue 接口，适用于需要快速插入和删除的场景
+            Ex.
+                Queue<Integer> queue = new LinkedList<>();
+                queue.offer(1); // 添加元素到队列尾部
+                queue.offer(2);
+                int head = queue.poll(); // 移除并返回队列头部的元素，此时 head = 1
+        2、ArrayDeque：通常比 LinkedList 提供更好的能，支持成为一个双端队列（Deque），意味着可以在队列的两端添加或移除元素。
+            Ex.
+                Deque<Integer> queue = new ArrayDeque<>();
+                queue.offer(1); // 添加元素到队列尾部
+                queue.offer(2);
+                int head = queue.poll(); // 移除并返回队列头部的元素，此时 head = 1
+            Method:
+                添加元素:
+                    addFirst(E e)：
+                        功能：在此双端队列的前面插入指定的元素。
+                        异常：如果没有可用空间，则抛出 IllegalStateException。
+                    addLast(E e)：
+                        功能：在此双端队列的末尾添加指定的元素。
+                        异常：如果没有可用空间，则抛出 IllegalStateException。
+                    offerFirst(E e)：
+                        功能：在此双端队列的前面插入指定的元素。
+                        返回：如果成功，则返回 true，否则返回 false。
+                    offerLast(E e)：
+                    功能：在此双端队列的末尾添加指定的元素。
+                    返回：如果成功，则返回 true，否则返回 false。
+                移除元素:
+                    removeFirst()：
+                        功能：检索并移除此双端队列的第一个元素。
+                        返回：被移除的元素。
+                        异常：如果此双端队列为空，则抛出 NoSuchElementException。
+                    removeLast()：
+                        功能：检索并移除此双端队列的最后一个元素。
+                        返回：被移除的元素。
+                        异常：如果此双端队列为空，则抛出 NoSuchElementException。
+                    pollFirst()：
+                        功能：检索并移除此双端队列的第一个元素；如果此双端队列为空，则返回 null。
+                        返回：被移除的元素或 null。
+                    pollLast()：
+                        功能：检索并移除此双端队列的最后一个元素；如果此双端队列为空，则返回 null。
+                        返回：被移除的元素或 null。
+                访问元素:
+                    getFirst()：
+                        功能：返回此双端队列的第一个元素。
+                        返回：队列的第一个元素。
+                        异常：如果此双端队列为空，则抛出 NoSuchElementException。
+                    getLast()：
+                        功能：返回此双端队列的最后一个元素。
+                        返回：队列的最后一个元素。
+                        异常：如果此双端队列为空，则抛出 NoSuchElementException。
+                    peekFirst()：
+                        功能：检索但不移除此双端队列的第一个元素；如果此双端队列为空，则返回 null。
+                        返回：队列的第一个元素或 null。
+                    peekLast()：
+                        功能：检索但不移除此双端队列的最后一个元素；如果此双端队列为空，则返回 null。
+                        返回：队列的最后一个元素或 null。
+                其他方法:
+                    clear()：
+                        功能：清空队列中的所有元素。
+                    size()：
+                        功能：返回队列中的元素数量。
+                    isEmpty()：
+                        功能：检查队列是否为空。
+                        返回：如果队列为空，则返回 true，否则返回 false。
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/** Heap **/
+    Min Heap小顶堆
+        在小顶堆中，父节点的值总是小于或等于其子节点的值。这意味着，堆顶（根节点）是整个堆中的最小元素。
+        小顶堆主要用于快速访问、删除最小元素的场景
+    Max Heap大顶堆
+        在大顶堆中，父节点的值总是大于或等于其子节点的值。这意味着，堆顶（根节点）是整个堆中的最大元素。
+        大顶堆主要用于快速访问、删除最大元素的场景。
+    实现
+        Java 的标准库中没有直接的堆实现，但可以使用 PriorityQueue 类来默认实现小顶堆。
+        可以通过自定义比较器使 PriorityQueue 表现为大顶堆。
+        PriorityQueue类是基于二叉堆数据结构实现的。
+            二叉堆是一种完全二叉树，通常使用数组来表示，而不需要使用指针。
+            每个节点的键值都大于（或等于）其子节点的键值，这种布局称为“堆性质”。
+        Ex.
+            public class HeapExample {
+                public static void main(String[] args) {
+                    // 小顶堆
+                    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+                    minHeap.add(10);
+                    minHeap.add(5);
+                    minHeap.add(15);
+                    System.out.println(minHeap.peek()); // 输出 5
+
+                    // 大顶堆
+                    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+                    maxHeap.add(10);
+                    maxHeap.add(5);
+                    maxHeap.add(15);
+                    System.out.println(maxHeap.peek()); // 输出 15
+                }
+            }
+    自定义实现：
+        P-347 按照key.value值把key排序成完全二叉树
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

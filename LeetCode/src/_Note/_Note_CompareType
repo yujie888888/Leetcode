@@ -1,0 +1,49 @@
+/***不同数据类型之间的比较的区别***/
+除了char：
+    ==比较引用
+    .equals()比较内容
+
+/**char**/
+    char a = 'a';
+    char b = 'a';
+    a == b //比较内容
+
+/**String**/
+    String s1 = "hello";
+    String s2 = "hello";
+    String s3 = new String("hello");
+    s1 == s2 //==比较引用  -true
+    s1 == s3 //==比较引用  -false
+    s1.equals(s3) //.equals()比较内容  -true
+
+/**Array**/
+    int[] arr1 = {1, 2, 3};
+    int[] arr2 = {1, 2, 3};
+    int[] arr3 = arr1;
+    arr1 == arr2 //==比较引用  -false引用对象不同
+    arr1 == arr3 //==比较引用  -true引用对象相同
+    Arrays.equals(arr1, arr2) //Arrays.equlas()比较数组内容  -true
+
+/**linkedlist**/
+    LinkedList<Integer> list1 = new LinkedList<>(Arrays.asList(1, 2, 3));
+    LinkedList<Integer> list2 = new LinkedList<>(Arrays.asList(1, 2, 3));
+    LinkedList<Integer> list3 = list1;
+    list1 == list2 //==比较引用  -false。
+    list1 == list3 //==比较引用  -true。
+    list1.equals(list2) //.equals()比较内容  -true
+
+/**hashmap**/
+    HashMap<Integer, String> map1 = new HashMap<>();
+    map1.put(1, "one");
+    HashMap<Integer, String> map2 = new HashMap<>();
+    map2.put(1, "one");
+    HashMap<Integer, String> map3 = map1;
+    map1 == map2 //==比较引用  -false。
+    map1 == map3 //==比较引用  -true。
+    map1.equals(map2） //.equals()比较内容  -true
+    true条件：
+        map1和map2包含相同数量的键值对（entries）。
+        对于map1中的每个键值对，可以在map2中找到一个键（key）相等的键值对，并且对应的值（value）也相等。
+
+
+

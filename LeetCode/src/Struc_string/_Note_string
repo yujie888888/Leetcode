@@ -1,0 +1,22 @@
+/** String **/
+    字符串在 Java 中是不可变的，这意味着一旦创建了一个字符串，你就不能更改它包含的字符。
+    常用方法
+        length()                    返回字符串的长度，即其中的字符数量
+        charAt(int index)           返回指定位置的字符
+        substring(begin,end)        返回子字符串。如果只指定begin，返回从该索引到末尾的子字符串。如果同时指定begin和end,返回从begin到end-1的子字符串
+        contains(s)                 检查字符串是否包含指定的字符串
+        a.equals(b)                 比较两个字符串的内容是否相同
+        a.equalsIgnoreCase(b)       与equals方法类似，但忽略大小写差异
+        startsWith(String prefix)   检查字符串是否以指定的前缀开始
+        ndsWith(String suffix)      检查字符串是否以指定的后缀结束
+        indexOf(char c)             返回指定字符在字符串中第一次出现的索引，可以指定从某个索引开始搜索
+        indexOf(ch,int index)       ch - 要搜索的字符（以其 ASCII 值或 Unicode 代码点表示）。fromIndex - 搜索开始的索引位置。
+        astIndexOf(char c)          返回指定字符在字符串中最后一次出现的索引，可以指定从某个索引开始反向搜索
+        replace(char old,char new)  返回一个新字符串，它是通过替换原字符串中出现的所有旧字符为新字符得到的
+        toUpperCase()/toLowerCase() 转换字符串的大小写
+        trim()                      去除字符串首尾的空白字符
+        s.split("regex")            使用regex将此字符串分割为数组   String[] parts = "a,b,c".split(",");  // 返回数组 ["a", "b", "c"]
+
+
+
+

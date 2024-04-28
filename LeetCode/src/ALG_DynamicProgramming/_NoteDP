@@ -1,0 +1,9 @@
+*** Dynamic Programming ***
+
+** Description **
+    动态规划是自底向上地解决问题
+
+** Steps **
+    1.确定dp[][]含义
+    2.确定递推公式 dp[][] == ;
+    3.初始化赋值
