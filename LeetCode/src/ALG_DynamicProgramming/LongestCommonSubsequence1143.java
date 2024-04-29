@@ -29,17 +29,14 @@ public class LongestCommonSubsequence1143 {
     /**经典DP问题
      * O(m*n) Beats 90%
      * 思路：
-     * 从后往前考虑，对于s1和s2的最后一个位置开始，如果字符相等，很好理解；
+     * 从后往前考虑，对于s1和s2的最后一个位置开始，如果字符相等，那么dp[i][j] = 1 + dp[i-1][j-1] 很好理解；
      * 如果不相等，那么要么舍弃s1的最后一个char，要么舍弃s2的最后一个char
      * 1.其实求什么问题，dp含义就是什么：dp[i][j] 表示text1[0,i-1]和text2的[0,j-1]的LCS
      * 2.if(text1[i] == text2[j]) dp[i][j] = 1 + dp[i-1][j-1];
          else dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
      * 3.dp[0][0] = 0; dp[0][j] = 0; dp[i][0] = 0;
      * 注意事项：
-     * 1.
-     * 2.
-     * 3.
-     * 4.
+     * 1.其实我依旧没有深入理解else的逻辑，目前来看就是说只要不相等就往前找相等的，依次加1这样，直到到最后也就是到头
      */
     public static int longestCommonSubsequence1(String text1, String text2) {
         int m = text1.length();
@@ -58,11 +55,5 @@ public class LongestCommonSubsequence1143 {
             }
         }
         return dp[m][n];
-    }
-    /**用一维数组代替二维数组
-     * 能做，但没必要
-     */
-    public static int longestCommonSubsequence2(String text1, String text2) {
-        return 1;
     }
 }
