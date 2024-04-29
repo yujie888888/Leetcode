@@ -47,7 +47,7 @@ public class LongestCommonPrefixLCP14 {
         return prefix;
     }
 
-    /**逐渐缩小法 .indexOf(string)
+    /**逐渐缩短法 .indexOf(string)
      * O(kn) Beats 100%
      * O(1) Beats 90% 相比起方法1空间复杂度更好
      * 思路：
