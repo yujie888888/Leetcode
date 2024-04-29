@@ -59,7 +59,7 @@ public class MinimumPathSum64 {
      * 2.dp[j] = gird[level][j] + Math.min(dp[j], dp[j-1]);
      * 3.第1行: dp[j] = 1;
      * 注意事项：
-     * 1.每到新一行，dp[0]的值要更改，不像P62是不用更改的
+     * 1.每到新一行，dp[0]的值要更改，不像P62是不用更改的。
      */
     public static int minPathSum2(int[][] grid) {
         int m = grid[0].length;

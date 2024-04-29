@@ -3,7 +3,7 @@
  * For each step, you may move to an adjacent number of the row below. More formally, if you are on index i on the current row, you may move to either index i or index i + 1 on the next row.
  * Example 1:
  * Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
- * Output: 11
+ * Output:11
  * Explanation: The triangle looks like:
  *    2
  *   3 4
@@ -24,9 +24,8 @@ package ALG_DynamicProgramming;
 import java.util.List;
 public class Triangle120 {
     public static void main(String[] args) {
-        /**给List<List<Integer>>格式赋值
-         * Java 9的List.of()来创建一个完全不可变的结构
-         */
+        //给List<List<Integer>>格式赋值
+        //Java 9的List.of()来创建一个完全不可变的结构
         List<List<Integer>> triangle = List.of(
                 List.of(2),
                 List.of(3,4),
