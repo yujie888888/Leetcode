@@ -20,11 +20,12 @@ public class MinimumPathSum64 {
     public static void main(String[] args) {
         //二维数组直接赋值
         int[][] grid = {{1,2,3}, {4,5,6}};
-        System.out.println(minPathSum(grid));
+        System.out.println(minPathSum1(grid));
+        System.out.println(minPathSum2(grid));
     }
-    /**Dynamic Programming经典题
+    /**(推荐)Dynamic Programming(二维数组)
      * O(m*n) Beats 70%
-     * O(1)
+     * O(m*n) Beats 85%
      * 思路:
      * 感觉和robot差不多，都是用dp[][]存
      * robot存的是路径数，这道题存的是最小值，所以每次存值都要进行比较，确保存的是最小值
@@ -37,7 +38,7 @@ public class MinimumPathSum64 {
      * 注意事项:
      * 1.注意一下怎么获取二维数组的行数和列数
      */
-    public static int minPathSum(int[][] grid) {
+    public static int minPathSum1(int[][] grid) {
         int[][]dp = new int[grid.length][grid[0].length];
         dp[0][0] = grid[0][0];
         for(int i=1; i<grid.length; i++) dp[i][0] = dp[i-1][0] + grid[i][0];
@@ -48,5 +49,32 @@ public class MinimumPathSum64 {
             }
         }
         return dp[grid.length-1][grid[0].length-1];
+    }
+
+    /**DP(一维数组)
+     * O(m*n) Beats 20%
+     * O(m) Beats 85%
+     * 思路：
+     * 1.dp[j] 第?行第j列的minimum sum
+     * 2.dp[j] = gird[level][j] + Math.min(dp[j], dp[j-1]);
+     * 3.第1行: dp[j] = 1;
+     * 注意事项：
+     * 1.每到新一行，dp[0]的值要更改，不像P62是不用更改的
+     */
+    public static int minPathSum2(int[][] grid) {
+        int m = grid[0].length;
+        int n = grid.length;
+        int[] dp = new int[m];
+        dp[0] = grid[0][0];
+        for(int j=1; j<m; j++){
+            dp[j] = dp[j-1] + grid[0][j];
+        }
+        for(int i=1; i<n; i++){
+            dp[0] = dp[0] + grid[i][0];
+            for(int j=1; j<m; j++){
+                dp[j] = grid[i][j] + Math.min(dp[j], dp[j-1]);
+            }
+        }
+        return dp[m-1];
     }
 }

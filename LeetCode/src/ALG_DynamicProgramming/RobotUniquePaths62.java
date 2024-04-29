@@ -18,11 +18,12 @@
 package ALG_DynamicProgramming;
 public class RobotUniquePaths62 {
     public static void main(String[] args) {
-        System.out.println(uniquePaths(10,10));
+        System.out.println(uniquePaths1(10,10));
+        System.out.println(uniquePaths2(10,10));
     }
-    /**Dynamic Programming 经典题
+    /**(推荐)Dynamic Programming(二维数组)
      * O(m*n) Beats 100%
-     * O(1) Beats 95%
+     * O(m*n) Beats 95%
      * 思路：
      * 1.确定dp table以及下标的含义: dp[i][j]表示从（0,0）出发，到(i,j)有dp[i][j]条不同的路径。
      * 2.确定递推公式:到达dp[i][j]只有两种情况，要么从上来，要么从左来,所以推导公式为 dp[i][j] = dp[i-1][j] + dp[i][j-1];
@@ -35,7 +36,7 @@ public class RobotUniquePaths62 {
      * 2.不同于爬楼梯，这个图的做法在基础赋值的时候需要把边缘位置的值全部赋值
      * 3.定义二维数组的方法
      */
-    public static int uniquePaths(int m, int n) {
+    public static int uniquePaths1(int m, int n) {
         int[][]dp = new int[m][n];
         dp[0][0] = 1;
         for(int i=1; i<m; i++) dp[i][0] = 1;
@@ -46,5 +47,30 @@ public class RobotUniquePaths62 {
             }
         }
         return dp[m-1][n-1];
+    }
+
+    /**DP(一维数组法)
+     * O(m*n) Beates 100%
+     * O(n) Beats 80%
+     * 思路：
+     * 1.dp[j]表示从(0,0)到第*行第j列的路径数
+     * 2.dp[j] = dp[j] + dp[j-1];
+     * 3.第0行的：dp[j] = 1;
+     * 注意事项:
+     * 1.在给第0行赋值完之后，之后的递推要从level=1开始
+     * 2.在内循环中，j也要从1开始，因为dp[j-1]中j-1需要>=0
+     *   以及每一行的第1个方格也是1，只要不改变1，也就相当于在二维数组中每一行的第一个方格的值初始化为1
+     */
+    public static int uniquePaths2(int m, int n) {
+        int[] dp = new int[m];
+        for(int j=0; j<m; j++){
+            dp[j] = 1;
+        }
+        for(int level=1; level<n; level++){
+            for(int j=1; j<m; j++){
+                dp[j] = dp[j] + dp[j-1];
+            }
+        }
+        return dp[m-1];
     }
 }

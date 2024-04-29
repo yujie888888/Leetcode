@@ -24,8 +24,7 @@ package ALG_DynamicProgramming;
 import java.util.List;
 public class Triangle120 {
     public static void main(String[] args) {
-        /**
-         * 给List<List<Integer>>格式赋值
+        /**给List<List<Integer>>格式赋值
          * Java 9的List.of()来创建一个完全不可变的结构
          */
         List<List<Integer>> triangle = List.of(
@@ -36,7 +35,7 @@ public class Triangle120 {
         );
         System.out.println(minimumTotal1(triangle));
     }
-    /**Dynamic Programming(二维数组, bottom->top)
+    /**(推荐)Dynamic Programming(二维数组, bottom->top)
      * O(n^2) Beats 70%
      * O(m*n) Beats 85%
      * 思路：
