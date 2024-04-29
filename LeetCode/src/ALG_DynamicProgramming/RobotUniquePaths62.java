@@ -51,7 +51,7 @@ public class RobotUniquePaths62 {
 
     /**DP(一维数组法)
      * O(m*n) Beates 100%
-     * O(n) Beats 80%
+     * O(n) Beats 95%
      * 思路：
      * 1.dp[j]表示从(0,0)到第*行第j列的路径数
      * 2.dp[j] = dp[j] + dp[j-1];
