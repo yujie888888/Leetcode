@@ -1,13 +1,13 @@
-package Struc_linked_list;
+package List_Tree;
 
-public class ListNode{
-    ListNode next;
-    int val;
-    ListNode(){}
-    ListNode(int val){
+public class ListNode {
+    public ListNode next;
+    private int val;
+    public ListNode(){}
+    public ListNode(int val){
         this.val = val;
     }
-    ListNode(int val, ListNode next){
+    public ListNode(int val, ListNode next){
         this.next = next;
         this.val = val;
     }
