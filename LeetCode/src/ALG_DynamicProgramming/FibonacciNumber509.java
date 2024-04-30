@@ -21,9 +21,8 @@
 package ALG_DynamicProgramming;
 public class FibonacciNumber509 {
     public static void main(String[] args) {
-
+        System.out.println(fib(40));
     }
-
     /** DP(一维数组)
      * O(n) Beats 100%
      * O(n) Beats 85%
