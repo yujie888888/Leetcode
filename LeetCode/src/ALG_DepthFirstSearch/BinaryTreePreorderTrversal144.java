@@ -17,6 +17,7 @@
 package ALG_DepthFirstSearch;
 import java.util.ArrayList;
 import java.util.List;
+import List_Tree.TreeNode;
 
 public class BinaryTreePreorderTrversal144 {
     public static void main(String[] args) {
@@ -40,7 +41,7 @@ public class BinaryTreePreorderTrversal144 {
      */
     public static void rec(TreeNode root, List<Integer> res){
         if(root == null) return;
-        res.add(root.val);
+        res.add(root.getVal());
         rec(root.left,res);
         rec(root.right,res);
     }
