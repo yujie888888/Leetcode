@@ -1,4 +1,4 @@
-package ALG_Recursive;
+package ALG_Recursion;
 import List_Tree.ListNode;
 public class ReverseLinkedList206 {
     /**给testcase赋值
