@@ -19,7 +19,6 @@
  * The input graph is guaranteed to be a DAG.
  */
 package ALG_DepthFirstSearch;
-
 import java.util.ArrayList;
 import java.util.List;
 
