@@ -33,7 +33,7 @@ public class MergeTwoBinaryTrees617 {
 
     /**DFS
      * O(logn) Beats 100%
-     * O(n)
+     * O(n) 递归栈的深度
      * 思路：
      * 合并就是将每个结点的值都要遍历一遍，而且遍历的对象是两个树一起
      * 1.想到遍历，就用DFS，先root，再left，再right

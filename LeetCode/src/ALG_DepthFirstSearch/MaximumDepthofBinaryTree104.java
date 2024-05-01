@@ -23,7 +23,6 @@ public class MaximumDepthofBinaryTree104 {
         TreeNode n1 = new TreeNode(3,n2,n3);
         System.out.println(findMax(n1));
     }
-
     /**DFS
      * O(logn) Beats 100%
      * O(n) 递归的空间复杂度要看调用的递归栈的数量
