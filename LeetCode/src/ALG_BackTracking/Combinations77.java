@@ -18,8 +18,8 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 /**BackTracking
- * O(n^2) Beats 90%
- * O() Beats 75%
+ * O(k*(n^k)) k是树的深度，n^k只是估计值，剪枝之后肯定比这个小 Beats 98%
+ * O(k + C(n,k)) Beats 75%
  * 思路：
  * 1.先画出树形结构，确定回溯（递归）逻辑
  * 2.确定终止条件，当内list size == k
