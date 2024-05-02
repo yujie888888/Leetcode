@@ -22,9 +22,7 @@
  * p and q will exist in the tree.
  */
 package ALG_DepthFirstSearch;
-
 import List_Tree.TreeNode;
-
 /**DFS
  * O()
  * O()
@@ -54,12 +52,27 @@ import List_Tree.TreeNode;
  * 3.参数：
  *   root,p,q
  *   返回值用TreeNode
+ * 注意事项：
+ * 1.node.val是unique的
+ * 2.肯定存在pq
  */
 public class LowestCommonAncestorofaBinaryTree236 {
     public static void main(String[] args) {
+        TreeNode n9 = new TreeNode(4);
+        TreeNode n8 = new TreeNode(7);
+        TreeNode n7 = new TreeNode(8);
+        TreeNode n6 = new TreeNode(0);
+        TreeNode n5 = new TreeNode(2,n8,n9);
+        TreeNode n4 = new TreeNode(6);
+        TreeNode n3 = new TreeNode(1,n6,n7);
+        TreeNode n2 = new TreeNode(5,n4,n5);
+        TreeNode n1 = new TreeNode(3,n2,n3);
 
+        //TreeNode p = n2;
+        //TreeNode q = n9;
+        System.out.println(lowestCommonAncestor(n1, n2, n9).getVal());
     }
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null || root == p || root == q) return root;
 
         TreeNode leftNode = lowestCommonAncestor(root.left,p,q);
