@@ -41,5 +41,6 @@
         }
 ** Time Complexity **
     递归的时间复杂度：递归深度*每次递归调用的时间复杂度
+    用二叉树来表示：二叉树的结点数
 
 ** Space Complexity **
