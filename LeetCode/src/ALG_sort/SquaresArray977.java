@@ -1,4 +1,4 @@
-package ALG_doublepoints;
+package ALG_sort;
 
 import java.util.Scanner;
 import java.util.Stack;
