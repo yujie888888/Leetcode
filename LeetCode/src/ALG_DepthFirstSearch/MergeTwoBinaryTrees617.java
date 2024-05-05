@@ -14,7 +14,7 @@
  * -104 <= Node.val <= 104
  */
 package ALG_DepthFirstSearch;
-import List_Tree.TreeNode;
+import Class_ListTree.TreeNode;
 public class MergeTwoBinaryTrees617 {
     public static void main(String[] args) {
         TreeNode n14 = new TreeNode(5);

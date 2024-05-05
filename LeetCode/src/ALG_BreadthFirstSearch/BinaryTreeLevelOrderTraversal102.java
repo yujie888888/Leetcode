@@ -15,7 +15,7 @@
  * -1000 <= Node.val <= 1000
  */
 package ALG_BreadthFirstSearch;
-import List_Tree.TreeNode;
+import Class_ListTree.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

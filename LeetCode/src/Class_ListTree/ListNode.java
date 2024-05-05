@@ -1,4 +1,4 @@
-package List_Tree;
+package Class_ListTree;
 
 public class ListNode {
     public ListNode next;

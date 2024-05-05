@@ -17,7 +17,7 @@
  * It is guaranteed that the list represents a number that does not have leading zeros.
  */
 package Struc_linked_list;
-import List_Tree.ListNode;
+import Class_ListTree.ListNode;
 
 public class AddTwoNumbers2{
     /**代码逻辑题

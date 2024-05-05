@@ -24,7 +24,7 @@ package Struc_string;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Contest_ICounttheNumberofSpecialCharacters3120 {
+public class Contest394_CounttheNumberI3120 {
     public static void main(String[] args) {
         System.out.println(numberOfSpecialChars1("aaAbcBC"));
     }

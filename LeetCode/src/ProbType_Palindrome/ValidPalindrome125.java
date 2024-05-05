@@ -1,4 +1,4 @@
-package Struc_string;
+package ProbType_Palindrome;
 
 public class ValidPalindrome125 {
     public static void main(String[] args) {

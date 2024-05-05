@@ -22,7 +22,7 @@
  * p and q will exist in the tree.
  */
 package ALG_DepthFirstSearch;
-import List_Tree.TreeNode;
+import Class_ListTree.TreeNode;
 /**DFS
  * O()
  * O()

@@ -26,7 +26,7 @@
 package Struc_array;
 import java.util.Arrays;
 
-public class Contest_IFindtheIntegerAddedtoArray3131 {
+public class Contest395_FindtheIntegerI3131 {
     public static void main(String[] args) {
         int[] nums1 = {2,6,4};
         int[] nums2 = {9,7,5};

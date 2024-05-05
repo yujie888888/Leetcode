@@ -1,4 +1,3 @@
-package Struc_string;
 /**
  * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
  * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
@@ -13,6 +12,7 @@ package Struc_string;
  * 1 <= s.length, t.length <= 5 * 104
  * s and t consist of lowercase English letters.
  */
+package ProbType_Anagram;
 import java.util.Arrays;
 import java.util.Scanner;
 public class ValidAnagram242 {
@@ -41,8 +41,7 @@ public class ValidAnagram242 {
         Arrays.sort(S);
         Arrays.sort(T);
         //O(n)
-        if(Arrays.equals(S, T)) return true;
-        else return false;
+        return Arrays.equals(S, T);
     }
 
     /**array代替hashmap法

@@ -12,7 +12,7 @@
  * -100 <= Node.val <= 100
  */
 package ALG_DepthFirstSearch;
-import List_Tree.TreeNode;
+import Class_ListTree.TreeNode;
 
 public class MaximumDepthofBinaryTree104 {
     public static void main(String[] args) {

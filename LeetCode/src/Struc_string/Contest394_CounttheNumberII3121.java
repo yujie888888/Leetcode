@@ -21,7 +21,7 @@
  * word consists of only lowercase and uppercase English letters.
  */
 package Struc_string;
-public class Contest_IICounttheNumberofSpecialCharacters3121 {
+public class Contest394_CounttheNumberII3121 {
     public static void main(String[] args) {
 
     }

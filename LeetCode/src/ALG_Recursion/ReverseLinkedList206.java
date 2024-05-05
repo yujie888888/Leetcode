@@ -1,5 +1,5 @@
 package ALG_Recursion;
-import List_Tree.ListNode;
+import Class_ListTree.ListNode;
 public class ReverseLinkedList206 {
     /**给testcase赋值
      * 注意事项：

@@ -1,4 +1,4 @@
-package Struc_string;
+package ProbType_Palindrome;
 
 import java.util.Scanner;
 
@@ -13,7 +13,8 @@ public class PalindromeNumber9 {
         System.out.println(isPalindrome1(x));
 
     }
-    /**1、(推荐)String + two points
+    /**
+     * (推荐)String + two points
      * O(n) Beats 75%
      */
     public static boolean isPalindrome1(int x) {
