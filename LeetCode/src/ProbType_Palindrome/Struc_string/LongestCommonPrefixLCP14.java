@@ -1,4 +1,3 @@
-package Struc_string;
 /**
  * Write a function to find the longest common prefix string amongst an array of strings.
  * If there is no common prefix, return an empty string "".
@@ -14,6 +13,8 @@ package Struc_string;
  * 0 <= strs[i].length <= 200
  * strs[i] consists of only lowercase English letters.
  */
+package ProbType_Palindrome.Struc_string;
+
 public class LongestCommonPrefixLCP14 {
     public static void main(String[] args) {
         String[] strs = {"flower","flow","flowight"};

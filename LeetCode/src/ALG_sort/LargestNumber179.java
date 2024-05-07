@@ -1,8 +1,3 @@
-package ALG_sort;
-
-import java.util.Arrays;
-import java.util.Comparator;
-
 /**
  * Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
  * Since the result may be very large, so you need to return a string instead of an integer.
@@ -16,6 +11,10 @@ import java.util.Comparator;
  * 1 <= nums.length <= 100
  * 0 <= nums[i] <= 109
  */
+package ALG_sort;
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**Steps:
  * 感觉这道题以我目前的水平只能记住做法
  * 转换：首先将所有整数转换为字符串，因为这将使得比较操作变得简单。

@@ -28,7 +28,7 @@
  * 1 <= word.length <= 20
  * word consists of English uppercase and lowercase letters, digits, '@', '#', and '$'.
  */
-package Struc_string;
+package ProbType_Palindrome.Struc_string;
 import java.util.Arrays;
 
 /**代码逻辑题
@@ -41,7 +41,7 @@ import java.util.Arrays;
  * 3.至少包含一个元音，将元音值设置为21，因为word最大长度是20，所以设置为21确保了只要sum值>20,那么说明肯定存在元音
  * 4.至少包含一个辅音：将辅音的值设置为1，只看辅音的sum是不会超过21的，所以将word所有char的值加起来(sum),只要sum % 21存在余数，说明是存在辅音的
  * 注意事项：
- * 1.在求3和4的时候，需要把数字部分的值设置为0，用不到的部分怎么设置都无所谓
+ * 1.在求3和4的时候，需要把数字部分的值设置为0，用不到的部分怎么设置都无所谓;
  */
 public class Contest396_ValidWord3136 {
     public static void main(String[] args) {
@@ -76,7 +76,7 @@ public class Contest396_ValidWord3136 {
         array[117] = 21;
         int sum = 0;
         for(char c : word.toCharArray()){
-            sum += array[c-0];
+            sum += array[c];
         }
         if(sum > 20 && sum%21 != 0) return true;
         else return false;

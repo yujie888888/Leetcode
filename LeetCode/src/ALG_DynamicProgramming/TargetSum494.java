@@ -1,22 +1,36 @@
 /**
- *
+ *Given an integer x, return true if x is a
+ * palindrome
+ * , and false otherwise.
+ * Example 1:
+ * Input: x = 121
+ * Output: true
+ * Explanation: 121 reads as 121 from left to right and from right to left.
+ * Example 2:
+ * Input: x = -121
+ * Output: false
+ * Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+ * Example 3:
+ * Input: x = 10
+ * Output: false
+ * Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+ * Constraints:
+ * -231 <= x <= 231 - 1
+ * Follow up: Could you solve it without converting the integer to a string?
  */
-package ALG_Greedy;
+package ALG_DynamicProgramming;
 public class TargetSum494 {
     static int count = 0;
     public static void main(String[] args) {
         int[] nums = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
         int target = 1;
-
         //dfs
         count = 0;
         dfs(nums,-1,target,0);
-
-
     }
     /**DFS
      * O(2^n) 有2^n个结点 Beats 35%
-     * O(n) Beats 96%
+     * O(n) Beats 99%
      * 每个数字前都有两个选择的可能性，要么+要么-
      * 建一颗二叉树，每一层的每个结点都有两种选择 +nums[index] || -nums[index]
      * 每个结点代表从最顶层到该层进行多次选择后的不同的sum值

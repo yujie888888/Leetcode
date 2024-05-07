@@ -20,7 +20,6 @@
  * The test cases are generated in a way that there is an integer x such that nums1 can become equal to nums2 by removing two elements and adding x to each element of nums1.
  */
 package Struc_array;
-
 import java.util.Arrays;
 
 public class Contest395_FindtheIntegerII3132 {
@@ -29,8 +28,9 @@ public class Contest395_FindtheIntegerII3132 {
         int[] nums2 = {14,18,10};
         System.out.println(minimumAddedInteger(nums1, nums2));
     }
-    /**细节爆炸
-     * O(n)
+    /**代码逻辑题(细节爆炸)
+     * O(n) 70%
+     * O() 91%
      * 直接给我做吐了，逻辑细节太多了
      * 整理别人的解法思路:
      * 1.外循环：从nums1[0]出发，依次移动两次(这个两次是固定的，是nums1和nums2的长度差值)
@@ -38,6 +38,8 @@ public class Contest395_FindtheIntegerII3132 {
      *      如果i+1和i+2都不满足==diff,说明删除这两个元素也不满足要求，不能继续删除了，退出，移动i的位置
      * 4.每次从内循环出来，只要nums2进行到最后一个且"remove"的次数不超过2，说明此时的差值diff是一个满足条件的diff
      * 5.取diff的最小值
+     * 注意事项：
+     * 1.要提前sort nums1和nums2
      */
     public static int minimumAddedInteger(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);

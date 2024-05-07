@@ -1,8 +1,3 @@
-package Struc_string;
-
-import java.util.HashSet;
-import java.util.Scanner;
-
 /**
  * Given a string s, find the length of the longest substring without repeating characters.
  * Example 1:
@@ -22,11 +17,13 @@ import java.util.Scanner;
  * 0 <= s.length <= 5 * 104
  * s consists of English letters, digits, symbols and spaces.
  */
+package ProbType_Palindrome.Struc_string;
+import java.util.HashSet;
+import java.util.Scanner;
+
 public class LongestSubstringWithoutRepeatingCharacters3 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the string:");
-        String s = sc.nextLine();
+        String s = "abcabcbb";
         //System.out.println(lengthOfLongestSubstring1(s));
         System.out.println(lengthOfLongestSubstring2(s));
     }
@@ -54,7 +51,7 @@ public class LongestSubstringWithoutRepeatingCharacters3 {
                 left ++;
             }
             freq.add(c[right]);
-            max_len = max_len > right-left+1 ? max_len : right-left+1;
+            max_len = Math.max(max_len,right-left+1);
             right ++;
         }
         return max_len;

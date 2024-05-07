@@ -17,7 +17,6 @@
  */
 package ALG_Greedy;
 public class BestTimeBuySellStock121 {
-
     public static void main(String[] args) {
         int[] prices = {7, 6, 5, 4, 3, 2};
         System.out.println(greedy(prices));

@@ -20,13 +20,13 @@
  * 1 <= word.length <= 2 * 105
  * word consists of only lowercase and uppercase English letters.
  */
-package Struc_string;
+package ProbType_Palindrome.Struc_string;
 public class Contest394_CounttheNumberII3121 {
     public static void main(String[] args) {
-
+        String word = "aaAbcBC";
+        System.out.println(numberOfSpecialChars(word));
     }
-
-    /**置位法
+    /**异或置位法
      * O(n) Beats 65%
      * O(1) Beats 99%
      * 思路：
@@ -58,23 +58,6 @@ public class Contest394_CounttheNumberII3121 {
         int count = 0;
         for(int i : arr){
             if(i == 3) count ++;
-        }
-        return count;
-    }
-    /**indexOf()法
-     *
-     * 思路：
-     * 在字符串中检查每个字母出现的情况
-     * 检查该小写是否存在 && 该小写最后出现的位置是不是在该大写出现位置的前面
-     */
-    public static int numberOfSpecialChars2(String word) {
-        int count = 0;
-        for(int i=0; i<26; i++){
-            int low = (char) (i+'a');
-            int up = (char) (i+'A');
-            if(word.indexOf(low) != -1 && word.lastIndexOf(low) < word.indexOf(up)){
-                count ++;
-            }
         }
         return count;
     }

@@ -1,5 +1,5 @@
-package Struc_array;
 
+package Struc_array;
 import java.util.ArrayList;
 import java.util.List;
 

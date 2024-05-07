@@ -18,11 +18,13 @@ import java.util.Scanner;
 public class ValidAnagram242 {
     public static void main(String[] args) {
         String s = "rat", t = "car";
-        System.out.println(isAnagram1(s,t));
+        System.out.println(isAnagram3(s, t));
     }
 
-    /**Arrays.sort()方法巧用
+    /**
+     * Arrays.sort()
      * O(nlogn) Beats 90%
+     * O(1) Beats 99%
      * 思路：
      * 1.把s和t转换成array格式
      * 2.Arrays.sort方法进行sort
@@ -32,8 +34,7 @@ public class ValidAnagram242 {
      * 1.Array.equals用来比较两个数组的内容是否相等；.equals()方法对array来说，实际上是比较两个数组对象的引用，而不是数组的内容
      */
     public static boolean isAnagram1(String s, String t) {
-        //base case
-        if(s.length() != t.length()) return false;
+        if (s.length() != t.length()) return false;
 
         char[] S = s.toCharArray();
         char[] T = t.toCharArray();
@@ -44,7 +45,8 @@ public class ValidAnagram242 {
         return Arrays.equals(S, T);
     }
 
-    /**array代替hashmap法
+    /**
+     * HashMap(equals)
      * O(n) Beats 90%
      * O(1) Beats 99%
      * 思路：
@@ -53,43 +55,38 @@ public class ValidAnagram242 {
      * 3.对于s.chatAt(i)位置的char，-'a'就是在S[]中的位置
      * 4.O(n) 对S和T进行赋值
      * 5.O(n) 比较两个数组是否相等
+     * 注意事项：
+     * 1.可以先把长度不相等的直接返回false
      */
     public boolean isAnagram2(String s, String t) {
-        //base case
-        if(s.length() != t.length()) return false;
+        if (s.length() != t.length()) return false;
 
         int[] S = new int[26];
         int[] T = new int[26];
-        for(int i=0; i<s.length(); i++){
-            S[s.charAt(i)-'a'] ++;
+        for (int i = 0; i < s.length(); i++) {
+            S[s.charAt(i) - 'a']++;
         }
-        for(int i=0; i<t.length(); i++){
-            T[t.charAt(i)-'a'] ++;
+        for (int i = 0; i < t.length(); i++) {
+            T[t.charAt(i) - 'a']++;
         }
-        return Arrays.equals(S,T);
+        return Arrays.equals(S, T);
     }
 
-    /**对一个数组先加后减法
+    /**
+     * HashMap(先加后减)
      * O(n) Beats 99.81%
      * O(1) Beats 75%
+     * 思路：
+     * 1.和isAnagram2思路一样，不过不是用equals来比较freq
+     * 2.在将s的freq加入array之后，再遍历t，将t的char位置对应的数字--
+     * 3.遍历array，如果还存在不为0的数，那么肯定不相等
      */
     public static boolean isAnagram3(String s, String t) {
-        //base case
-        if(s.length() != t.length()) return false;
-
+        if (s.length() != t.length()) return false;
         int[] array = new int[26];
-        //加
-        for(char c : s.toCharArray()){
-            array[c-'a'] ++;
-        }
-        //减
-        for(char c : t.toCharArray()){
-            array[c-'a'] --;
-        }
-        //判断
-        for(int i : array){
-            if(i != 0) return false;
-        }
+        for (char c1 : s.toCharArray()) {array[c1 - 'a']++;}
+        for (char c2 : t.toCharArray()) {array[c2 - 'a']--;}
+        for (int i : array) {if (i != 0) return false;}
         return true;
-    }
+        }
 }

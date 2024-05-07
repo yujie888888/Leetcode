@@ -25,7 +25,7 @@
  * k divides word.length.
  * word consists only of lowercase English letters.
  */
-package Struc_string;
+package ProbType_Palindrome.Struc_string;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +33,7 @@ import java.util.Map;
  * O(word.length/k)
  * O(word.length/k)
  * 思路：
- * 这道题的题目要求写的真的很模糊，看题看了好久
- * 其实就是给一个k，然后在word里找k长度的子串，看这个子串要多少步才能覆盖word
+ * 这道题的题目要求写的真的很模糊，看题看了好久, 其实就是给一个k，然后在word里找k长度的子串，看这个子串要多少步才能覆盖word
  * 求的就是最小覆盖次数
  * 1.因为肯定存在一个子串能覆盖word
  * 2.这个长度为k的子串的个数也是有限的，start位置肯定是从0开始，到n.length-k结束
@@ -44,6 +43,7 @@ public class Contest396_KPeriodic3137 {
     public static void main(String[] args) {
         String word = "leetcoleet";
         int k = 2;
+
         Map<String,Integer> hashmap = new HashMap<>();
         int maxFreq = 0;
         int j = k;

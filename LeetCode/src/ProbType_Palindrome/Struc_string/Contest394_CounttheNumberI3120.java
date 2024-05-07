@@ -20,7 +20,7 @@
  * 1 <= word.length <= 50
  * word consists of only lowercase and uppercase English letters.
  */
-package Struc_string;
+package ProbType_Palindrome.Struc_string;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +39,7 @@ public class Contest394_CounttheNumberI3120 {
      * 注意事项：
      * 1.第一次用异或"|="，异或将左侧变量的当前值与右侧的值，执行位或操作，并将结果赋值回左侧变量
      *   举个例子：int a = 5; // 二进制 0101
-     *           a |= 3;    // 二进制 0011
+     *           a |= 3;    // 3的二进制 0011，|=执行异或操作: 0101+0011 = 0111 (7)
      *   现在 a 的值变成了 7 (二进制 0111)
      * 2.对于"aaAbcBC"重复的情况，|= 只是将出现的情况设置为1，不管是否重复出现
      */
@@ -56,7 +56,9 @@ public class Contest394_CounttheNumberI3120 {
         return res;
     }
     /**HashSet (比赛的时候想到的方法)
-     * O(n) Beats 30% ( set.contains() is O(1) & Character.isUpperCase(c) is O(1))
+     * O(n) Beats 30%
+     *      set.contains() is O(1)
+     *      Character.isUpperCase(c) is O(1))
      */
     public static int numberOfSpecialChars2(String word) {
         Set<Character> set = new HashSet<>();
