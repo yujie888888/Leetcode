@@ -1,7 +1,3 @@
-package ALG_doublepoints;
-
-import java.util.Scanner;
-
 /**
  * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
  * Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
@@ -39,6 +35,9 @@ import java.util.Scanner;
  * 0 <= nums[i] <= 50
  * 0 <= val <= 100
  */
+package ALG_doublepoints;
+import java.util.Scanner;
+
 public class RemoveElement27 {
     /**解法思路
      * 数组的元素在内存地址中是连续的，不能单独删除数组中的某个元素，只能覆盖。
