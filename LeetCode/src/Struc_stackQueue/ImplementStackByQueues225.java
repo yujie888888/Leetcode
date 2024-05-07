@@ -1,7 +1,3 @@
-package Struc_stackQueue;
-
-import java.util.ArrayDeque;
-
 /**
  * Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (push, top, pop, and empty).
  * Implement the MyStack class:
@@ -31,13 +27,15 @@ import java.util.ArrayDeque;
  * All the calls to pop and top are valid.
  * Follow-up: Can you implement the stack using only one queue?
  */
+package Struc_stackQueue;
+import java.util.ArrayDeque;
+
 public class ImplementStackByQueues225 {
     public static void main(String[] args) {
 
     }
 
 }
-
 /**
  * 利用两个队列（queue1 和 queue2）
  * push(int x) - 将元素 x 压入栈顶。
@@ -76,11 +74,9 @@ class MyStack {
     public int pop() {
         return queue1.remove();
     }
-
     public int top() {
         return queue1.peek();
     }
-
     public boolean empty() {
         return(queue1.isEmpty());
     }

@@ -18,5 +18,6 @@ package Struc_hash;
 public class RansomNote383 {
     public static void main(String[] args) {
         //和242一模一样，更简单
+        //TODO
     }
 }

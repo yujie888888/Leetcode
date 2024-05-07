@@ -1,8 +1,3 @@
-package Struc_stackQueue;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 /**
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
  * An input string is valid if:
@@ -22,6 +17,10 @@ import java.util.Deque;
  * 1 <= s.length <= 104
  * s consists of parentheses only '()[]{}'.
  */
+package Struc_stackQueue;
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class ValidParentheses20 {
     public static void main(String[] args) {
 
