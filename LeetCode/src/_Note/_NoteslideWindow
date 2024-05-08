@@ -1,5 +1,4 @@
 /**滑动窗口**/
-
         最短模板：
         while(right->end){
             window扩大，加入right指向的元素，更新result
@@ -9,7 +8,6 @@
             }
             right++；
         }
-
         最长模板：
         while(right->end){
             window扩大，加入right指向的元素，更新result

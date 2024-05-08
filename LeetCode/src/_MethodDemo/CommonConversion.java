@@ -1,5 +1,7 @@
 package _MethodDemo;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CommonConversion {
     public static void main(String[] args) {
@@ -67,11 +69,57 @@ public class CommonConversion {
         int[] arr1 = {1, 2, 3};
         String s8 = Arrays.toString(arr1); // 返回"[1, 2, 3]"
         System.out.println(s8);
+        //2.2.4 String[]->String
+        String[] strs = {"11","aa"};
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str);
+        }
+        System.out.println(sb);
         System.out.println("-----------------");
 
+        //3.String <-> List<Character>
+        //3.1.String -> List<Character>
+        //3.1.1.手动遍历，字符串的每个字符并添加到List中。
+        String s9 = "hello";
+        List<Character> list1 = new ArrayList<>();
+        for(char c : s9.toCharArray()) {
+            list1.add(c);
+        }
+        //3.1.2.分割，使用String类的split()方法和Arrays.asList()
+        String s10 = "a,b,c";
+        List<String> list2 = Arrays.asList(s10.split(","));
 
-        /* Array */
-        //int[] -> String[]
+        //3.2.List<Character> -> String
+        List<Character> charList = new ArrayList<>();
+        charList.add('H');
+        charList.add('e');
+        //3.2.1. 遍历拼接
+        StringBuilder sb1 = new StringBuilder();
+        for (char ch : charList) {
+            sb1.append(ch);
+        }
+        String s11 = "";
+        for (char ch : charList) {
+            s11 += ch;
+        }
+        System.out.println("-----------------");
+
+        //4.array <-> List
+        //4.1.array -> List
+        //4.1.1.遍历数组并添加到集合
+        //4.1.2.Arrays.asList()
+        String[] array = new String[]{"a", "b", "c"};
+        List<String> list = Arrays.asList(array);
+        //4.2.List -> array
+        //4.2.1.toArray()
+        String[] array2 = list.toArray(new String[0]);
+        //new String[0]是创建了一个长度为0的String数组实例。
+        //这个空数组作为toArray方法的参数，其目的是指示toArray方法返回一个String类型的数组。
+        System.out.println("-----------------");
+
+        //5.Array <-> Array
+        //5.1.int[] -> String[]
         int[] nums = {10,22,39,455,1115};
         String[] strNums = new String[nums.length];
         for(int i3=0; i3<nums.length; i3++){
