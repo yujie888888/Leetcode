@@ -28,6 +28,15 @@ public class TargetSum494 {
         count = 0;
         dfs(nums,-1,target,0);
     }
+    /**(推荐)Dynamic Programming
+     *
+     *
+     */
+
+
+
+
+
     /**DFS
      * O(2^n) 有2^n个结点 Beats 35%
      * O(n) Beats 99%
@@ -40,6 +49,7 @@ public class TargetSum494 {
      * 3.参数：nums，index，target，sum
      * 注意事项：
      * 1.我是从index为-1也就是第-1层进去递归的，因为每个数字都有两种选择，从还没有选择的时候进入
+     * 2.结束条件写的很巧妙
      */
     public static void dfs(int[] nums ,int index, int target, int sum){
         if(index == nums.length-1){
