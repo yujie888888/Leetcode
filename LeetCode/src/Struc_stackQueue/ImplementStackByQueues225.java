@@ -34,31 +34,47 @@ public class ImplementStackByQueues225 {
     public static void main(String[] args) {
 
     }
-
 }
+/**代码逻辑题
+ * 思路：
+ * 1.利用两个队列（queue1 和 queue2）
+ * 2.实现stack.push(int x) - 将元素 x 压入栈顶。
+ * 2.实现stakc.pop() - 移除栈顶元素，并返回该元素。
+ *      直接从queue1中移除并返回前端的元素即可。
+ * 3.实现stack.top() - 返回栈顶元素，但不移除它。
+ *      直接返回 queue1 的前端元素。
+ * 4.实现stack.empty() - 如果栈为空，返回 true；否则返回 false。
+ *      检查 queue1 是否为空。
+ */
 /**
- * 利用两个队列（queue1 和 queue2）
- * push(int x) - 将元素 x 压入栈顶。
- * 将元素先加入到空的队列（比如 queue2）中，然后将另一个队列（queue1）中的所有元素按顺序加入到 queue2 中。
- * 交换 queue1 和 queue2 的角色，使得 queue1 始终包含栈的所有元素，queue2 用于辅助操作。
- *
- * pop() - 移除栈顶元素，并返回该元素。
- * 直接从 queue1 中移除并返回前端的元素即可。
- *
- * top() - 返回栈顶元素，但不移除它。
- * 直接返回 queue1 的前端元素。
- *
- * empty() - 如果栈为空，返回 true；否则返回 false。
- * 检查 queue1 是否为空。
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
  */
 class MyStack {
+    /**初始化
+     * 1.首先定义ArrayDeque<Integer> queue1;
+     * 2.然后在Mystack中初始化queue1和queue2
+     * Class MyStack的两个属性，queue1 和 queue2，它们都是 ArrayDeque<Integer> 类型
+     * 构造器MyStack()是一个公开的无参数构造器。构造器的主要作用是初始化对象的状态。
+     */
     ArrayDeque<Integer> queue1;
     ArrayDeque<Integer> queue2;
     public MyStack() {
         queue1 = new ArrayDeque<>();
         queue2 = new ArrayDeque<>();
     }
-
+    /**push()代码逻辑
+     * 思路：
+     * 1.用两个队列queue1和queue2
+     * 2.queue2临时存放加进来的元素
+     * 3.然后将queue1中的元素加到queue2的尾端
+     * 4.然后交换queue1和queue2
+     * 经过234,这样在queue1中新加入进来的元素肯定在头部
+     */
     public void push(int x) {
         queue2.add(x);
         while(!queue1.isEmpty()){
@@ -70,7 +86,6 @@ class MyStack {
         queue1 = queue2;
         queue2 = temp;
     }
-
     public int pop() {
         return queue1.remove();
     }
@@ -81,12 +96,3 @@ class MyStack {
         return(queue1.isEmpty());
     }
 }
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */

@@ -48,7 +48,7 @@ public class Triangle120 {
      * 注意事项：
      * 1.递推公式不要写错，不要搞混triangle和dp
      * 2.注意List的各种操作
-     * 3.这道题top->bottom 或者 bottom->top都可以
+     * 3.这道题top->bottom 或者 bottom->top都可以，但是从底向上比较简单
      */
     public static int minimumTotal1(List<List<Integer>> triangle) {
         int n = triangle.size();
@@ -61,14 +61,6 @@ public class Triangle120 {
         for(int i=n-2; i>=0; i--){
             for(int j=i; j>=0; j--){
                 dp[i][j] = triangle.get(i).get(j) + Math.min(dp[i+1][j], dp[i+1][j+1]);
-                /*
-                System.out.print(triangle.get(i).get(j) + " + ");
-                System.out.print(triangle.get(i+1).get(j) + " / ");
-                System.out.print(triangle.get(i+1).get(j+1) + " = ");
-                System.out.print(dp[i][j]);
-                System.out.println();
-                System.out.println("-----------");
-                 */
             }
         }
         return dp[0][0];

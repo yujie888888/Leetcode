@@ -20,10 +20,9 @@ public class ClimbingStairs70 {
     public static void main(String[] args) {
         System.out.println(climbStairs(10));
     }
-
     /**Dynamic Programming经典题
      * O(n) Beats 100%
-     * O(1)
+     * O(n) Beats 95%
      * 思路：
      * 1.dp[i]表示爬到第i层有多少种方法
      * 2.dp[i] = dp[i-1] + dp[i-2] 因为爬到第i层的方法要么从i-1的位置爬一层，要么从i-2的位置爬两层
