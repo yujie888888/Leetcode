@@ -16,11 +16,11 @@
  * 商品 E：重量 7，价值 28
  * 背包的最大容量为11。
  */
-package ALG_DepthFirstSearch;
+package ALG_DynamicProgramming;
 /** Classical Dynamic Programming
  * 思路：
  * https://programmercarl.com/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.html#%E6%80%9D%E8%B7%AF
- * 1.dp[i][j]含义: dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，最大总价值是多少
+ * 1.dp[i][j]含义: dp[i][j] 表示从下标为[0-i]的物品里"任意取"，放进容量为j的背包，最大总价值是多少
  * 2.recursion formula: dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
  *      不放物品i：
  *          由dp[i - 1][j]推出，即背包容量为j，里面不放物品i的最大价值，此时dp[i][j]就是dp[i - 1][j]
@@ -55,6 +55,7 @@ public class Bags_01 {
                 }
                 else dp[i][j] = dp[i-1][j];
             }
+
         }
         System.out.println(dp[len-1][capacity]);
     }
