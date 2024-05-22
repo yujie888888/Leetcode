@@ -19,7 +19,7 @@
  * 1 <= s.length <= 105
  * s consist only of lowercase English letters.
  */
-package ProbType_Anagram;
+package Topic_Anagram;
 import java.util.HashMap;
 import java.util.Map;
 /**Anagram

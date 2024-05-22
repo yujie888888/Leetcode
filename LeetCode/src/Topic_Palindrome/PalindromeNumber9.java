@@ -16,7 +16,7 @@
  * -231 <= x <= 231 - 1
  * Follow up: Could you solve it without converting the integer to a string?
  */
-package ProbType_Palindrome;
+package Topic_Palindrome;
 
 public class PalindromeNumber9 {
     public static void main(String[] args) {

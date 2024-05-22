@@ -18,7 +18,7 @@
  * 1 <= s.length <= 2 * 105
  * s consists only of printable ASCII characters.
  */
-package ProbType_Palindrome;
+package Topic_Palindrome;
 
 public class ValidPalindrome125 {
     public static void main(String[] args) {

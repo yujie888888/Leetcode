@@ -12,9 +12,9 @@
  * 1 <= s.length, t.length <= 5 * 104
  * s and t consist of lowercase English letters.
  */
-package ProbType_Anagram;
+package Topic_Anagram;
 import java.util.Arrays;
-import java.util.Scanner;
+
 public class ValidAnagram242 {
     public static void main(String[] args) {
         String s = "rat", t = "car";

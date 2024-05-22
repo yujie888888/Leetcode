@@ -15,7 +15,7 @@
  * 0 <= strs[i].length <= 100
  * strs[i] consists of lowercase English letters.
  */
-package ProbType_Anagram;
+package Topic_Anagram;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
