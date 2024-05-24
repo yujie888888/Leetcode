@@ -19,14 +19,13 @@
  * s consists only of printable ASCII characters.
  */
 package Topic_Palindrome;
-
 public class ValidPalindrome125 {
     public static void main(String[] args) {
-        String s = "A man, a plan, a canal: Panama";
+        String s = "0P";
         System.out.println(isPalindrome(s));
     }
     /**Double points
-     * O(n) Beats 75%
+     * O(n) Beats 99%
      * O(1) Beats 85%
      * 思路：
      * 就是Character的一些方法的应用
