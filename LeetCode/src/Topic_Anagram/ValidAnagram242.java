@@ -20,12 +20,11 @@ public class ValidAnagram242 {
         String s = "rat", t = "car";
         System.out.println(isAnagram3(s, t));
     }
-
-    /**
-     * Arrays.sort()
+    /**Arrays.sort()
      * O(nlogn) Beats 90%
      * O(1) Beats 99%
      * 思路：
+     * 本质上就是看s和t包含的char是不是一样的(类型和个数)
      * 1.把s和t转换成array格式
      * 2.Arrays.sort方法进行sort
      * 3.Arrays.equals()方法进行比较
@@ -35,7 +34,6 @@ public class ValidAnagram242 {
      */
     public static boolean isAnagram1(String s, String t) {
         if (s.length() != t.length()) return false;
-
         char[] S = s.toCharArray();
         char[] T = t.toCharArray();
         //O(nlogn)
@@ -45,8 +43,7 @@ public class ValidAnagram242 {
         return Arrays.equals(S, T);
     }
 
-    /**
-     * HashMap(equals)
+    /** HashMap(equals)
      * O(n) Beats 90%
      * O(1) Beats 99%
      * 思路：
@@ -72,8 +69,7 @@ public class ValidAnagram242 {
         return Arrays.equals(S, T);
     }
 
-    /**
-     * HashMap(先加后减)
+    /**HashMap(先加后减)
      * O(n) Beats 99.81%
      * O(1) Beats 75%
      * 思路：

@@ -17,7 +17,7 @@
  * 背包的最大容量为11。
  */
 package ALG_DynamicProgramming;
-/** Classical Dynamic Programming
+/**01-Bags
  * 思路：
  * https://programmercarl.com/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.html#%E6%80%9D%E8%B7%AF
  * 1.dp[i][j]含义: dp[i][j] 表示从下标为[0-i]的物品里"任意取"，放进容量为j的背包，最大总价值是多少
@@ -38,10 +38,12 @@ public class Bags_01 {
     public static void main(String[] args) {
         int[] weights = {1, 2, 5, 6, 7};
         int[] values = {1, 6, 18, 22, 28};
-        int len = weights.length;
         int capacity = 11;
-        //最大价值为 40 (取商品 B, C, D)
-
+        System.out.println(Bags1(weights,values,capacity));
+        System.out.println(Bags2(weights,values,capacity));
+    }
+    public static int Bags1(int[] weights, int[] values, int capacity){
+        int len = weights.length;
         int[][]dp = new int[len][capacity+1];
         for(int i=0; i<len; i++) dp[i][0] = 0;
         for(int j=1; j<=capacity; j++){
@@ -57,6 +59,26 @@ public class Bags_01 {
             }
 
         }
-        System.out.println(dp[len-1][capacity]);
+        return dp[len-1][capacity];
+    }
+    /**DP(一维数组)
+     * O(m*n)
+     * O(n)
+     * 思路:
+     * 和一维数组一样
+     * 注意事项:
+     * 1.数组越界限制: j>=weights[i]
+     * 2.内循环倒序遍历，因为如果是正序遍历dp[j]=dp[j-2]+v[2]这个式子中右边的dp[j-2]就是这一层的值而不是上一层的值
+     *   但是我们要的是上一层的值，所以倒序遍历就不会导致覆盖问题
+     */
+    public static int Bags2(int[] weights, int[] values, int capacity){
+        int len = weights.length;
+        int[] dp = new int[capacity+1];
+        for(int i=0; i<len; i++) {
+            for (int j = capacity; j>=weights[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j-weights[i]]+values[i]);
+            }
+        }
+        return dp[capacity];
     }
 }

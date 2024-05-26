@@ -24,21 +24,19 @@ public class ClimbingStairs70 {
      * O(n) Beats 100%
      * O(n) Beats 95%
      * 思路：
-     * 1.dp[i]表示爬到第i层有多少种方法
+     * 1.dp[i]:表示爬到第i层有多少种方法
      * 2.dp[i] = dp[i-1] + dp[i-2] 因为爬到第i层的方法要么从i-1的位置爬一层，要么从i-2的位置爬两层
-     * 3.从底向上，最后的问题就被拆解成多个小问题，并且把小问题的解决答案存起来
-     * 4.最底层，dp[1]=1; dp[2]=2;
+     * 3.dp[1]=1; dp[2]=2; 不初始化dp[0],因为没有意义，直接从1开始，然后初始化dp[1]和dp[2],循环从3开始
      * 注意事项：
      * 1.虽然我们不用dp[0],但是在声明数组的时候长度要n+1,因为我们是从下标1开始用，但是数组是从下标0开始的
      */
     public static int climbStairs(int n) {
-        //base case
-        if(n == 1 || n == 2) return n;
+        if(n<=2) return n;
         int[] dp = new int[n+1];
         dp[1] = 1;
         dp[2] = 2;
         for(int i=3; i<=n; i++){
-            dp[i] = dp[i-1] + dp[i-2];
+            dp[i] = dp[i-1]+dp[i-2];
         }
         return dp[n];
     }

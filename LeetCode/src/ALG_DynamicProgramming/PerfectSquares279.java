@@ -17,7 +17,7 @@ public class PerfectSquares279 {
     public static void main(String[] args) {
         System.out.println(numSquares1(13));
     }
-    /**Dp1
+    /**DP1
      * O(n*sqrt(n)) Beats 50%
      * O(n) Beats 95%
      * 思路:

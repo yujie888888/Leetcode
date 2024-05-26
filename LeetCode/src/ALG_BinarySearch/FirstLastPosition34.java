@@ -1,4 +1,4 @@
-package ALG_binary_search;
+package ALG_BinarySearch;
 
 import java.util.Arrays;
 import java.util.HashMap;

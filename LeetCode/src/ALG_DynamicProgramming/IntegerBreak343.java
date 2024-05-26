@@ -18,28 +18,26 @@ public class IntegerBreak343 {
         System.out.println(integerBreak1(10));
         System.out.println(integerBreak2(10));
     }
-
-    /**
-     * DP
+    /**DP
      * O(n^2) Beats 50%
-     * O(n) Beats 50%
+     * O(n) Beats 75%
      * 思路:
      * 最重要的是能够找出所有的拆分情况，有两种可能的拆分情况
+     * 因为想到用dp，所以肯定想到要怎么拆分才能推导出公式，代表间接相乘这个方面
+     * 然后举例时会发现对于n=4，间接相乘会漏掉2*2，所以说明只是间接相乘是不够的，于是要加一个直接相乘
      * 1.dp[i]: 分拆数字i，可以得到的最大乘积为dp[i]
      * 2.状态转移，对于dp[i]:
-     * 1.可以是j*(i-j)得到
-     * 2.可以是j*dp[i-j]得到
+     *    直接相乘: 可以是j*(i-j)得到
+     *    间接相乘: 可以是j*dp[i-j]得到
      * 举个例子n=4
-     * 对于1.有1*3 2*2 3*1
-     * 对于2.有1*dp[3] 2*dp[2] 3*dp[1]
+     *    有1*3 2*2 3*1
+     *    有1*dp[3] 2*dp[2] 3*dp[1]
      * 这两种情况就包括了dp[i]所有可能的拆分情况的乘积
      * 因为内循环是遍历j次才找到最大值，所以公式是max(dp[i],j*(i-j),j*dp[i-j])
      * 3.初始化dp[1]=1;
      */
     public static int integerBreak1(int n) {
-        //dp[i]: 分拆数字i，可以得到的最大乘积为dp[i]
         int[] dp = new int[n + 1];
-        dp[0] = 1;
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
             for (int j = 1; j < i; j++) {
@@ -49,8 +47,7 @@ public class IntegerBreak343 {
         }
         return dp[n];
     }
-    /**
-     * Greedy
+    /**Greedy
      * O(n) Beats 100%
      * O(1)
      * 思路:

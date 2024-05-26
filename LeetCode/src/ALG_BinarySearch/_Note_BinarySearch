@@ -1,0 +1,26 @@
+** Binaray Search **
+# Time Complexity #
+    O(nlogn)
+# 使用场景 #
+    array必须是sort好的
+# Steps #
+    1.set start&end
+    2.tarverse nums
+         set mid
+         udgement
+         set interval
+# 模版 #
+    int left = 0;
+    int right = length-1;
+    int mid;
+    while(left <= right){
+        mid = left + (eight-left) + 1;
+        if(nums[mid] == target) return mid;
+        else if(nums[mid] < target) left = mid + 1;
+        else right = mid - 1;
+        }
+# Ex #
+    nums = [-1,0,3,5,9,12]
+    闭区间写法是"<=": while(left<=right)
+    每次选择mid，mid是独立于其左右区间的
+    所以start=mid+1 || end=mid-1

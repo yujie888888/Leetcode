@@ -18,15 +18,17 @@
  * -231 <= x <= 231 - 1
  * Follow up: Could you solve it without converting the integer to a string?
  */
-package ALG_DepthFirstSearch;
+package ALG_DynamicProgramming;
 public class TargetSum494 {
     static int count = 0;
     public static void main(String[] args) {
         int[] nums = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
         int target = 1;
-        //dfs
         count = 0;
         dfs(nums,-1,target,0);
+        System.out.println(count);
+        System.out.println(dp1(nums,target));
+        System.out.println(dp2(nums,target));
     }
     /**DFS
      * O(2^n) 有2^n个结点 Beats 35%
@@ -52,10 +54,10 @@ public class TargetSum494 {
         dfs(nums,index+1,target,sum+nums[index+1]);
         dfs(nums,index+1,target,sum-nums[index+1]);
     }
-    /**Dynamic Programming
-     * 01背包问题
-     * O(target*n) Beats 90%
-     * O(target*n)
+    /**Dynamic Programming(二维数组)
+     * 01背包问题应用
+     * O(n^2) Beats 90%
+     * O(n^2)
      * 思路：
      * 1.dp[i][j]: 前i个数字能组成和为j有多少种办法
      *   把nums分成两部分，一部分是选择+一部分选择-，选择+这部分的sum称为left；又left-(sum-left)=target -> left = (sum+target)/2;
@@ -65,7 +67,7 @@ public class TargetSum494 {
      * 注意事项：
      * 1.dp[i][j]中的i和nums[i]中的i不一样，差1
      */
-    public static int dp(int[] nums, int target) {
+    public static int dp1(int[] nums, int target) {
         int sum = 0;
         for(int num : nums) sum+=num;
         int left = (sum+target)/2;
@@ -81,5 +83,36 @@ public class TargetSum494 {
             }
         }
         return dp[nums.length][left];
+    }
+    /**DP(一维数组)
+     * O(n^2) Beats 99%
+     * O(n) Beats 70%
+     * 01Bags应用
+     * 思路:
+     *  和二维数组一样
+     *  (+组) - (-组) = target
+     *  +组 = (sum+target)/2;
+     * DP五部曲:
+     * 1.dp[j] 选择前i个num，其和为j有多少种选择
+     * 2.dp[j] = dp[j] + dp[j-nums[i]];
+     * 3.dp[0] = 1;
+     * 注意事项：
+     * 1.if ((target + sum) % 2 == 1) return 0;这个判断只能用(target + sum) % 2，不能用n%2==1,因为n运算后已经取整了
+     */
+    public static int dp2(int[] nums, int target) {
+        int sum = 0;
+        for(int num : nums) sum+=num;
+        if(Math.abs(target) > sum) return 0;
+        if ((target + sum) % 2 == 1) return 0;
+
+        int n = (sum+target)/2;
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        for(int i=0; i<nums.length; i++){
+            for(int j=n; j>=nums[i]; j--){
+                dp[j] = dp[j] + dp[j-nums[i]];
+            }
+        }
+        return dp[n];
     }
 }

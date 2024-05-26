@@ -1,8 +1,4 @@
-package DataStruc_StackQueue;
-
-import java.util.Stack;
-
-/** 用stack模拟queue
+/**
  * Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue
  * (push, peek, pop, and empty).
  * Implement the MyQueue class:
@@ -34,71 +30,69 @@ import java.util.Stack;
  * Follow-up: Can you implement the queue such that each operation is amortized O(1) time complexity?
  * In other words, performing n operations will take overall O(n) time even if one of those operations may take longer.
  */
+package DataStruc_StackQueue;
+import java.util.Stack;
+
 public class ImplementQueueByStack232 {
     public static void main(String[] args) {
-
+        MyQueue q1 = new MyQueue();
+        q1.push(1);
+        q1.push(2);
+        System.out.println(q1.peek());
+        System.out.println(q1.pop());
+        System.out.println(q1.empty());
     }
 }
-
-/**使用两个栈（stack1 和 stack2）来模拟队列的操 100%
+/**使用两个栈来模拟队列的操
+ * Beats 100%
+ * 思路:
+ * s1和s2不可能同时都有值，经过操作后，肯定是只有一个栈包含全部的值
+ * 模拟题，记住怎么做就行了
  * 1.初始化 (MyQueue)
- *      栈1 (stack1): 负责处理所有的入队 (push) 操作。新元素总是被推入 stack1。
- *      栈2 (stack2): 负责处理所有的出队 (pop) 和查看队首元素 (peek) 操作。
- *          当 stack2 为空，从 stack1 中转移元素到 stack2 来进行出队或查看操作,没有必要每次都转移。
+ *      stack1: 负责处理所有的入队 (push) 操作,新元素总是被推入 stack1。
+ *      stack2: 负责处理所有的出队 (pop) 和查看队首元素 (peek) 操作。
  * 2.入队 (push)
- *      直接将元素推入 stack1。这是一个 O(1) 的操作，非常高效。
+ *      if(s2为空) 直接将元素推入 stack1  O(1)
+ *      if(s2不为空) 将s2中的元素依次pop到s1中，在将xpush进s1  O(n)
  * 3.出队 (pop)
- *      如果 stack2 为空，则将 stack1 中的所有元素依次弹出并推入 stack2。
- *          这样做的目的是反转 stack1 中元素的顺序，使得最先进入 stack1 的元素移动到 stack2 的顶部，从而可以首先被弹出，符合队列的先进先出 (FIFO) 特性。
- *      然后从 stack2 弹出和返回顶部元素作为出队结果。
+ *      if(s2为空)，则将s1中的所有元素依次弹出并推入s2  //
+ *          这样做的目的是反转s1中元素的顺序，使得最先进入s1的元素移动到s2的顶部，从而可以首先被弹出，符合队列的先进先出 (FIFO) 特性
+ *          s2.pop()
+ *      if(s2不为空),则直接s2.pop()即可
  *      这个操作在均摊分析下是 O(1)，因为每个元素只会被移动两次（一次进入 stack1，一次转移到 stack2）。
  * 4.查看队首元素 (peek)
- *      类似于 pop 操作，如果 stack2 为空，则从 stack1 转移所有元素到 stack2，以确保 stack2 的顶部元素是最先进入队列的元素。
- *      返回 stack2 的顶部元素，但不从栈中移除它。
- *      这个操作也是均摊 O(1)。
+ *      和pop几乎一样
  * 5.检查队列是否为空 (empty)
  *      如果 stack1 和 stack2 都为空，则队列为空，返回 true。
  *          检查两个都为空才可以是因为如果stack2为空，stack1不为空的情况下，只是stack1还没将内容压进stack2而已
  *      否则，返回 false。
  */
 class MyQueue {
-    //用两个stack实现queue的操作
-    private Stack<Integer> stack1;
-    private Stack<Integer> stack2;
-    //初始化
-    public MyQueue() {
-        //1负责入队
-        stack1 = new Stack<>();
-        //2负责出队
-        stack2 = new Stack<>();
-    }
-    //入队
-    public void push(int x) {
-        stack1.push(x);
-    }
-    //出队
-    public int pop() {
-        if(stack2.empty()){
-            while(!stack1.empty()){
-                stack2.push(stack1.pop());
-            }
+    Stack<Integer> s1 = new Stack();
+    Stack<Integer> s2 = new Stack();
+    public void push(int x){
+        if(s2.isEmpty()) s1.push(x);
+        else{
+            while(!s2.isEmpty()) s1.push(s2.pop());
+            s1.push(x);
         }
-        return stack2.pop();
     }
-    public int peek() {
-        if(stack2.empty()){
-            while(!stack1.empty()){
-                stack2.push(stack1.pop());
-            }
+    public int pop(){
+        while(!s1.isEmpty()){
+            s2.push(s1.pop());
         }
-        return stack2.peek();
+        return s2.pop();
     }
-    public boolean empty() {
-        if(stack1.empty() && stack2.empty()) return true;
-        else return false;
+    public int peek(){
+        while(!s1.isEmpty()){
+            s2.push(s1.pop());
+        }
+        return s2.peek();
+    }
+    public boolean empty(){
+        return (s1.isEmpty() && s2.isEmpty());
     }
 }
-
 /**
  * Your MyQueue object will be instantiated and called as such:
  * MyQueue obj = new MyQueue();

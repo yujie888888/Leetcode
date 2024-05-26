@@ -23,10 +23,9 @@ public class FibonacciNumber509 {
     public static void main(String[] args) {
         System.out.println(fib(40));
     }
-    /** DP(一维数组)
+    /** DP
      * O(n) Beats 100%
      * O(n) Beats 85%
-     * 非常非常简单的DP
      * 思路：
      * 1.F[n]
      * 2.F[n] = F[n-1] + F[n-2];
