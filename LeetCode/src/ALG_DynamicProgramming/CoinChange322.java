@@ -27,11 +27,12 @@ public class CoinChange322 {
         System.out.println(coinChange1(coins,amount));
         System.out.println(coinChange2(coins,amount));
     }
-    /**DP(一维数组)
+    /**(推荐)DP(一维数组)
      * O(n^2) Beats 99%
-     * O(n)
+     * O(n) Beats 80%
      * 思路:
-     * 和二维数组一样
+     * 完全背包问题
+     * 求装满背包，最小需要多少coins
      * 1.dp[j]: amount为j时的最小coin数
      * 2.dp[j] = Math.min(dp[j],dp[j-coin]+1)
      * 3.dp[0] = 0;

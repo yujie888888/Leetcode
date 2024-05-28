@@ -13,36 +13,41 @@
  * 1 <= n <= 104
  */
 package ALG_DynamicProgramming;
+import java.util.Arrays;
+
 public class PerfectSquares279 {
     public static void main(String[] args) {
-        System.out.println(numSquares1(13));
+        System.out.println(numSquares1(9999));
     }
-    /**DP1
-     * O(n*sqrt(n)) Beats 50%
+    /**(推荐)DP(一维数组)
+     * O(n*sqrt(n)) Beats 80%
      * O(n) Beats 95%
      * 思路:
-     * 背包问题的变题
-     * 1.dp[i]: 当sum为i时最少的perfect square数
-     * 2.dp[x] = 1; x from 1 to n, 表示最坏的情况下，所有数都是1的平方和
-     * 3.递推公式比较复杂
-     *   因为dp[平方根]=1，所以一个数n尽可能包含dp[平方根]的时候sum是最小的
-     *   从一个数i的最大的平方根开始，如果包含这个平方根，那么dp[i] = dp[i-j*j]+dp[j*j]; 但是我们没有初始化平方根的dp值，所以这里dp[j*j]直接用1代替即可
-     *   然后从平方根逐渐减小到1
+     * 完全背包问题的变题
+     * 关键在于找到nums[]物品列表
+     * 其实就是在背包容量为n时，从nums[]中选择使得和为n的最小的物品数
+     * 而nums[]其实就是从1->根号(n)的数的平方，就是perfect square数的集合
+     * 1.dp[i]: 当sum为i时最少需要的perfect square数
+     * 2.dp[j] = Math.min(dp[j],dp[j-nums[i]]+1);
+     * 3.dp[0] = 0;
      */
     public static int numSquares1(int n) {
-        int[] dp = new int[n+1];
-        for(int i=0; i<=n; i++){
-            dp[i] = i;
+        int max = (int)Math.sqrt(n);
+        int[] nums = new int[max+1];
+        for(int i=1; i<=max; i++){
+            nums[i] = i*i;
         }
-        for(int i=1; i<=n; i++){
-            int sqrt = (int)Math.sqrt(i);
-            for(int j=sqrt; j>0; j--){
-                dp[i] = Math.min(dp[i],dp[i-j*j]+1);
+        int[] dp = new int[n+1];
+        Arrays.fill(dp,n+1);
+        dp[0] = 0;
+        for(int i=0; i<=max; i++){
+            for(int j=nums[i]; j<=n; j++){
+                dp[j] = Math.min(dp[j],dp[j-nums[i]]+1);
             }
         }
         return dp[n];
     }
-    /**DP2
+    /**DP(二维数组)
      * O(n^2) Beats 5%
      * O(n) Beats 95%
      * 思路:

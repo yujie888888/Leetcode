@@ -33,13 +33,15 @@ public class CoinChangeII518 {
     }
     /**DP
      * O(n^2) Beats 100%
-     * O(n) Beats 80%
+     * O(n) Beats 90%
      * 思路：
      * 求组合数，如果求组合数就是外层for循环遍历物品，内层for遍历背包
      * 求组合类问题的公式，都是类似这种：dp[j] += dp[j - nums[i]]
+     * 这道题遍历coins，然后dp[j]=选择coins[i] 和 不选择coins[i] 两种情况，这两种情况对应的可能性相加就是当前j容量下的组合个数
      * 1.dp[j] amount为j时，有多少种组合使得sum为amount
-     * 2.dp[0] = 1
-     * 3.dp[j] += dp[j-coin]
+     * 2.dp[j] += dp[j-coin]
+     * 3.dp[0] = 1;
+     *   肯定是1，不是1没法进行
      * 对于" If that amount of money cannot be made up by any combination of the coins, return 0"已经在create dp时默认dp[i]=0时实现了
      */
     public static int change(int amount, int[] coins) {
