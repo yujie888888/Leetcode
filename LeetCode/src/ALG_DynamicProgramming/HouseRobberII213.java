@@ -18,16 +18,21 @@
  * 0 <= nums[i] <= 1000
  */
 package ALG_DynamicProgramming;
+import java.util.Arrays;
+
 /** DP
  * O(n) Beats 100%
- * O(n)
+ * O(n) Beats 75%
  * 思路:
  * 和P198一样,只是多了个环
- * 直接将问题分成两种情况: 考虑第一个 || 考虑最后一个
- * 和198的逻辑一样，然后计算出两种情况，取最大值
- * 注意事项：
- * 1.在考虑最后一个的情况下，初始化的是dp[1]和dp[2]，所以在一开始要讨论basecase len==2
- * 2.在考虑最后一个的情况下，初始化的是dp[1]和dp[2],因为这时第二个房子和第三个房子才是第一个和第二个
+ * 抢劫分成三种情况:
+ *  1.首尾的房子都不抢
+ *  2.抢第一个房子不抢第二个房子
+ *  3.抢最后一个房子不抢第一个房子
+ * 可以分成两种情况讨论:
+ *  1.考虑包含第一个房子(不考虑最后一个房子，第一个房子可以加入也可以不加入)
+ *  2.考虑包含最后一个房子(同上)
+ *  这两种情况就包含了上述三种情况，按照P198的逻辑去做然后取最大值就可以
  */
 public class HouseRobberII213 {
     public static void main(String[] args) {
@@ -37,25 +42,19 @@ public class HouseRobberII213 {
             System.out.println(nums[0]);
             return;
         }
-        if(n==2){
-            System.out.println(Math.max(nums[0], nums[1]));
-            return;
-        }
-        int[] dp = new int[n];
-        System.out.println(Math.max(dpFunc(0, n - 1, nums, dp), dpFunc(1, n, nums, dp)));
+        int[] nums1 = Arrays.copyOfRange(nums, 0, n-1);
+        int[] nums2 = Arrays.copyOfRange(nums,1,n);
+        System.out.println(Math.max(robber(nums1), robber(nums2)));
     }
-    public static int dpFunc(int i, int n, int[] nums, int[] dp){
-        if(i==0){
-            dp[0] = nums[0];
-            dp[1] = Math.max(nums[0],nums[1]);
+    public static int robber(int[] nums){
+        int len = nums.length;
+        if(len == 1) return nums[0];
+        int[] dp = new int[len];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0],nums[1]);
+        for(int i=2; i<len; i++){
+            dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1]);
         }
-        if(i==1){
-            dp[1] = nums[1];
-            dp[2] = Math.max(nums[1],nums[2]);
-        }
-        for(i=i+2; i<n; i++){
-            dp[i] = Math.max(nums[i]+dp[i-2],dp[i-1]);
-        }
-        return dp[n-1];
+        return dp[len-1];
     }
 }

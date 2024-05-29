@@ -25,6 +25,7 @@ public class HouseRobber198 {
      * O(n) Beats 100%
      * O(n) Beats 100%
      * 思路:
+     * HouseRobber的题总结一下就是对每个房子有两个状态: 1.偷 2.不偷,dp[]记录每个房子偷与不偷的最大值
      * 1.dp[i]：下标i（包括i）以内的房屋，最多可以偷窃的金额为dp[i]
      * 2.recursion formula: 对于第i个房子，可以选择偷或者不偷
      *      偷: dp[i] = dp[i-2] + nums[i]  因为只要选择偷第i个房子，那么一定不能偷第i-1个房子，也就是从i-2(包含)个房子之前偷
