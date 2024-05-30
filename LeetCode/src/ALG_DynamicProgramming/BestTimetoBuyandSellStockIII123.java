@@ -1,6 +1,5 @@
 /**
  * You are given an array prices where prices[i] is the price of a given stock on the ith day.
- *
  * Find the maximum profit you can achieve. You may complete at most two transactions.
  * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
  * Example 1:
@@ -25,11 +24,13 @@ package ALG_DynamicProgramming;
 public class BestTimetoBuyandSellStockIII123 {
     public static void main(String[] args) {
         int[] prices = {1,2,3,4,5};
-        System.out.println(maxProfit(prices));
+        System.out.println(maxProfit1(prices));
+        System.out.println(maxProfit2(prices));
     }
-    /**DP
+    /**DP1
      * O(n) Beats 50%
      * O(5n) Beats 90%
+     * 思路:
      * 1.dp[][]含义：
      *   1.dp[i][0]: 第i天之前，一次都不持有股票，获得的最大利润
      *   2.dp[i][1]: 第i天之前，第一次持有股票，获得的最大利润
@@ -53,7 +54,7 @@ public class BestTimetoBuyandSellStockIII123 {
      * 4.return
      *   最大的时候一定是卖出的状态，而两次卖出的状态现金最大一定是最后一次卖出
      */
-    public static int maxProfit(int[] prices) {
+    public static int maxProfit1(int[] prices) {
         int n = prices.length;
         int[][] dp = new int[n][5];
         dp[0][1] = -prices[0];
@@ -68,5 +69,28 @@ public class BestTimetoBuyandSellStockIII123 {
         }
         return dp[n-1][4];
     }
-
+    /**DP2
+     * O(2n) Beats 50%
+     * O(2n) Beats 95%
+     * 思路：
+     * 和P188的思路一样，只是把其中的k换成2
+     * 序号是怎么设定的：
+     *   要返回第二次手里没有股票的最大利润
+     *   看状态转移方程，dp[i][4]依赖于dp[i][3],所以最后返回dp[i][4]才是最终结果
+     *   所以结合来想，就是dp[i][2k]表示手里没有股票
+     */
+    public static int maxProfit2(int[] prices) {
+        int n = prices.length;
+        int[][] dp = new int[n][5];
+        for(int j=1; j<=3; j+=2) dp[0][j] = -prices[0];
+        for(int i=1; i<n; i++){
+            for(int j=0; j<=3; j+=2){
+                //有股票
+                dp[i][j+1] = Math.max(dp[i-1][j+1], dp[i-1][j]-prices[i]);
+                //没有股票
+                dp[i][j+2] = Math.max(dp[i-1][j+2], dp[i-1][j+1]+prices[i]);
+            }
+        }
+        return dp[n-1][4];
+    }
 }

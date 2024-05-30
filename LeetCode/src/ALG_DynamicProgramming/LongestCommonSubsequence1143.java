@@ -24,34 +24,31 @@ public class LongestCommonSubsequence1143 {
     public static void main(String[] args) {
         String text1 = "abcde";
         String text2 = "ace";
-        System.out.println(longestCommonSubsequence1(text1, text2));
+        System.out.println(longestCommonSubsequence(text1, text2));
     }
-    /**经典DP问题
+    /**DP
      * O(m*n) Beats 90%
+     * O(m*n) Beats 65%
      * 思路：
-     * 从后往前考虑，对于s1和s2的最后一个位置开始，如果字符相等，那么dp[i][j] = 1 + dp[i-1][j-1] 很好理解；
-     * 如果不相等，那么要么舍弃s1的最后一个char，要么舍弃s2的最后一个char
-     * 1.其实求什么问题，dp含义就是什么：dp[i][j] 表示text1[0,i-1]和text2的[0,j-1]的LCS
+     * 1.dp[i+1][j+1]:0->i长度的text1和0->j长度的text2的LCS
      * 2.if(text1[i] == text2[j]) dp[i][j] = 1 + dp[i-1][j-1];
-         else dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+     *   如果是相等的，那么将这个char放进subsequence中
+     *   else dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+     *   如果是不相等的，那么就找i,j+1 或者 i+1,j
      * 3.dp[0][0] = 0; dp[0][j] = 0; dp[i][0] = 0;
-     * 注意事项：
-     * 1.其实我依旧没有深入理解else的逻辑，目前来看就是说只要不相等就往前找相等的，依次加1这样，直到到最后也就是到头
+     * 注意事项:
+     * 1.和P718一样，注意dp中的ij含义和text中的ij含义，使得代码更简洁
      */
-    public static int longestCommonSubsequence1(String text1, String text2) {
+    public static int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length();
         int n = text2.length();
-        int[][]dp = new int[m+1][n+1];
-        for(int i=1; i<m; i++) dp[i][0] = 0;
-        for(int j=1; j<n; j++) dp[0][j] = 0;
-        for(int i=1; i<=m; i++){
-            for(int j=1; j<=n; j++){
-                if(text1.charAt(i-1) == text2.charAt(j-1)){
-                    dp[i][j] = 1 + dp[i-1][j-1];
+        int[][] dp = new int[m+1][n+1];
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(text1.charAt(i)==text2.charAt(j)){
+                    dp[i+1][j+1] = dp[i][j]+1;
                 }
-                else{
-                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
-                }
+                else dp[i+1][j+1] = Math.max(dp[i+1][j],dp[i][j+1]);
             }
         }
         return dp[m][n];

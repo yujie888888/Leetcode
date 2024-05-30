@@ -21,7 +21,7 @@
  * 1 <= prices.length <= 3 * 104
  * 0 <= prices[i] <= 104
  */
-package ALG_Greedy;
+package ALG_DynamicProgramming;
 
 public class BestTimetoBuyandSellStockII122 {
     public static void main(String[] args) {
