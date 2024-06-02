@@ -20,52 +20,87 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-/**BackTracking
- * O(n*(m^n)) m是每个数字对应的字母长度，第一个n是.toSting(),第二个n是树的深度 Beats 100%
- * O(n+m^n)  m^n表示有多少种结果，n是递归栈 Beats 95%
- * 思路：https://programmercarl.com/0017.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE
- * 拿23举例来说，2-abc，3-def
- * 对abc来说可以选a或b或c，然后选完2，再来选3
- * 对于def来说，可以选d或e或f
- * 1.确定终止条件：sb.length() == digits.size();
- * 2.回溯逻辑：对于每个数字来说，遍历它对应的字母；然后再调用BT遍历下一个数字对应的字母
- * 3.确定参数
- * 注意事项：
- * 1.数字和字母如何实现映射
- *   很多种方法，可以用map或二维数组
- *   这里我用的是String[]一维数组
- * 2.注意每次都要clear res
- * 3.sb不用sb.setLength(0);因为回溯逻辑里面sb出来的时候已经是空的了
- * 4.(可选)处理base case，null和empty是不一样的,null表示没有引用；empty有引用，但是为空；这里可选是因为不知道程序要求当这种情况的时候返回什么类型的，是返回null还是返回""。
- * 5.(重点)index ++ 和 ++index 和 index+1的区别
- *   在递归中，如果对index本身++，那么index本身会改变，但是在递归中，其实我只想让下一级的index不同而已，不想改变当前级的index值，所以只能用index+1
- * 6.letters中对于0和1的情况置空
- * 7.选择StringBuilder因为string需要频繁增删，sb效率更高
- */
 class LetterCombinationsofaPhoneNumber17{
-    static List<String> res = new ArrayList<>();
-    static StringBuilder sb = new StringBuilder();
-    static String digits = "23";
-    static int n = digits.length();
-    static String[] letters = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
     public static void main(String[] args) {
-        res.clear();
-        if(digits == null || digits.isEmpty()) System.out.println(res);
-
-        backtracking(0);
-        System.out.println(res);
+        String digits = "5689";
+        System.out.println(letterCombinations1(digits));
+        System.out.println(letterCombinations2(digits));
     }
-    public static void backtracking(int index){
-        if(sb.length() == n){
-            //toString() O(n)
-            res.add(sb.toString());
+    /**BackTracking(Map-String[])
+     * O(n*(4^n)) 100%
+     *   第一个n是.toSting(),4是数字对应的字母长度，第二个n是树的深度 Beats
+     * O(n + n*4^n) Beats 95%
+     *   4^n表示有多少种结果,n表示每个结果的长度，n是递归栈空间
+     * 思路:
+     * digits代表的就是几层和多少种选择，比如23，可以进行的组合就是先遍历2对应的letter，再遍历3对应的letter
+     * 1.设定数字和字母映射
+     * 2.确定终止条件：sb.length() == digits.size();
+     * 3.回溯逻辑：对于每个数字来说，遍历它对应的字母；然后再调用BT遍历下一个数字对应的字母
+     * 4.确定参数
+     * 注意事项：
+     * 1.每次都要clear res
+     * 2.(重点)index ++ 和 ++index 和 index+1的区别
+     *   在递归中，如果对index本身++，那么index本身会改变，但是在递归中，其实我只想让下一级的index不同而已，不想改变当前级的index值，所以只能用index+1
+     * 3.(可选)letters中对于0和1的情况置空
+     * 4.选择StringBuilder因为string需要频繁增删，sb效率更高
+     */
+    static List<String> res = new ArrayList<>();
+    public static List<String> letterCombinations1(String digits){
+        res.clear();
+        int n = digits.length();
+        if(n==0) return res;
+        String[] letters = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        StringBuilder sb1 = new StringBuilder();
+        int[] index = new int[n];
+        for(int i=0; i<n; i++){
+            index[i] = digits.charAt(i) -'0';
+            //System.out.println(index[i]);
+        }
+        backtracking1(index,0,digits,n,letters,sb1);
+        return res;
+    }
+    public static void backtracking1(int[] index, int start, String digits, int n, String[] letters, StringBuilder sb1){
+        if(sb1.length() == n){
+            res.add(sb1.toString());
             return;
         }
-        String str = letters[digits.charAt(index) - '0'];
-        for(int i=0; i<str.length(); i++){
-            char c = str.charAt(i);
+        for(char c : letters[index[start]].toCharArray()){
+            sb1.append(c);
+            backtracking1(index,start+1,digits,n,letters,sb1);
+            sb1.deleteCharAt(sb1.length()-1);
+        }
+    }
+    /**BackTracking(Map-Array[][])
+     * O(n*(4^n)) 100%
+     * O(n + n*4^n)
+     * 注意事项:
+     * 1.letters里的index是从0开始的，但是数字字母映射是从2开始的，注意处理
+     */
+    public static List<String> letterCombinations2(String digits) {
+        res2.clear();
+        char[][] letters = {{'a','b','c'},{'d','e','f'},{'g','h','i'},{'j','k','l'},{'m','n','o'},{'p','q','r','s'},{'t','u','v'},{'w','x','y','z'}};
+        int n = digits.length();
+        if(n==0) return new ArrayList<String>();
+        int[] index = new int[n];
+        int i=0;
+        for(char c : digits.toCharArray()){
+            index[i] = c-'0'-2;
+            i++;
+        }
+        StringBuilder sb = new StringBuilder();
+        backtracking2(index, 0, sb, letters);
+        return res2;
+    }
+    //终止条件: resL.size == digits.length()
+    static List<String> res2 = new ArrayList<>();
+    private static void backtracking2(int[] index, int start, StringBuilder sb, char[][] letters){
+        if(sb.length() == index.length){
+            res2.add(sb.toString());
+            return;
+        }
+        for(char c : letters[index[start]]){
             sb.append(c);
-            backtracking(index+1);
+            backtracking2(index, start+1, sb, letters);
             sb.deleteCharAt(sb.length()-1);
         }
     }
