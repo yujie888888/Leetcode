@@ -35,6 +35,10 @@ public class EqualsMethod {
         System.out.println(s1.equals(s2));
         System.out.println("===============");
 
+        /**3.StringBuilder
+         * StringBuilder的'equal()'比较"引用"
+         */
+
         /**4.Array数组
          * 数组使用'=='比较"引用"
          * 数组使用Object的默认'equals()'方法比较"引用"

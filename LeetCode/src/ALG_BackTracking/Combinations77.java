@@ -18,8 +18,8 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 /**BackTracking
- * O(k⋅C(n,k)) Beats 98%
- * O(k + k*C(n,k)) Beats 99%
+ * O(k*n^2)) Beats 98%
+ * O(k + n^2) Beats 99%
  *   空间复杂度是递归栈空间 + 存储结果空间
  * 思路：
  * 1.先画出树形结构，确定回溯（递归）逻辑

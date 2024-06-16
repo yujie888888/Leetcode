@@ -18,7 +18,7 @@ package Topic_Others;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MajorityElementII229 {
+public class LC229_MajorityElementII {
     public static void main(String[] args) {
         int[] nums = {2,3,1,3,1,3,1,1,5,6,3};
         System.out.println(majorityElement(nums));

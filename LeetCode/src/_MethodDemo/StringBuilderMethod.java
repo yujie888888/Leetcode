@@ -12,7 +12,7 @@ public class StringBuilderMethod {
          // 指定初始容量
          StringBuilder sbWithCapacity = new StringBuilder(100);
          // 用String初始化
-         StringBuilder sbWithString = new StringBuilder("Initial");
+         StringBuilder sbWithString = new StringBuilder("InitialContent");
          //添加内容
          sb.append("Hello");
          sb.append(" ");

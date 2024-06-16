@@ -112,10 +112,12 @@ public class CommonConversion {
         String[] array = new String[]{"a", "b", "c"};
         List<String> list = Arrays.asList(array);
         //4.2.List -> array
-        //4.2.1.toArray()
+        //4.2.1.toArray() String
         String[] array2 = list.toArray(new String[0]);
         //new String[0]是创建了一个长度为0的String数组实例。
         //这个空数组作为toArray方法的参数，其目的是指示toArray方法返回一个String类型的数组。
+        //4.2.1.toArray() int
+        //直接赋值
         System.out.println("-----------------");
 
         //5.Array <-> Array
