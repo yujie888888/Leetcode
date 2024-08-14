@@ -12,7 +12,7 @@
  * Explanation: 2 does not exist in nums so return -1
  */
 package ALG_BinarySearch;
-public class BinarySearch704 {
+public class LC704_BinarySearch {
     public static void main(String[] args) {
         int[] nums = {-1,0,3,5,9,12};
         int target = 9;
@@ -20,24 +20,20 @@ public class BinarySearch704 {
     }
     /**Binary Search
      * O(nlogn) Beats 100%
-     * O(1) Beats 90%
+     * O(1)
+     *  Beats 90%
+     *  局部变量在每次循环迭代时被分配到相同的内存位置;也就是说，即使 mid 变量在循环内部每次都会重新声明，它仍然只会占用一块固定的内存，不会随着循环次数的增加而增加额外的内存使用
      * 思路:
      * Binary Search经典题
-     * 1.set start&end
-     * 2.tarverse nums
-     *      set mid
-     *      judgement
-     *      set interval
-     * 注意事项:
-     * 1.mid防止溢出用(end-start)/2+start
+     * 用Binary Search的前提是1.数组是排好序的 2.数组的itme是unique的
+     * 注意事项：
+     * mid防止溢出用(end-start)/2+start
      */
     public static int search(int[] nums, int target) {
-        int n = nums.length;
         int start = 0;
-        int end = n-1;
-        int mid;
+        int end = nums.length-1;
         while(start<=end){
-            mid = (end-start)/2+start;
+            int mid = (end-start)/2+start;
             if(target<nums[mid]){
                 end = mid-1;
             }

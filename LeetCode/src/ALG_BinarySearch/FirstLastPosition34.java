@@ -1,16 +1,8 @@
-package ALG_BinarySearch;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
 /**
  * Given an array of integers nums sorted in non-decreasing order,
  * find the starting and ending position of a given target value.
  * If target is not found in the array, return [-1, -1].
- * You must write an algorithm with O(log n) runtime complexity.
- *
+ * You must write an algorithm with ❗️O(log n)❗️ runtime complexity.
  * Example 1:
  * Input: nums = [5,7,7,8,8,10], target = 8
  * Output: [3,4]
@@ -21,132 +13,89 @@ import java.util.Scanner;
  * Input: nums = [], target = 0
  * Output: [-1,-1]
  */
+package ALG_BinarySearch;
+
 public class FirstLastPosition34 {
-    /*
-    二分找到其中一个target，然后从这个target的两侧开始寻找
+    /**Binary Search
+     * O(logn)
+     * O(1)
+     * 思路：
+     * 注意要求是logn的时间复杂度，目前只能想到二分法
+     * 只存在两种情况
+     * 1.nums中不存在target
+     * 2.nums中存在target
+     * 这两种情况可以根据边界的返回值来判断
+     * 找边界：
+     * 其实就是修改二分法，将其中nums[mid]==target的情况拉出来，沿着==的情况向左向后找位置
+     * 1.找左边界
+     *  targrt比nums[mid]大的的情况：
+     *      left=mid+1
+     *  targrt比nums[mid]小的的情况：
+     *      right=mid-1
+     *  targrt等于nums[mid]的的情况：
+     *      right=mid-1
+     *      leftBorder=right *Key*
+     *  这样找到的左边界+1就是要找的位置
+     *      左边界在target存在的情况下最左会到-1的位置
+     *      在target不存在的情况下就是leftBorder没有找到
+     * 2.找右边界
+     *  同理
+     * 3.判断
+     *  1.如果左边界或者右边界的值==-2 or ==n+1，也就是在nums中没找到对应的target匹配，就返回[-1,-1]
+     *  2.否则返回[left+1,right-1]
      */
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please input array:");
-        String inputLine = sc.nextLine();
-        System.out.println("Please input target:");
-        int target = sc.nextInt();
-        if(inputLine.isEmpty()){
-            System.out.println("The first index and last index are: [-1,-1]");
+        int[] nums = {5,7,7,8,8,10};
+        int target = 7;
+        if(nums.length==0) {
+            System.out.println("["+-1+','+-1+"]");
             return;
         }
-        String[] line = inputLine.split(",");
-        int[] nums = new int[line.length];
-        for (int i = 0; i < line.length; i++) {
-            nums[i] = Integer.parseInt(line[i]);
+        int leftBorder = getLeftBorder(nums, target);
+        int rightBorder = getRightBorder(nums, target);
+        if(leftBorder == -2 || rightBorder == nums.length+1){
+            System.out.println("["+-1+','+-1+"]");
         }
-
-        //方法1
-        //Arrays.toString() 方法将数组转换为字符串，然后输出字符串
-        //System.out.println("The first index and last index are: "+Arrays.toString(search(nums,target)));
-        //方法2
-        System.out.println("The first index and last index are: "+Arrays.toString(firstLastSearch(nums,target)));
+        else{
+            System.out.println("["+(leftBorder+1)+','+(rightBorder-1)+"]");
+        }
     }
-    //方法1，nlogn
-    //只要找到target的位置，就从这个位置向前和向后找
-    public int[] searchRange1(int[] nums, int target) {
-        //binart search
-        int[] res = {-1,-1};
+    private static int getLeftBorder(int[] nums, int target){
         int left = 0;
-        int right = nums.length - 1;
-        int mid;
-        while(left <= right){
-            mid = left + (right-left)/2;
-            if(nums[mid] == target){
-                res[0] = res[1] = mid;
-                while(mid>0 && nums[mid - 1] == nums[mid]){
-                    mid --;
-                    res[0] = mid;
-                }
-                while(mid < nums.length - 1 && nums[mid+1] == nums[mid]){
-                    mid ++;
-                    res[1] = mid;
-                }
-                //keypoint, if find the range, break
-                break;
-            }
-            else if(nums[mid] < target) left = mid + 1;
-            else right = mid - 1;
-        }
-        return res;
-    }
-
-    /**方法2 logn 没看懂
-     * 两次二分法查找
-     * findfirst是找到第一个target的location：只要target==nums[mid],right的变化和nums[mid]>targert的情况一样，设置index记录first location的位置
-     * find；ast是找到最后一个target的location：只要target==nums[mid],left的变化和nums[mid]<targert的情况一样，设置index记录last location的位置
-     */
-    public static int[] firstLastSearch(int[] nums, int target){
-        int[] index = new int[2];
-        index[0] = firstSearch(nums,target);
-        index[1] = lastSearch(nums,target);
-        return index;
-    }
-
-    public static int firstSearch(int[] nums, int target){
-        int index = -1;
         int right = nums.length-1;
-        int left = 0;
-        int mid;
-        while(left <= right){
-            mid = left+(right-left)/2;
-            //Keypoint 往前找
-            if(nums[mid]>=target){
-                right = mid - 1;
+        int leftBorder = -2;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(target>nums[mid]){
+                left = mid+1;
+            }
+            else if(target<nums[mid]){
+                right = mid-1;
             }
             else{
-                left = mid + 1;
+                right = mid-1;
+                leftBorder = right;
             }
-            //index记录first target location
-            if(nums[mid] == target) index = mid;
         }
-        return index;
+        return leftBorder;
     }
-
-    public static int lastSearch(int[] nums, int target){
-        int index = -1;
-        int right = nums.length-1;
+    private static int getRightBorder(int[] nums, int target){
         int left = 0;
-        int mid;
-        while(left <= right){
-            mid = left+(right-left)/2;
-            //Keypoint 往后找
-            if(nums[mid]<=target){
-                left = mid + 1;
+        int right = nums.length-1;
+        int rightBorder = nums.length+1;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(target>nums[mid]){
+                left = mid+1;
+            }
+            else if(target<nums[mid]){
+                right = mid-1;
             }
             else{
-                right = mid - 1;
-            }
-            //index记录first target location
-            if(nums[mid] == target) index = mid;
-        }
-        return index;
-    }
-
-    //方法3，用hashmap O(n)
-    public int[] searchRange3(int[] nums, int target) {
-        int[] res = {-1,-1};
-        Map<Integer,Integer> hashmap = new HashMap<>();
-        int flag = 1;
-        for(int i=0; i<nums.length; i++){
-            hashmap.put(nums[i],i);
-            if(flag == 1 && hashmap.containsKey(target)){
-                res[0] = hashmap.get(target);
-                res[1] = res[0];
-                hashmap.remove(target);
-                flag ++;
-            }
-            else if(flag > 1 && hashmap.containsKey(target)){
-                flag++;
-                res[1] = hashmap.get(target);
+                left = mid+1;
+                rightBorder = left;
             }
         }
-        return res;
+        return rightBorder;
     }
-
 }

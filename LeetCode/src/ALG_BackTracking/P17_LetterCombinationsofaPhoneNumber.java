@@ -20,7 +20,7 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-class LetterCombinationsofaPhoneNumber17{
+class P17_LetterCombinationsofaPhoneNumber {
     public static void main(String[] args) {
         String digits = "5689";
         System.out.println(letterCombinations1(digits));

@@ -19,7 +19,7 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Permutations46 {
+public class P46_Permutations {
     /**BackTracking
      * O(n*n) n=nums.length() Beats 95%
      * O(n + n*n!) n!表示n的阶乘,表示结果个数 *n表示每个结果的长度(可选) Beats 92%

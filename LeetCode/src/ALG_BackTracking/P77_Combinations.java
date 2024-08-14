@@ -18,10 +18,11 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 /**BackTracking
- * O(k*n^2)) Beats 98%
+ * O(k*n^2))/O(n*2^n) Beats 98%
  * O(k + n^2) Beats 99%
  *   空间复杂度是递归栈空间 + 存储结果空间
  * 思路：
+ * 这道题是非常经典的回溯模板做法
  * 1.先画出树形结构，确定回溯（递归）逻辑
  * 2.终止条件，list.size == k
  * 3.回溯逻辑
@@ -38,7 +39,7 @@ import java.util.List;
  * 2.在添加每一个满足条件的list的时候，要new Arraylist<>(resL)，不是直接add resL
  * 3.由于resL和res被定义为全局变量，所以每次用resL和res之前要clear()
  */
-public class Combinations77 {
+public class P77_Combinations {
     static List<Integer> resL = new ArrayList<>();
     static List<List<Integer>> res = new ArrayList<>();
     public static void main(String[] args) {
