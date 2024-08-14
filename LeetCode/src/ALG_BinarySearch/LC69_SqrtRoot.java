@@ -1,7 +1,5 @@
 package ALG_BinarySearch;
 
-import java.util.Scanner;
-
 /**
  * Given a non-negative integer x, return the square root of x rounded down to the nearest integer.
  * The returned integer should be non-negative as well.
@@ -20,7 +18,7 @@ import java.util.Scanner;
  * Constraints:
  * 0 <= x <= 2^31 - 1
  */
-public class SqrtRoot69 {
+public class LC69_SqrtRoot {
     public static void main(String[] args) {
         int target = 8;
         System.out.println(mySqrt_BS(target));

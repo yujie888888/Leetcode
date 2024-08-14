@@ -15,7 +15,7 @@
  */
 package ALG_BinarySearch;
 
-public class FirstLastPosition34 {
+public class LC34_FirstLastPosition {
     /**Binary Search
      * O(logn)
      * O(1)
