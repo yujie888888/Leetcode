@@ -1,7 +1,3 @@
-package ALG_doublepoints;
-
-import java.util.Scanner;
-
 /**
  * Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
  * Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
@@ -34,37 +30,29 @@ import java.util.Scanner;
  * -100 <= nums[i] <= 100
  * nums is sorted in non-decreasing order.
  */
-public class RemoveDuplicates26 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please input the array, use ',' as separator:");
-        String inputLine = sc.nextLine();
-        String[] line = inputLine.split(",");
-        int[] array = new int[line.length];
-        for (int i = 0; i < line.length; i++) {
-            array[i] = Integer.parseInt(line[i]);
-        }
-        duplicate(array);
-    }
+package ALG_TwoPointers;
+import java.util.Arrays;
 
-    /**双指针法
-     * 这是有序数组，所以可以采取思路：从左向右遍历，slowindex对应的每个数都是不同时期的target
-     * 这是哪个鬼才想的呢，不懂，脑子抽筋了
+public class LC26_RemoveDuplicates {
+    public static void main(String[] args) {
+        int[] nums = new int[]{0,0,1,1,1,2,2,3,3,4};
+        System.out.println(Arrays.toString(removeDuplicates(nums)));
+    }
+    /**Two Pointers
+     * O(n)
+     * O(1)
+     * 思路：
+     * 和经典TP题不同的是，P27找新元素时，找的是target；
+     * 这道题有不同的“target”，slow-1记录的就是每次加入的新元素，也是fast需要比较的“target"
      */
-    private static void duplicate(int[] array){
-        int slowindex = 1;
-        for (int fastindex = 1; fastindex < array.length; fastindex++) {
-            if(array[fastindex] != array[slowindex-1]){
-                array[slowindex++] = array[fastindex];
+    private static int[] removeDuplicates(int[] nums){
+        int slow = 1;
+        for(int fast=1; fast<nums.length; fast++){
+            if(nums[fast]!=nums[slow-1]){
+                nums[slow] = nums[fast];
+                slow++;
             }
         }
-        System.out.println("The length after remove elements is "+ slowindex);
-        System.out.print("The array after removing is: ");
-        System.out.print("[");
-        for (int i = 0; i < slowindex; i++) {
-            System.out.print(i==slowindex-1 ? array[i] : array[i]+",");
-        }
-        System.out.println("]");
-
+        return Arrays.copyOfRange(nums,0,slow);
     }
 }

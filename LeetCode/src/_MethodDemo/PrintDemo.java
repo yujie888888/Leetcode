@@ -7,7 +7,7 @@ public class PrintDemo {
     public static void main(String[] args) {
         //1.基本数据类型+String,直接输出
         int i = 0;
-        System.out.print(i);
+        System.out.println(i);
         System.out.println("----------------------");
 
         //2.Array
@@ -17,9 +17,9 @@ public class PrintDemo {
             System.out.print(num + " ");
         }
         System.out.println();
-        //2.2.转换成list直接输出list
-        Integer[] integerArray = {1, 2, 3, 4, 5};
-        System.out.println(Arrays.asList(integerArray));
+        //2.2.转换成String直接输出list
+        int[] integerArray = {1, 2, 3, 4, 5};
+        System.out.println(Arrays.toString(integerArray));
         System.out.println("----------------------");
 
         //3.集合,直接输出,适用类型:List, Set, Map

@@ -14,25 +14,21 @@
  * -104 <= nums[i] <= 104
  * nums is sorted in non-decreasing order.
  */
-package ALG_sort;
+package ALG_TwoPointers;
+import java.util.Arrays;
 
-public class SquaresArray977 {
+public class LC977_SquaresArray {
     public static void main(String[] args) {
-        int[] nums = {-4,-1,0,3,10};
-        int[] res = sortedSquares(nums);
-        for(int i=0; i<res.length;i++){
-            System.out.print(res[i]+",");
-        }
+        int[] nums = new int[]{-4,-1,0,3,10};
+        System.out.println(Arrays.toString(sortedSquares(nums)));
     }
-    /**double points
-     * O(n) Beats 100%
-     * O(n) Beats 70%
+    /**Two Pointers
+     * O(n)
+     * O(n)
      * 思路：
-     * 1.创建一个res存放结果
-     * 2.绝对值最大的肯定是从两边出现的，所以left=0,right=len-1;
+     * 1.新建一个res存放结果
+     * 2.绝对值最大的肯定是从两边出现的，所以left=0,right=len-1，从两边往中间找
      * 3.res的指针k也指向最后一个位置，依次存放结果
-     * 注意事项：
-     * 1.left<=right "="条件确保了每一个数都在res中
      */
     public static int[] sortedSquares(int[] nums) {
         int left = 0;
@@ -40,14 +36,17 @@ public class SquaresArray977 {
         int[] res = new int[nums.length];
         int index = nums.length-1;
         while(left<=right){
-            if(nums[left]*nums[left] > nums[right]* nums[right]){
-                res[index--] = nums[left]*nums[left];
-                left ++;
+            if(Math.abs(nums[left])>=Math.abs(nums[right])){
+                res[index] = nums[left]*nums[left];
+                left++;
+                index--;
             }
             else{
-                res[index--] = nums[right]*nums[right];
-                right --;
+                res[index] = nums[right]*nums[right];
+                right--;
+                index--;
             }
+
         }
         return res;
     }

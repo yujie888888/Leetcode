@@ -1,4 +1,4 @@
-package ALG_doublepoints;
+package ALG_TwoPointers;
 
 import java.util.Scanner;
 
