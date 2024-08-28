@@ -30,7 +30,7 @@ public class KthLargestElement215 {
         System.out.println(nums[nums.length - k]);
     }
 
-    /**minHeap
+    /**(推荐)minHeap
      * O(nlogk) Beats 70%
      *      堆的大小固定为k
      *      对插入k个元素的操作O(klogk)
@@ -45,14 +45,10 @@ public class KthLargestElement215 {
      */
     public static int FindKthLargest1(int[] nums, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        int i = 0;
         for(int num : nums){
-            if(i<k){
-                minHeap.add(num);
-                i++;
-            }
+            if(minHeap.size()<k) minHeap.add(num);
             else{
-                if(num > minHeap.peek()){
+                if(num>minHeap.peek()){
                     minHeap.poll();
                     minHeap.add(num);
                 }

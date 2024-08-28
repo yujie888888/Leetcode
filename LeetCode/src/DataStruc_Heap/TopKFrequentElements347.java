@@ -33,9 +33,14 @@ public class TopKFrequentElements347 {
     public static void main(String[] args) {
 
     }
-
-    /**maxHeap Beats 65%
+    /**maxHeap Beats 75%
      * O(n)
+     * O(k)
+     * 思路：
+     * 1.用maxHeap
+     * 2.自定义maxHeap的排序逻辑，根据freq(key)，按maxHeap排
+     * 3.存入所有key值
+     * 4.取前k个key值
      */
     public int[] maxHeaptopKFrequent(int[] nums, int k) {
         Map<Integer,Integer> freq = new HashMap<>();
