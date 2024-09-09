@@ -35,7 +35,7 @@
 package Comoany_Tiktok;
 import java.util.Arrays;
 import java.util.Stack;
-public class P2_24_810_P7 {
+public class LC2334_SubarrayWithElementsGreaterThanVaryingThreshold {
     /**Monotonic Stack
      * O(n)
      * O(n)
@@ -48,10 +48,16 @@ public class P2_24_810_P7 {
         double limit = 6.0;
         Stack<Integer> stack = new Stack<>();
         int n = nums.length;
+        //Edge array
         int[] left = new int[n];
-        Arrays.fill(left,0);
         int[] right = new int[n];
+        //*initialization
+        Arrays.fill(left,0);
         Arrays.fill(right,n-1);
+
+        //Search For Right Edge
+        //clear
+        stack.clear();
         for(int i=0; i<n; i++){
             while(!stack.isEmpty() && nums[stack.peek()] > nums[i]){
                 right[stack.peek()] = i-1;
@@ -59,7 +65,9 @@ public class P2_24_810_P7 {
             }
             stack.push(i);
         }
-        System.out.println("Right Edge: "+ Arrays.toString(right));
+
+        //Search For Left Edge
+        //clear
         stack.clear();
         for(int i=n-1; i>=0; i--){
             while(!stack.isEmpty() && nums[stack.peek()] > nums[i]){
@@ -68,10 +76,12 @@ public class P2_24_810_P7 {
             }
             stack.push(i);
         }
-        System.out.println("Left Edge: "+ Arrays.toString(left));
+
+        //find the max (the P2334 is find anyone so if meet just return)
         int max = 0;
         for(int i=0; i<n; i++){
             int len = right[i] - left[i] + 1;
+            //*here must be double
             double target = limit/len;
             if(nums[i] >= target){
                 max = Math.max(max,len);
