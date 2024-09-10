@@ -1,5 +1,5 @@
 package _MethodDemo;
-public class Character_Methods {
+public class CharacterMethods {
     public static void main(String[] args) {
         //isLetter(char ch)：检查指定的字符是否是字母。
         boolean result1 = Character.isLetter('a'); // true

@@ -12,7 +12,7 @@
  * s consist of only digits and English letters.
  */
 package Topic_Palindrome;
-public class LongestPalindromicSubstring5 {
+public class LC5_LongestPalindromicSubstring {
     public static void main(String[] args) {
         String s = "eeaabababaccabababaasd";
         System.out.println(longestPalindrome1(s));
@@ -52,6 +52,7 @@ public class LongestPalindromicSubstring5 {
         }
         return res;
     }
+
     /**Double points(substring)
      * O(n^2) Beats 40%
      * O(n) Beats 65%
@@ -78,6 +79,7 @@ public class LongestPalindromicSubstring5 {
         }
         return subs;
     }
+
     /**Double points(int)
      * O(n^2) Beats 80%
      * O(1) Beats 70%
@@ -98,6 +100,7 @@ public class LongestPalindromicSubstring5 {
         }
         return res;
     }
+
     private static int Searchlength2(int i, int j, String s){
         int maxLen = 0;
         while(i>=0 && j<s.length() && s.charAt(i)==s.charAt(j)){

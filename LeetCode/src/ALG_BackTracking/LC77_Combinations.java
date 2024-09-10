@@ -18,8 +18,8 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 /**BackTracking
- * O(k*n^2))/O(n*2^n) Beats 98%
- * O(k + n^2) Beats 99%
+ * O(n!/k!) Beats 98%
+ * O(n!/(k-1)!) Beats 99%
  *   空间复杂度是递归栈空间 + 存储结果空间
  * 思路：
  * 这道题是非常经典的回溯模板做法
@@ -41,6 +41,7 @@ import java.util.List;
  */
 public class LC77_Combinations {
     static List<Integer> resL = new ArrayList<>();
+    //List<List<Integer>>可以直接输出
     static List<List<Integer>> res = new ArrayList<>();
     public static void main(String[] args) {
         int n = 4, k = 2;

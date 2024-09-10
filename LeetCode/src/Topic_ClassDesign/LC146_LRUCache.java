@@ -1,10 +1,16 @@
-package DataStruc_LinkedList;
+package Topic_ClassDesign;
 import java.util.HashMap;
 
 /**Design Class
  * O(1)
+ * Ideas:
  * use Double LinkedList to maintain the order of use frequency
  * use HashMap to locate the node
+ * 像类的定义这种，注意的点
+ * 1.需要定义几个类
+ * 2.每个类的构造函数怎么写
+ * 基本上这两点确定其他的都是逻辑问题
+ *
  */
 class DListNode {
     int key;

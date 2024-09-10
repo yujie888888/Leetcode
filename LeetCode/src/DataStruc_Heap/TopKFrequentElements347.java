@@ -26,8 +26,7 @@ import java.util.*;
  * poll()前k个节点
  * Note
  * (a, b) -> freq.get(b)- freq.get(a)是maxHeap
- * (a, b) -> freq.get(b)- freq.get(a)是minHeap
- * 想想逻辑就明白了
+ * (a, b) -> freq.get(a)- freq.get(b)是minHeap
  */
 public class TopKFrequentElements347 {
     public static void main(String[] args) {
@@ -64,31 +63,6 @@ public class TopKFrequentElements347 {
         return res;
     }
 
-    /** MinHeap beats 30%
-     * O(n)
-     */
-    public int[] minHeap1topKFrequent(int[] nums, int k) {
-        Map<Integer,Integer> freq = new HashMap<>();
-        for(int i : nums){
-            freq.put(i, freq.getOrDefault(i, 0)+1);
-        }
-        //customize minHeap
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b) -> freq.get(a).compareTo(freq.get(b)));
-        //add all
-        minHeap.addAll(freq.keySet());
-        int num = freq.size() - k;
-        //对于minHeap，要做的是将k+1大的数全部poll出去，剩下的就是前k个高频率的key
-        while(num > 0){
-            minHeap.poll();
-            num --;
-        }
-        int[] result = new int[k];
-        int i=0;
-        while(!minHeap.isEmpty()){
-            result[i++] = minHeap.poll();
-        }
-        return result;
-    }
     /** MinHeap beats 50%
      * O(n) 改进了一下存值，只需要维护k长度就可以
      */
@@ -103,8 +77,11 @@ public class TopKFrequentElements347 {
         //维持k
         for(int key : freq.keySet()){
             //维持k的时候一定是先add再poll，保证每次poll出去的就是最小的
-            minHeap.add(key);
-            if(minHeap.size() > k){
+            if(minHeap.size() < k){
+                minHeap.add(key);
+            }
+            else{
+                minHeap.add(key);
                 minHeap.poll();
             }
         }

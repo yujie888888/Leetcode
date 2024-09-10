@@ -1,7 +1,7 @@
-package Topic_Graph;
+package ALG_DepthFirstSearch;
 import java.util.*;
 
-public class P743_NetworkDelayTime {
+public class LC743_NetworkDelayTime {
     public static void main(String[] args) {
         int[][] times = {{2,1,1},{2,3,1},{3,4,1}};
         int n = 4;

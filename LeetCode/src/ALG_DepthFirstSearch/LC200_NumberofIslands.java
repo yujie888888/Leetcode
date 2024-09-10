@@ -41,6 +41,7 @@ package ALG_DepthFirstSearch;
  * 注意事项：
  * 1.是'0'不是num 0
  * 2.reach the Edge of Map, dont exceed the edge
+ * 3.resL不是引用型数据，所以不能传在外面，和P694的List<>传递不一样，还是全局变量传递吧
  */
 public class LC200_NumberofIslands {
     public static void main(String[] args) {

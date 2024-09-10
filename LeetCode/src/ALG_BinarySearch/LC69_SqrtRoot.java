@@ -39,11 +39,11 @@ public class LC69_SqrtRoot {
         if(x==0) return 0;
         if(x<4) return 1;
         int left = 1;
-        int right = x/2;//剪枝
+        int right = x/2;//剪枝pruning
         int sqrt = -1;
         while(left<=right){
             int mid = left+(right-left)/2;
-            double sqMid = Math.pow(left+(right-left)/2,2);
+            double sqMid = Math.pow(mid,2);
             if(sqMid>x){
                 right = mid-1;
             }

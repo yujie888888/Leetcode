@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommonConversion {
+public class Conversion {
     public static void main(String[] args) {
         /* Basic data types */
         /** Basic data Capacity sorting
@@ -111,14 +111,21 @@ public class CommonConversion {
         //4.1.2.Arrays.asList()
         String[] array = new String[]{"a", "b", "c"};
         List<String> list = Arrays.asList(array);
-        //4.2.List -> array
-        //4.2.1.toArray() String
-        String[] array2 = list.toArray(new String[0]);
-        //new String[0]是创建了一个长度为0的String数组实例。
-        //这个空数组作为toArray方法的参数，其目的是指示toArray方法返回一个String类型的数组。
-        //4.2.1.toArray() int
-        //直接赋值
+
+        // 4.2.List -> array
+        // toArray()
+        // list<String> -> String[]
+        String[] array2 = list.toArray(new String[0]); //new String[0]是创建了一个长度为0的String数组实例。这个空数组作为toArray方法的参数，其目的是指示toArray方法返回一个String类型的数组。
+        String[] array3 = list.toArray(new String[list.size()]); //这么写就是提前分配array3的大小，性能稍微好一点，区别不大
         System.out.println("-----------------");
+        // list<int[]> -> int[][]
+        //Arrays.asList() 用于将数组转换为 List 的静态方法，使用 Arrays.asList() 创建一个 List<int[]>，然后用它来初始化 ArrayList<int[]>
+        List<int[]> res = new ArrayList<>(Arrays.asList(
+            new int[]{1,6},
+            new int[]{8,10},
+            new int[]{15,18}
+        ));
+        res.toArray(new int[res.size()][]);
 
         //5.Array <-> Array
         //5.1.int[] -> String[]

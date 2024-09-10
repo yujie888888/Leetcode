@@ -1,4 +1,4 @@
-package DataStruc_StackQueue;
+package DataStruc_Heap;
 import java.util.PriorityQueue;
 
 class ListNode {

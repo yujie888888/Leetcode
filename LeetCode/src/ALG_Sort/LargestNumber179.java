@@ -58,19 +58,23 @@ public class LargestNumber179 {
      */
     public static void main(String[] args) {
         int[] nums = {3,30,34,5,9};
-        String[] strNums = new String[nums.length];
-        for(int i=0; i<nums.length; i++){
-            strNums[i] = String.valueOf(nums[i]);
+        System.out.println(largestNumber(nums));
+    }
+    public static String largestNumber(int[] nums) {
+        int n = nums.length;
+        String[] strNums = new String[n];
+        int i = 0;
+        for (int num : nums) {
+            strNums[i] = String.valueOf(num);
+            i++;
         }
-        Arrays.sort(strNums, (a, b) -> (b + a).compareTo(a + b));
-        if (strNums[0].equals("0")) {
-            System.out.println("0");
-            return;
-        }
+        Arrays.sort(strNums, (a, b) -> ((b + a).compareTo(a + b)));
+        if(strNums[0].equals("0")) return "0";
+
         StringBuilder sb = new StringBuilder();
         for (String str : strNums) {
             sb.append(str);
         }
-        System.out.println(sb);
+        return sb.toString();
     }
 }

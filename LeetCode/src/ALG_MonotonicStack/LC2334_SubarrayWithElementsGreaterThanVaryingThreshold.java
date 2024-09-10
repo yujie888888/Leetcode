@@ -32,7 +32,7 @@
  * 1 <= financialMetrics[i] <= 10^9
  * 1 <= limit <= 10^9
  */
-package Comoany_Tiktok;
+package ALG_MonotonicStack;
 import java.util.Arrays;
 import java.util.Stack;
 public class LC2334_SubarrayWithElementsGreaterThanVaryingThreshold {

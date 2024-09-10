@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class LC694_ {
+public class LC694_NumDistinctIslands {
     public static void main(String[] args){
         int[][] grid = new int[][]{
             {1,1,0,1,1},
@@ -14,7 +14,6 @@ public class LC694_ {
         };
         System.out.println(numDistinctIslands(grid));
     }
-
     /**dfs
      * O(m*n)
      * O(m*n)

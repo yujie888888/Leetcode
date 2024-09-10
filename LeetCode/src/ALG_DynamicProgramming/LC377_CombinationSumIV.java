@@ -26,7 +26,7 @@
  */
 package ALG_DynamicProgramming;
 
-public class CombinationSumIV377 {
+public class LC377_CombinationSumIV {
     public static void main(String[] args) {
         int[] nums = {1,2,3};
         int target = 4;
@@ -56,5 +56,29 @@ public class CombinationSumIV377 {
             }
         }
         return dp[target];
+    }
+
+    /**BT
+     * 超时了
+     */
+    static int res2 = 0;
+    static int sum2 = 0;
+    public static int combinationSumBT(int[] nums, int target) {
+        res2 = 0;
+        sum2 = 0;
+        backtracking(nums, target);
+        return res2;
+    }
+    private static void backtracking(int[] nums, int target){
+        if(sum2 == target){
+            res2++;
+            return;
+        }
+        for(int i=0; i<nums.length; i++){
+            if(sum2 + nums[i] > target) continue;
+            sum2 += nums[i];
+            backtracking(nums, target);
+            sum2 -= nums[i];
+        }
     }
 }
