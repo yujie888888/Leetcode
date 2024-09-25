@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Docker **
+Docker image
+    Docker image是一个轻量级、可执行的独立软件包，包含运行特定应用程序所需的所有内容，包括代码、运行时环境、库等
+    镜像可以视为容器的蓝图
+    A Docker image is a lightweight, executable, standalone software package that contains everything needed to run a specific application, including code, runtime environment, libraries, etc.
+    An image can be considered a blueprint for a container.
+Docker container
+    容器是从镜像启动的一个运行实例，提供隔离的环境，以确保应用程序在不同环境下的行为一致。
+    A container is a running instance started from an image, providing an isolated environment to ensure that the application behaves consistently in different environments.
+Amazon ECR
+    Amazon ECR是AWS 提供的一个 Docker 容器镜像存储服务，旨在为开发者和运维人员提供一个安全、可扩展的 Docker 容器存储库。ECR 允许你存储、管理和部署 Docker 容器镜像。
+    Amazon ECR is a Docker container image storage service provided by AWS, designed to provide developers and operators with a secure and scalable Docker container repository.
+    ECR allows you to store, manage, and deploy Docker container images.
+Amazon ECS
+    Amazon ECS是 AWS 提供的高度可扩展、高性能的容器管理服务，支持 Docker 容器的运行。ECS 提供了一个简单的 API，用于启动、停止和管理容器集群上的容器。
+    Amazon ECS is a highly scalable, high-performance container management service provided by AWS that supports the running of Docker containers.
+    ECS provides a simple API for starting, stopping, and managing containers on a container cluster.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Amazon Web Services **
+存储服务:如S3(简单存储服务)用于对象存储
+安全和身份服务:如IAM(身份和访问管理)。
+TODO
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Netty **
+TODO

@@ -1,7 +1,7 @@
 /**
- * Given two arrays a[] and b[] of equal length n. The task is to pair each element of array a to an element in array b, such that sum S of absolute differences of all the pairs is minimum.
- * Suppose, two elements a[i] and a[j] (i != j) of a are paired with elements b[p] and b[q] of b respectively,
- * then p should not be equal to q.
+ * 给定两个长度相等的数组 a[] 和 b[]，任务是将数组 a 中的每个元素与数组 b 中的一个元素配对，使得所有配对后对应元素的绝对差的和 S 最小。
+ * 具体来说，每个元素 a[i] 必须与 b 中的一个唯一元素配对，不能有重复的配对。
+ * 例如，元素 a[i] 和 a[j]（i != j）分别配对 b[p] 和 b[q] 时，要求 p 不等于 q
  */
 package Company_Amazon;
 import java.util.Arrays;

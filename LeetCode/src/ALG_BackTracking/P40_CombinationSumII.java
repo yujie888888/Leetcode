@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**BackTracking
- * O(2^n)
+ * O(2^n) "Two to the nth power" or "Two to the n"
  * O(n)
  * Ideas:
  * 求组合问题-->不关注顺序

@@ -40,7 +40,8 @@ public class P5_WildcardCharacter {
         System.out.println(Arrays.toString(matchStrings1(text,pat,n)));
         System.out.println(Arrays.toString(matchStrings2(text,pat,n)));
     }
-    /**startsWith() & endsWith()
+
+    /**startsWith() & endsWith()1
      * O(n*m) m is the length of text[i]
      * O(n)
      * Ideas:
@@ -65,7 +66,8 @@ public class P5_WildcardCharacter {
         }
         return res;
     }
-    /**String.split()
+
+    /**startsWith() & endsWith()2
      * O(n*m)
      * O(n*m) m is the length of text[i]
      * Ideas

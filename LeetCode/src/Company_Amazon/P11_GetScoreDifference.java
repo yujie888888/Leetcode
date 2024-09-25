@@ -42,6 +42,8 @@ public class P11_GetScoreDifference {
     }
     /**Greedy
      * O(nlogn)
+     * Ideas:
+     * 这道题太简单，LC468是这道题的进阶版
      */
     private static long getScoreDifference(int[] points){
         Arrays.sort(points);

@@ -49,7 +49,7 @@ public class P3_GetKConsistencyScore {
     private static int solution1(int[] stock, int k){
         HashMap<Integer, List<Integer>> map = new HashMap();
         for(int i=0; i<stock.length; i++){
-           map.computeIfAbsent(stock[i],x->(new ArrayList<>())).add(i);
+           map.computeIfAbsent(stock[i], x->(new ArrayList<>())).add(i);
         }
         int maxLen = 0; int len;
         for(int key : map.keySet()){
@@ -74,6 +74,7 @@ public class P3_GetKConsistencyScore {
         }
         return maxLen;
     }
+
     /**HashSet + SildeWindow
      * O(m*n) LTE m is the number of unique price of stock
      * O(m)

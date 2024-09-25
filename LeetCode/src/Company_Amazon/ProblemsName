@@ -1,0 +1,306 @@
+"Github"
+Distributed Packages
+Get Max Information Gain
+Find Capable Winners
+Find Maximum Zeros
+Get Min Size
+Calculate Beauty Values
+Min Operations To Make Zeros
+Choose Warehouse Location
+Sort Permutation
+Minimize Storage Required
+Minimize Maximum Parcels
+Get Sequence
+Get Maximum Sum
+Get Num Teams
+Process Queries On Cart
+Assign Tasks
+Get Server ID
+Get Active Requests Count
+Get Operations
+Get Minimum Boxes
+Get Min Total Distance
+Compute Encoded Product Name
+Process Queue
+Create Array Generator Services
+Assign Requests
+Get Redundant Substrings
+Max Consecutive ON Servers
+Get Total Requests
+Maximize Negative Signs
+Maximum Stability
+Is Regex Matching
+Maximize Subtree Product
+Bring Servers Down
+Optimizing Box Weights
+Find K Level Permutation
+Process Execution
+Get Experience
+Ordered Confirguration
+Count Number of Retailers
+Find Max Pairs
+Find Median Of Subarray Uniqueness
+Max Negation
+Get Min Time
+Kth Smallest in Subarray
+Get K Rep Value
+Get Max Pairs
+Count Pairs
+Channel Max Quality
+Num of Idle Robots
+Find Earliest Month
+Get Min Errors
+Get Max Points from Sprints
+Max Lucky Numbers
+Max Total Area
+Minimum Operations to Make Array Elements Zero
+Find Kth Minimum Vulnerability
+Max Aggregate Company_icc.Temp Change
+Merge Interval
+Maximize Negative PNL Months
+Reduce Gifts
+Count Faults
+Find Max Num
+Minimize Sum of Absolute Differences
+Find Overlapping Times
+Match Strings
+Num of Possible Unique Strings
+Find Encrypted Password
+Maximum Number of Balanced Shipments
+Lexicographically Smallest Palindrome Possible
+Find Min Pages Per Day
+Ways to Group Parcels
+Find First Unique
+Get Distinct Pairs
+Maxmimum Times Word Removed
+Reverse Binary String
+Maximum Solar Bulbs
+Return Records
+Count Max Greyness
+Find Min Keypad Click Count
+Find Min Operations
+Find Max Rush
+Make Power Non Decreasing
+Get Max Racers
+Get Min Num Moves
+Count Distinct Passwords
+Fortune Telling
+Max User Traffic
+Find Min Trips
+Sort Product Codes
+Find Recurring Name
+Find Requests In Queue
+Find Largest Set of Onion Bags
+Minimum Total Errors
+Get Longest Match
+Dropped Requests
+Remove Anagrams
+Find Unique Values
+Find Maximum Maxima Count
+Execute Processes
+Number of Suitable Locations
+Group Students
+Maximum Final
+Get Pairs Count
+Get Discount Pairs
+Rice Bags
+Get Min Cost Data
+Count Maximum Profitable Groups
+Get Trucks for Items
+Count Games Won By Group1
+Get Min Distance
+Check Similar Passwords
+Maximum Score in Balanced String
+Location of Data After Transfers
+Get Score Difference
+Get Success Value
+Get Minimum Fruits
+Erase Pairs
+Get Maximum Reward Points
+Get Mean Rank Count
+Count Spikes
+Amazon Review Score
+Get Minimum Costs
+Find Minimum Inefficiency
+Get Average Standing
+Minimum Time Spent
+Count Max Num Teams
+Maximum Book Copies
+Count Num Ways
+Get Priorities After Execution
+Warehouse Distribution
+
+
+"IDEA"
+P1_MaxCumulativeObservableSum
+P2_MinimumKeypadClickCount
+P3_GetKConsistencyScore
+P4_KClosestPointstoOrigin
+P5_WildcardCharacter
+P6_CustomProductOrder
+P7_GetMinDistance
+P8_GetMaximumReward
+P9_CountGamesWonByGroup1
+P10_OptimizingNetworkConnection
+P11_GetScoreDifference
+P12_CountDistinctPasswords
+P13_findMinimumOperations
+P14_PasswordStrength
+P15_NumberOfWaysToSelect
+P16_OptimizingBoxWeights
+P17_FindKLevelPermutation
+P18_AWSProcessExecution
+P19_GetDistinctExperience
+P20_OrderedConfiguration
+P21_CountNumberOfRetailers
+P22_FindMaximumServerPairs
+P23_LC3134_FindMedianofUniquenessArray
+P24_MaxNumberOfNegateOperations
+P25_AllPossiblePopularitiesOfCombos
+P26_GetMinimumTime
+P27_SimpleLogAPI
+P28_DistributePackages
+P29_GetMaxInformationGain
+P30_FindCapableWinners
+P31_FindMaximumZeroes
+P32_GetMinSize
+P33_CalculateBeautyValues
+
+
+"File Amazon 2024/04"
+makePowerNonDecreasing
+getRepValue
+CountPairs kdiff
+getMinimumFruits
+getMaxPairs
+suitableLocations
+countTeams
+getMinimumOperations
+minimumNumberOfPages
+findKthMinimumVulnerability
+locateLongestList
+PrimeVideo minimumTimeSpent
+maxAffordableLossMonths
+findRequestsInQueue
+highestQuality
+longestValidSubstring
+HealthCareSprintgetMaxPoints (题目描述未提供)
+findEncryptedPassword (题目描述未提供)
+
+
+"File Amazon 2023/10"
+Q1 题目:
+Find the number of unique average values among the combined experience
+Find min days to delivery all parcels
+Server stress test
+Category of items purchased
+Skill of employees how many avg skillpoints
+Pascal Triangle decryption
+Car game analysis
+当前的数会把所有和它一样的数减半，求最后数的总和
+Number of peak numbers with size k sides
+Queued seats
+Naive Hedging
+Determine the max possible score from array of parentheses
+Find maximum number upto that index
+Minimum lag to establish the entire network
+LinkedHashMap (similar to LRU Cache)
+REGEX
+Maximum length of subarray product equal to 1
+Longest common string-Alpha set version
+Minimum time mouse needs to eat all Cheese
+Int数组中下一个比当前元素大的数
+有几种反转k个char之后string同位字母排序变小了
+两头两个数相等,且等于中间所有数相加
+Academy recently organized a scholarship test
+Skill of employees / exp hackathon with max diff
+Chapters (similar to koko eats banana / ribbons)
+Bag of rice / Perfect set
+OCT fruit crush
+
+Q2 题目:
+K个空放包裹
+无序数组,求所有子数组的imbalance > 1
+Max len(i...j) that satisfy max(arr1[i..j]) + len(i...j)*sum(arr2[i..j]) <= limit
+Substring With Largest Variance
+AMZ fresh
+Skill of employees / exp hackathon find the smallest diff
+Weighted Moving Average
+AWS servers total time to execute all processes
+Discard 1 number and add half of that in the list
+Slicing Windows
+Predict rainfall
+Matrix Chain Multiplication
+Processes are scheduler
+Distribute toy cars
+Min money needs to be spent to get the gift card
+Binary Tree to DLL
+AWS processors, find longest sublist has segment size in non-increasing order
+AWS processor minimum inefficiency with "?"
+Profitable stock
+Least time to finish one movie each from two categories
+Prohibited words / forbidden words / Customer review guidelines
+Delivery centers
+Purchase-m-items min cost
+
+
+"OA1 Google Drive的整理"
+Get Minimum Total Distance
+Leetcode1478
+Reduce Gifts threshold
+Reduce Gifts
+Get Redundant Substrings
+Get Maximum Points sprints / Get Max Points sprints
+Assign Requests to Servers
+Make Array Bitonic
+Max Consecutive ON Servers
+getMaxConsecutiveON
+Find Minimum Pages Per Day
+Make Power Non-decreasing
+Maximum Number of Balanced Shipments / maxNumberOfBalancedShipments
+Create Array Generator Service
+Maximize Total Area of Rectangles
+Number of Idle Drives
+Is Regex Matching
+Number of Suitable Locations
+Find Minimum Operations
+Get Total Requests
+Find Requests in Queue/Process Queue
+Minimum Errors
+Get Minimum Errors
+Channels Max Quality
+calculateMedianSum
+Count Distinct Passwords
+Find Kth Minimum Vulnerability
+Maximize Negative Signs
+Bring Servers Down
+minimumRequests
+Maximum Stability
+
+
+"OA1 Notion的整理"
+findEarliestMonth
+maxmizeAZ
+purchaseBooks / Amazon books retail
+服务器移动
+countMaxOperations / s里可以拼出多少个t
+findMaximumSustainableClusterSize / 最大的 processor cluster
+连续递减的子序列个数consecutive decreasing array / countDecreasingRatings
+minimumHealth
+minimumRounds / 搬箱子 一次搬2/3个相同重量的，多少次搬完
+maxPackageAfterMerging / 合并和最大包裹重量
+calculate the sum of power of every subarray / sumPower
+minimizeMemory / 去掉K个连续数后最小的值
+find max password strength / passWordStrength
+getNonInclusiveRetailor / Merge interval
+Grouping Digits / minMoves
+Demolition Robot
+kthFactor / The kth Factor of n
+能被2和4相加得到的方式个数 / chooseFleets
+count how many sub sequence 101 or 010 in the string
+Max Consecutive Ones / longestOnes
+Max Length of Valid Server Cluster / Max Length of Valid Server Cluster
+Maximum Element After Decreasing and Rearranging LC1876
+smallest distance pair; k smallest inefficiencies / smallestDistancePair
+pascal triangle / triangularSum
+

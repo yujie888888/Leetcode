@@ -9,30 +9,47 @@ public class StringBuilderMethod {
     public static void main(String[] args) {
          // 创建StringBuilder实例
          StringBuilder sb = new StringBuilder();
+
          // 指定初始容量
          StringBuilder sbWithCapacity = new StringBuilder(100);
+
          // 用String初始化
          StringBuilder sbWithString = new StringBuilder("InitialContent");
+
          //添加内容
          sb.append("Hello");
          sb.append(" ");
          sb.append("World");
+
          // 连续调用
          sb.append(" ").append(2021);
+
          // 插入内容到指定位置
          sb.insert(0, "Start");
+
          // 替换StringBuilder中指定位置的字符串
-         sb.replace(0, 6, "Finish");
-         // 删除指定位置的字符或子字符串
+         System.out.println(sb);
+         sb.replace(0, 6, "Finish"); //不包含index end
+         System.out.println(sb);
+
+         // set StringBuilder中指定位置的字符
+         sb.setCharAt(1, '*');
+
+         // 删除指定位置的字符或子字符串 O(n) coz needs to move other elements
          sb.delete(0, 6);
+
          // 删除指定位置的字符
          sb.deleteCharAt(0);
+
          // 翻转字符串
          sb.reverse();
+
          // 返回StringBuilder中当前字符的数量
          int length = sb.length();
+
          // 返回其当前的总容量
          int capacity = sb.capacity();
+
          // 转换成String格式
          String result = sb.toString();
     }

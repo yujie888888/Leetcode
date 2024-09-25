@@ -21,28 +21,23 @@ public class LongestCommonPrefixLCP14 {
         System.out.println(longestCommonPrefix1(strs));
     }
     /**逐渐缩短法 substring()
-     * O(kn) Beats 100%
-     * O(n) Beast 50%
+     * O(kn)
+     * O(n)
      * 思路：
      * 1.用第一个str当作prefix
      * 2.然后遍历之后的每一个str
      * 3.只要prefix和str的前prefix长度的substring不相等，就prefix长度--
-     * 注意事项：
-     * 1.注意base case
-     * 2.string比较不能用==，要用equals
-     * 3.如果 prefix 长度大于当前字符串 str 的长度，则 str.substring(0, prefix.length()) 将抛出 StringIndexOutOfBoundsException
-     *   你需要在调用 substring 之前检查 prefix 的长度是否大于 str 的长度。
-     *   这里用||很巧妙，也就是语句1||语句2,语句1不成立之后才会去看语句2，所以就不会边界报错了
+     * 4.只要str不以prefix开头就长度--
      */
     public static String longestCommonPrefix1(String[] strs) {
-        //base case
-        if(strs.length == 0) return " ";
         if(strs.length == 1) return strs[0];
-
         String prefix = strs[0];
         for(String str : strs){
-            while(str.length()<prefix.length() || !prefix.equals(str.substring(0,prefix.length()))){
-                prefix = prefix.substring(0,prefix.length()-1);
+            while(prefix.length()>0 && str.length() < prefix.length()){
+                prefix = prefix.substring(0, prefix.length()-1);
+            }
+            while(prefix.length()>0 && !str.startsWith(prefix)){
+                prefix = prefix.substring(0, prefix.length()-1);
             }
         }
         return prefix;

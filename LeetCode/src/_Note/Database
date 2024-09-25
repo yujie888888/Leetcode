@@ -1,0 +1,232 @@
+*** DataBase ***
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** CRUD **
+What is: CRUD is the basic concept of database operations
+Represent:
+    Create
+    Read
+    Update
+    Delete
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* WHERE vs HAVING *
+筛选对象 Filter Object
+    WHERE 筛选行(单个记录) Filter rows (single record)
+    HAVING 筛选组(聚合后的结果) Filter groups (aggregated results);
+聚合函数 Aggregate Function
+    WHERE 不能使用聚合函数(如SUM, AVG, COUNT等) cannot use aggregate functions (such as SUM, AVG, COUNT, etc.)
+    HAVING 可以使用聚合函数 can use aggregate functions
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** JOIN **
+SQL JOIN 是用于根据两个或多个表之间的相关列来组合这些表中的行的操作
+SQL JOIN is an operation used to combine rows from two or more tables based on related columns between them.
+Types:
+    INNER JOIN（内连接）
+        返回两个表中匹配行的结果集 Returns a result set of matching rows from two tables
+        只有当两个表中都存在匹配时，才会返回行 Rows are returned only if there is a match in both tables
+    LEFT JOIN（左外连接）
+        返回左表中的所有行，即使右表中没有匹配 Returns all rows from the left table, even if there are no matches in the right table
+        如果右表中没有匹配，结果是 NULL If there is no match in the right table, the result is NULL
+    RIGHT JOIN（右外连接）
+        返回右表中的所有行，即使左表中没有匹配 Returns all rows from the right table, even if there are no matches in the left table.
+        如果左表中没有匹配，结果是 NULL If there is no match in the left table, the result is NULL
+    FULL JOIN（全外连接）
+        返回左表和右表中的所有行 Returns all rows from the left and right tables
+        如果没有匹配，则相应的结果是 NULL  If there is no match, the corresponding result is NULL
+Ex:
+    假设我们有两个表：`employees` 和 `departments`
+    employees 表：
+    | emp_id | emp_name | dept_id |
+    |--------|----------|---------|
+    | 1      | Alice    | 1       |
+    | 2      | Bob      | 2       |
+    | 3      | Charlie  | NULL    |
+
+    departments 表：
+    | dept_id | dept_name |
+    |---------|-----------|
+    | 1       | IT        |
+    | 2       | HR        |
+    | 3       | Sales     |
+
+    1. INNER JOIN:
+    SELECT e.emp_name, d.dept_name
+    FROM employees e
+    INNER JOIN departments d ON e.dept_id = d.dept_id;
+    结果：
+    | emp_name | dept_name |
+    |----------|-----------|
+    | Alice    | IT        |
+    | Bob      | HR        |
+
+    2. LEFT JOIN:
+    SELECT e.emp_name, d.dept_name
+    FROM employees e
+    LEFT JOIN departments d ON e.dept_id = d.dept_id;
+    结果：
+    | emp_name | dept_name |
+    |----------|-----------|
+    | Alice    | IT        |
+    | Bob      | HR        |
+    | Charlie  | NULL      |
+
+    3. RIGHT JOIN:
+    SELECT e.emp_name, d.dept_name
+    FROM employees e
+    RIGHT JOIN departments d ON e.dept_id = d.dept_id;
+    结果：
+    | emp_name | dept_name |
+    |----------|-----------|
+    | Alice    | IT        |
+    | Bob      | HR        |
+    | NULL     | Sales     |
+
+    4. FULL JOIN:
+    SELECT e.emp_name, d.dept_name
+    FROM employees e
+    FULL JOIN departments d ON e.dept_id = d.dept_id;
+    结果：
+    | emp_name | dept_name |
+    |----------|-----------|
+    | Alice    | IT        |
+    | Bob      | HR        |
+    | Charlie  | NULL      |
+    | NULL     | Sales     |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** SQL vs NoSQL **
+Diff:
+    数据模型：
+        SQL: 使用表格模型，数据被组织成预定义的表格，每个表格都有固定的列（字段）和行（记录）。
+        NoSQL: 有多种数据模型，如文档、键值对、宽列和图形。允许更灵活的数据结构。
+    Schema：
+        SQL: 有固定的Schema，在写入数据前需要预先定义表结构。
+        NoSQL: 通常是无Schema或动态Schema，允许在不预先定义结构的情况下添加字段。
+    查询语言：
+        SQL: 使用标准化的SQL语言进行查询。
+        NoSQL: 每种NoSQL数据库可能有其特定的查询语言或API。
+    扩展性：
+        SQL: 通常是垂直扩展（增加单台服务器的性能）。
+        NoSQL: 通常设计为可以水平扩展（增加服务器数量）。
+    ACID 事务：
+        SQL: 完全支持ACID（原子性、一致性、隔离性、持久性）事务。
+        NoSQL: 有些支持ACID事务，但通常是在单文档级别；有些则完全不支持。
+    关系：
+        SQL: 擅长处理复杂的关系和多表连接查询。
+        NoSQL: 通常不支持复杂的连接操作，数据通常是非规范化的。
+    一致性：
+        SQL: 通常提供强一致性。
+        NoSQL: 可能提供最终一致性，某些情况下牺牲一致性来获得更高的性能和可用性。
+    使用场景：
+        SQL: 适合需要复杂查询、事务和强一致性的应用，如金融系统、ERP系统等。
+        NoSQL: 适合处理大量非结构化数据、需要高吞吐量和低延迟的应用，如实时大数据、内容管理系统等
+Ex:
+    SQL: MySQL, SQL Sever
+    NoSQL: MongoDB, Redis
+------------------------------------------------------------------------------
+** MongoDB **
+What is:
+    NoSQL Database Management System
+Feature:
+    使用文档导向的数据模型,数据以BSON格式存储
+    适合处理大量非结构化数据,常用于大数据和实时web应用
+Mongoose
+    Mongoose是一个在Node.js环境中使用的MongoDB对象建模工具
+    Mongoose提供了一种更加结构化和方便的方式来与MongoDB数据库进行交互
+Query Language
+    MongoDB Query Language which base on JavaScript
+    这种查询语言非常灵活，允许开发者使用类似 JSON 的语法来进行数据操作和查询
+
+这个下面的描述都是基于我的项目的
+Usage scenarios
+    1.这种存储方式非常适合存储结构不固定或需要频繁变更的数据模型
+      This storage method is very suitable for storing data models with unstable structures or frequent changes.
+        例如，用户和联系人信息的字段可能会因应用需求不同而变化，MongoDB 可以轻松应对并且无需改变模式。
+        For example, the fields of user and contact information may change depending on requirements, and MongoDB can easily change them.
+    2.嵌套数据结构 Nested data structures
+        用户和联系人数据通常有嵌套结构Nested structures（如用户拥有多个联系人，每个联系人可能包含多个电话号码和地址）
+        User and contact data often have nested structures
+        MongoDB 允许在单个文档中存在嵌套结构，能够处理这种一对多或者多对多关系
+        MongoDB allows nested structures in a single document and can handle one-to-many or many-to-many relationships.
+        并且对于嵌套的数组和对象，MongoDB 提供了高效的查询和更新操作
+        MongoDB provides efficient query and update operations for nested arrays and objects.
+    3.格式的兼容性 Format compatibility
+        MongoDB 存储数据的 BSON 格式与 JSON 格式非常相似，这与 JavaScript/Node.js 的原生数据格式天然契合
+        The BSON format in which MongoDB stores data is very similar to the JSON format, which is a natural fit with the native data format of JavaScript/Node.js.
+        这种兼容性使得数据的存储、检索等变得更加直接，不需要在数据传输过程中进行格式转换
+        This compatibility makes the storage, retrieval of data more direct, without the need for format conversion during data transmission
+        使用 MongoDB 的 JavaScript 驱动可以让开发者使用 JavaScript 进行所有数据库操作
+        Using MongoDB's JavaScript driver allows developers to perform all database operations using JavaScript
+    4.减少联结（Join）操作
+        传统的关系型数据库在需要访问相关数据时，通常会通过联结（join）操作来获取数据
+        Traditional relational databases usually use join operations to obtain data when they need to access related data.
+        MongoDB 允许将相关的数据存储在同一个文档中，减少了需要多次访问或联结的需求
+        MongoDB allows related data to be stored in the same document, reducing the need for multiple accesses or joins.
+------------------------------------------------------------------------------
+** Redis **
+这个下面的描述都是基于我的项目的
+What is:
+    Remote Dictionary Server 是一个基于内存的键值数据存储系统
+Feature
+    Redis支持多种数据类型: Strings, Hashes, Lists, Sets, Sorted Sets, Bitmaps, HyperLogLogs, Geospatial indexes
+    基于内存操作，读写速度极快 Based on memory operation, read and write speed is extremely fast
+    单线程模型，避免了多线程导致进程问题 Single-threaded model, avoiding process problems caused by multi-threading
+    使用I/O多路复用 and Non-blocking I/O，can 处理大量连接
+    RDB（Redis Database）：通过快照进行数据持久化
+    AOF（Append Only File）：记录所有写操作，重启时重新执行恢复数据
+    内置发布/订阅功能，适用于消息通信 Built-in publish/subscribe functionality for messaging
+    Redis可以很好地与Spring Boot和Netty集成，例如，它可以用来存储Netty的会话信息或临时数据
+    Redis更轻量级，启动快速，适合作为聊天应用的辅助存储系统
+Usage scenarios
+    Cache system:
+        充分利用Redis的高速读写能力(因为基于内存存储数据)，缓存好友关系状态和系统设置；
+        Make full use of Redis's high-speed read and write capabilities (because it stores data in memory) to cache friend relationship status and system settings;
+        这样大部分请求可以直接从Redis获取数据，显著减少了对MySQL的访问，从而提高应用的响应速度
+        In this way, most requests can directly obtain data from Redis, significantly reducing access to MySQL and thus improving the response speed of the application.
+
+    Group chat and single chat mode:
+        Redis Pub/Sub
+            Redis的Pub/SubVery high performance, able to handle a large number of concurrent subscriptions and message publishing
+            Redis的Pub/Sub（发布/订阅）是一种消息通信模式： Message Mode
+                发送者（发布者）不会将消息直接发送给特定的接收者（订阅者），而是将发布的消息分到不同的频道
+                Publishers do not send messages directly to specific subscribers, but instead distribute published messages to different channels.
+                订阅者可以订阅一个或多个频道，只接收感兴趣的消息，而不需要知道有哪些发布者
+                Subscribers can subscribe to one or more channels and receive only the messages they are interested in, without having to know which publishers are there.
+        Redisson的RTopic：
+            Redisson是一个Redis客户端，它的RTopic提供了一个分布式主题实现
+            Redisson is a Redis client, and its RTopic provides a distributed topic implementation
+        Implement：
+            a. 实时消息广播：
+                当用户发送群聊消息时，服务器可以将消息发布到对应群聊的topic。
+                所有在线的群成员（订阅了该topic的客户端）都能实时接收到消息。
+            b. 用户状态更新：
+                当用户上线、下线或更改状态时，可以发布一个状态更新消息。
+                该用户的好友列表中的在线用户会收到这个状态更新。
+            c. 系统通知：
+                管理员可以发送全局通知，所有在线用户都能即时收到。
+            d. 多设备同步：
+                当用户在一个设备上进行操作时，可以通过Pub/Sub同步到该用户的其他在线设备。
+    针对流量高峰期，使用Redis处理库存扣款和锁定机制，同时通过队列和计划任务异步管理库存，大大降低数据库负载。
+------------------------------------------------------------------------------
+* I/O Multiplexing *
+What is:
+    允许单个进程同时监控多个I/O事件，当任何I/O事件就绪时，进程可以立即处理
+    避免了使用多线程带来的上下文切换开销
+------------------------------------------------------------------------------
+* Non-blocking I/O *
+What is:
+    它允许进程在I/O操作无法立即完成时继续执行，而不是等待I/O操作完成
+* Blocking I/O vs Non-blocking I/O *
+    阻塞I/O：进程发起I/O操作后，会一直等待直到操作完成。
+    非阻塞I/O：进程发起I/O操作后，如果数据未就绪，会立即返回，进程可以做其他事情。
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------

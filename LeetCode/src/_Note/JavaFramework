@@ -1,0 +1,322 @@
+*** Java Framework ***
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Spring **
+What is:
+    Spring is a comprehensive Java enterprise application development framework
+Core Features
+    DI(Dependency Injection)
+    AOP(Aspect-Oriented Programming)
+    Transaction Management(事务管理)
+        Spring 提供了统一的事务管理接口，简化了事务管理的配置和使用
+        Spring provides a unified transaction management interface to simplify the configuration and use of transaction management.
+    数据访问
+        Spring 提供了丰富的数据访问支持，包括对 JDBC、Hibernate、JPA、MyBatis 等持久层框架的集成，简化了数据访问的配置和操作
+    模块化架构
+        Spring 拆分为多个模块，开发者可以根据项目需求选择性地使用
+        主要模块包括：
+            Core Container（核心容器）： 包括 Spring Core、Spring Beans、Spring Context 和 Spring Expression Language（SpEL）。
+            Data Access/Integration（数据访问/集成）： 包括 Spring JDBC、Spring ORM、Spring OXM、Spring JMS、Spring Transactions。
+            Web（Web 层）： 包括 Spring Web MVC、Spring WebFlux。
+            AOP 和 Instrumentation： 提供 AOP 支持和字节码操作工具。
+            Testing（测试）： 提供集成测试支持。
+--------------------------------------------------------------------------------------
+* DI(Dependency Injection) *
+    What is:
+        DI是指对象在创建时所需的依赖由外部系统或容器负责提供，而不是由对象自身去创建或查找。这种方式将对象的依赖关系从内部实现转移到外部管理，从而实现松耦合
+        DI means that the dependencies required by an object when it is created are provided by an external system or container, rather than being created or searched by the object itself.
+        This method transfers the dependencies of the object from internal implementation to external management, thereby achieving loose coupling.
+    Feature
+        通过IoC(Inversion of Control)容器管理对象的生命周期和依赖关系
+        The IoC (Inversion of Control) container manages the life cycle and dependencies of objects.
+        开发者无需手动创建和管理对象，只需在配置文件或使用注解标注依赖关系，容器会自动注入所需的依赖
+        Developers do not need to manually create and manage objects.
+        They only need to annotate dependencies in configuration files, and container will automatically inject required dependencies.
+    Injection Types：
+        Constructor Injection
+            通过类的构造器参数来注入依赖,这种方式确保了依赖在对象创建时就已提供，适用于必需的依赖
+            Injecting dependencies through class constructor parameters ensures that dependencies are provided when the object is created and is suitable for required dependencies.
+        Setter Injection
+            通过类的 setter 方法来注入依赖,这种方式允许依赖在对象创建后进行设置，适用于可选的依赖
+            Inject dependencies through the setter method of the class. This method allows dependencies to be set after the object is created and is suitable for optional dependencies.
+        Interface Injection
+            通过实现特定接口的方法来注入依赖,这种方式较少使用
+            Inject dependencies by implementing specific interfaces. This method is rarely used.
+    implement IoC
+        DI 是实现 IoC 的一种具体方式 (IoC 是一种设计原则，指将对象的控制权从对象本身转移到外部容器或框架)
+    Spring DI
+         Spring IoC 容器 来管理和注入对象的依赖关系
+         在 Spring 中，所有由 IoC 容器管理的对象称为 Bean。可以通过 XML 配置、注解或 Java 配置类来定义 Bean 及其依赖关系。
+         配置方式Configuration：
+            基于 XML 的配置：通过 XML 文件定义 Bean 及其依赖关系。
+            基于注解的配置：使用注解标识 Bean 和注入方式。
+            基于 Java 配置类的配置：使用 @Configuration 和 @Bean 注解在 Java 类中定义 Bean
+         注解annotation
+             @Component：标识一个类为 Spring 管理的 Bean Identifies a class as a Spring-managed bean.
+             @Autowired：自动注入依赖 Automatically inject dependencies.
+             @Qualifier：在存在多个 Bean 时指定注入哪一个 Specifies which bean to inject when multiple beans exist.
+             @Inject 和 @Resource：其他注入注解 Other injection annotations
+--------------------------------------------------------------------------------------
+* AOP(Aspect Oriented Programming) *
+    What is:
+        帮助开发者将跨越多个模块的通用功能集中管理，而不需要在每个模块中重复编写相同的代码
+        Helps developers manage common functions across multiple modules without having to rewrite the same code in each module
+    组成 composition
+        切面（Aspect）：
+            定义了需要统一处理的功能，比如日志记录。
+            Defines functions that need to be handled uniformly, such as logging.
+        连接点（Join Point）：
+            连接点是你可以“插入”切面的具体位置，比如在一个方法执行前或后
+            Join points are specific places where can "insert" aspects, such as before or after a method is executed.
+        通知（Advice）：
+            通知是切面在连接点执行的具体操作。它定义了在连接点发生时要做什么
+            Advice is the specific operation performed by the aspect at the join point. It defines what to do when the join point occurs.
+        切入点（Pointcut）：
+            切入点定义了哪些连接点会被切面拦截并应用通知
+            Pointcuts define which join points will be intercepted by aspects and applied advice
+--------------------------------------------------------------------------------------
+* IoC *
+What is:
+    Inversion of Control (IoC) is a design principle.
+    Its core idea is to transfer the control of objects from application code to external containers or frameworks,
+    thereby achieving higher modularity and decoupling.
+--------------------------------------------------------------------------------------
+* Loose Coupling *
+指的是系统中各个组件、模块或服务之间的依赖关系较弱，从而提高系统的灵活性、可维护性和可扩展性
+Refers to the weak dependencies between components, modules or services in the system, thereby improving the flexibility, maintainability and scalability of the system
+松耦合的设计理念强调模块之间通过明确的接口进行通信，而不依赖于彼此的具体实现细节
+--------------------------------------------------------------------------------------
+* Constructor and Setter, which one is more likely to cause circular dependency *
+    circular dependency：
+        refers to the mutual dependence between two or more beans, forming a closed loop
+    构造器注入（Constructor Injection）更有可能导致循环依赖
+    Constructor Injection is more likely to cause circular dependencies.
+        在创建一个对象时，所有的依赖必须在构造器中提供 When creating an object, all dependencies must be provided in the constructor.
+        如果两个类相互依赖，通过构造器注入会形成一个闭环，Spring 无法创建对象
+        If two classes depend on each other, constructor injection will form a closed loop and Spring will not be able to create the object.
+    而Setter注入允许先创建对象的实例，然后通过 Setter 方法注入依赖
+    Setter injection allows you to create an instance of the object first, and then inject dependencies through the Setter method.
+        这使得 Spring 可以先实例化其中一个类，再注入另一个类的依赖，从而打破循环
+        This allows Spring to instantiate one class first, and then inject the dependencies of the other class, thus breaking the cycle.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Spring Boot **
+    What is:
+        Spring Boot simplifies the creation and development process of Spring applications.
+        It provides comprehensive default configurations to help developers quickly start and run projects based on Spring.
+    Ads:
+        快速启动项目
+        简化配置
+-------------------------------------------------------------------------------------------
+* Spring vs SpringBoot *
+    Spring is a comprehensive Java enterprise application development framework;
+    Requires more configuration and is suitable for projects that require a high degree of customization.
+
+    Spring Boot simplifies the creation and development process of Spring applications;
+    suitable for rapid development.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Spring Cloud **
+    What is:
+        Spring Cloud 提供了一系列工具，帮助开发者构建分布式系统和微服务架构
+        Spring Cloud provides a series of tools to help developers build distributed systems and microservice architectures.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Spring Security **
+    What is:
+        Spring Security 是一个功能强大的安全框架，(提供了认证、授权、加密、攻击防护（如 CSRF、XSS）等)多种安全功能，支持多种认证方式（如基于表单、OAuth2、JWT）
+        Spring Security is a powerful security framework that provides multiple security features (such as authentication, authorization, encryption, attack protection (such as CSRF, XSS), etc.),
+        and supports multiple authentication methods (such as form-based, OAuth2, JWT).
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** How to connect Database in Spring project **
+    1. JDBC (Java Database Connectivity)
+        JDBC是Java标准库提供的基本数据库访问API
+        Ad: 直接且灵活，适用于所有关系型数据库
+        DisAd:代码冗长，需要手动管理连接和资源
+        RoleMapper
+            在使用JDBC访问数据库时，在DAO层实现RoleMapper的功能，RoleMapper将数据库中的角色信息映射到Java对象
+        Process
+            加载特定数据库的JDBC驱动； Load the JDBC driver for a specific database;
+            建立数据库连接；  Establish a database connection;
+            创建Statement对象：Statement用于执行SQL查询； Create a Statement object: Statement is used to execute SQL queries;
+            执行SQL查询：使用Statement或PreparedStatement执行SQL查询； Execute SQL queries: Use Statement or PreparedStatement to execute SQL queries;
+            处理结果集；关闭资源； Process result sets; Close resources
+    ⭐️2. ORM (Object-Relational Mapping) 框架
+        What is:
+            ORM frameworks map Java classes to database tables and automatically generate SQL statements to handle CRUD operations,
+            reducing the need for developers to write SQL queries directly.
+        常用ORM框架：
+            ♟️Hibernate
+                Feature:
+                    完全实现了JPA（Java Persistence API）规范 Fully implements the JPA (Java Persistence API) specification
+                    自动生成SQL: Hibernate能够根据对象映射自动生成SQL语句 Hibernate can automatically generate SQL statements based on object mapping
+                    数据库无关性 Database independence
+                        Hibernate使用方言（Dialect）来处理不同数据库的特定SQL语法，它将Java类型映射到适当的数据库类型
+                        可以相对容易地更换底层数据库，而无需大量修改代码 The underlying database can be replaced relatively easily
+                    缓存机制: 提高应用程序的性能
+                    Caching: Improving application performance
+                DisAd:
+                    对于复杂查询，性能可能不如直接SQL For complex queries, performance may not be as good as direct SQL
+                    过度使用可能导致性能问题 Excessive use may cause performance issues
+                RoleMapper
+                    在Hibernate中，RoleMapper的概念主要通过实体类的映射来体现
+                    In Hibernate, the concept of RoleMapper is mainly reflected through the mapping of entity classes.
+                        @Entity、@Table、@Column 等注解实际上就扮演了 RoleMapper 的角色，定义了如何将数据库表映射到 Java 对象
+                        Annotations such as @Entity, @Table, and @Column actually play the role of RoleMapper, defining how to map database tables to Java objects.
+            ♟️MyBatis
+                轻量级的持久层框架，它允许开发者更多地控制SQL
+                A lightweight persistence layer framework that allows developers to have more control over SQL
+                Feature
+                    1.SQL and Java code separation
+                    2.Dynamic SQL: which allows SQL statements to be constructed based on conditions, suitable for complex queries
+                    3.支持批量操作,提高效率
+                    4.灵活性高：Well integrated with Spring framework
+                    5.One-to-many relationship mapping
+                DisAd:
+                    需要编写更多的SQL Need to write more SQL
+                    数据库移植性不如Hibernate Database portability is not as good as Hibernate
+                RoleMapper
+                    在MyBatis中，RoleMapper通常表现为一个接口，配合XML映射文件或注解来定义SQL和对象映射
+                    In MyBatis, RoleMapper is usually presented as an interface, which is used with XML mapping files or annotations to define SQL and object mapping.
+                Process：
+                    在java中定义对象模型
+                    MyBatis使用XML配置来定义如何将数据库结果映射到这些对象
+                    //TODO
+    3. Spring Data
+        Spring Data JPA is a part of Spring Data
+        Spring Data 是一个旨在简化数据访问层开发的项目，支持多种数据存储技术，包括关系数据库、NoSQL 数据库等。通过定义仓库接口，Spring Data 自动提供实现
+        Spring Data 允许配置多个 DataSource，并为每个 DataSource 配置相应的仓库接口
+        RoleMapper
+            在Spring Data JPA中，你只需定义接口，框架会自动提供实现
+            In Spring Data JPA, you only need to define the interface and the framework will automatically provide the implementation
+    4. JdbcTemplate (Spring)
+        Spring提供的JdbcTemplate简化了JDBC操作，减少了异常处理和资源管理的代码
+-----------------------------------------------------------------------
+* Mybatis vs Hibernate *
+1. Hibernate提供了更高级的抽象，减少了开发者需要编写的代码
+   MyBatis给予开发者更多对SQL的直接控制
+2. 对于简单的CRUD操作，两者性能相近。
+   对于复杂查询，MyBatis通常表现更好。
+3. Hibernate适合需要快速开发、数据库无关性强的项目
+   MyBatis适合需要优化性能、有复杂查询需求的项目 suitable for complex queries and optimization
+-----------------------------------------------------------------------
+* Mybatis how to achieve One-to-many relationship mapping *
+    1.Create entity class for 'one' side and 'multiple' side;
+    2.Add relationship annotations
+        @OneToMany: used on the "one" side to indicate a one-to-many relationship
+        @ManyToOne: used on the "many" side to indicate a many-to-one relationship;
+    3.Configure database connection
+    4.Use JPA to operate data
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Spring MVC **
+What is:
+    Spring MVC（Model-View-Controller）是 Spring 框架的一部分,采用 MVC 设计模式，将应用程序分为三层
+Layers:
+    Model（模型）：数据和业务逻辑，通常由实体类和数据访问层组成。
+    View（视图）：用户界面，展示数据。
+    Controller（控制器）：处理用户请求，协调模型和视图之间的交互。
+-------------------------------------------------------------------------------------------
+* Data Access Layer/DAL *
+数据访问层（Data Access Layer，简称 DAL） 是软件架构中的一个关键组成部分，负责与数据源（如数据库、文件系统、外部服务等）进行交互
+它抽象化了数据存储和检索的细节，使得应用程序的其他部分能够专注于业务逻辑和用户界面，而无需关心数据的具体存储方式
+在 Spring 框架中，数据访问层通常与 Spring Data JPA、Hibernate、MyBatis 等技术结合使用，以简化数据操作和提高开发效率
+-------------------------------------------------------------------------------------------
+* Spring MVC怎么和数据层连接 *
+Steps:
+    User request → Controller
+        用户发送请求到应用程序
+        Controller接收并处理用户的请求
+    Controller → Service
+        Service处理具体的业务逻辑 Specific business logic
+    Service → Repository
+    Repository → DB
+        通常使用 Spring Data JPA 等框架简化数据访问
+        Repository 将业务层的请求转化为数据库操作，获取或修改数据。
+反向Pass back to：
+    DB → Repository
+        数据库返回查询结果或操作结果给 Repository。
+    Repository → Service
+        Repository 将数据返回给 Service 层，Service 进行处理。
+    Service → Controller
+        Service 将处理后的数据返回给 Controller，Controller 准备响应内容。
+    Controller → 用户
+        Controller 将最终的响应（如网页、JSON数据等）返回给用户，完成整个请求-响应流程。
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** RESTful **
+What is:
+     RESTful API是一种基于REST架构的API(Application Programming Interface),通过互联网,使用标准的HTTP协议，实现不同系统之间的数据交换和通信
+     RESTful API is an API (Application Programming Interface) based on the REST architecture.
+     It uses the standard HTTP protocol over the Internet to achieve data exchange and communication between different systems.
+Feature
+    Uniform Interface
+        RESTful API 采用统一接口，使得不同的客户端和服务器可以通过相同的方式进行通信
+        RESTful API uses a unified interface, allowing different clients and servers to communicate in the same way
+    使用标准的HTTP方法 Use standard HTTP methods
+       GET（获取资源）
+            从服务器请求数据，不对服务器上的数据进行任何修改
+            Request data from the server without making any modifications to the data on the server
+            会对服务器上的数据进行任何更改
+            需要指定唯一键
+                GET 请求用于获取资源。为了准确地获取特定的资源，必须通过一个唯一的标识符（通常是ID）来指定该资源
+       POST（创建资源）
+            向服务器提交数据，用于创建新的资源
+            Submit data to the server to create new resources.
+            多次执行相同的POST请求，会创建多个相同的资源
+            Executing the same POST request multiple times will create multiple identical resources.
+            会在服务器上创建新的数据记录
+            通常不需要客户端指定唯一键
+                POST 请求用于创建新资源。通常情况下，服务器会为新创建的资源自动生成一个唯一的标识符
+       PUT（更新资源）
+            向服务器提交数据，用于更新现有的资源，通常替换整个资源
+            Submit data to the server to update an existing resource, usually replacing the entire resource
+       DELETE（删除资源）
+            从服务器删除指定的资源
+            Deletes the specified resource from the server
+    Stateless
+        每个请求都包含所有必要的信息，服务器不保存客户端的状态(so 每个请求都是独立的)，提高了系统的可扩展性和可靠性
+        Each request contains all necessary information, the server does not save the client's state (so each request is independent)
+    Resource-Oriented
+        ESTful API 将系统中的每个实体（如用户、产品、订单）视为一个资源
+        ESTful API treats each entity in the system (such as user, product, order) as a resource
+    Client Server
+        客户端和服务器端分离，彼此独立
+        The client and server are separated and independent of each other
+    Cacheable
+        服务器的响应可以被客户端缓存，以减少重复请求，提高性能
+        The server's responses can be cached by the client to reduce duplicate requests and improve performance
+    Layered System
+-----------------------------------------------------------------------------------------------
+* Stateless *
+    无状态指的是每个请求都是独立的，服务器不会保存任何关于客户端的会话信息
+    Stateless means that each request is independent, and the server will not save any session information about the client.
+    每次客户端向服务器发送请求时，必须包含所有必要的信息，服务器不会记住之前的交互
+    Each time the client sends a request to the server, it must include all necessary information, and the server will not remember previous interactions.
+        比如每次请求都必须携带必要的认证信息（如Token）
+        For example, each request must carry necessary authentication information (such as Token).
+-----------------------------------------------------------------------------------------------
+* get和post时服务器和客户端的区别 *
+              GET 请求	                 POST 请求
+目的	        获取资源数据	                 创建新资源
+客户端行为   发送带有URL的请求             发送带有URL的请求
+            通常不包含请求体            包含请求体，携带数据
+服务器行为   解析URL，查找资源          解析URL，处理请求体数据
+           返回资源数据和状态码         创建新资源并返回状态码
+常用状态码	200 OK（成功）            201 Created（创建成功）
+        404 Not Found（资源未找到）   400 Bad Request（请求有误）
+-----------------------------------------------------------------------------------------------
+* API *
+Feature：
+    API 提供了一种标准化的方法，使得开发者可以访问特定功能或数据 APIs provide a standardized way for developers to access specific functionality or data.
+    它将复杂的操作简化为简单的调用，隐藏了底层的复杂性
+    不同系统、平台或编程语言之间能够通过 API 实现互相通信和协作
+Types
+    Web API：通过互联网使用 HTTP 协议进行通信，常见的有 RESTful API 和 SOAP API。
+    库/API：编程语言提供的函数、方法和工具集合，供开发者在编写软件时调用
+    操作系统 API：操作系统提供的接口，允许应用程序与操作系统进行交互
+-----------------------------------------------------------------------------------------------
+* Resource *
+Resource 是RESTful API中可被访问和操作的实体或对象，如用户、产品、订单等
+每个资源都有一个唯一的URI，用于标识和访问
+通过标准的HTTP方法（GET、POST、PUT、DELETE）对资源进行操作，确保API设计的一致性和清晰性

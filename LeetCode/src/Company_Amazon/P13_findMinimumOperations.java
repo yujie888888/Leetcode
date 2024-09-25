@@ -32,13 +32,15 @@
  * 1 <= boxes[i] <= 10^9
  */
 package Company_Amazon;
+
 import java.util.Arrays;
 
 public class P13_findMinimumOperations {
     public static void main(String[] args) {
-        int[] boxes = {5,5,8,7};
+        int[] boxes = {647283648, 5, 5, 8, 7, 11, 21, 324, 325, 56456, 8786};
         int n = boxes.length;
-        System.out.println(findMinimumOperations(boxes,n));
+        System.out.println(findMinimumOperations1(boxes,n));
+        System.out.println(findMinimumOperations2(boxes,n));
     }
     /**Greedy
      * O(n)
@@ -50,7 +52,7 @@ public class P13_findMinimumOperations {
      * 4.用target[]存最后分配成的结果
      * 5.计算操作次数，因为操作次数包含-1，+1，所以只计算少的piles加了多少个box就可以
      */
-    public static long findMinimumOperations(int[] boxes,int n) {
+    public static long findMinimumOperations1(int[] boxes,int n) {
         Arrays.sort(boxes);
         int sum = 0;
         for(long box : boxes) sum+=box;
@@ -67,5 +69,25 @@ public class P13_findMinimumOperations {
             }
         }
         return res;
+    }
+    public static long findMinimumOperations2(int[] boxes, int n) {
+        long sum = 0;
+        for (int box : boxes) {
+            sum += box;
+        }
+        long targetMin = sum / n;
+        long targetMax = targetMin + (sum % n == 0 ? 0 : 1);
+        long excess = 0;
+        long deficit = 0;
+
+        for (int box : boxes) {
+            if (box < targetMin) {
+                deficit += targetMin - box;
+            } else if (box > targetMax) {
+                excess += box - targetMax;
+            }
+        }
+
+        return Math.max(excess, deficit);
     }
 }

@@ -1,0 +1,191 @@
+*** Web ***
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** HTTP **
+    Hypertext Transfer Protocol
+    It is the data communication protocol used to establish communication between client and server.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** status code **
+    1. 信息响应（1xx）
+    这一类状态码是信息性的，表示请求已被接受，继续处理。
+        100 Continue：客户端应继续其请求
+        101 Switching Protocols：请求者已要求服务器切换协议，服务器已确认并准备切换
+        102 Processing（WebDAV）：服务器已接受并正在处理请求，但无响应可用
+    2. 成功响应（2xx）
+    这类状态码表示请求已成功被服务器接收、理解，并接受。
+        ⭐️200 OK：请求成功。对GET和POST请求的应答文档跟在后面。
+        201 Created：请求成功并且服务器创建了新的资源。
+        202 Accepted：服务器已接受请求，但尚未处理。
+        203 Non-Authoritative Information：服务器已成功处理请求，但返回的信息可能来自另一来源。
+        204 No Content：服务器成功处理了请求，但没有返回任何内容。
+        205 Reset Content：服务器成功处理了请求，但没有返回任何内容，且要求请求者重置文档视图。
+        206 Partial Content：服务器成功处理了部分GET请求。
+    3. 重定向（3xx）
+    这类状态码表示进一步操作需要以完成请求。
+        300 Multiple Choices：针对请求，服务器可执行多种操作。
+        301 Moved Permanently：请求的网页已永久移动到新位置。
+        302 Found：服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+        303 See Other：请求者应当对不同的URI使用GET方法获取资源。
+        304 Not Modified：自从上次请求后，请求的网页未修改过。
+        307 Temporary Redirect：请求的资源临时从不同的URI 响应请求。
+        308 Permanent Redirect：请求的资源永久位于另一URI。
+    4. 客户端错误（4xx）
+    这类状态码表示请求可能出错，妨碍了服务器的处理。
+        ⭐️400 Bad Request：服务器不理解请求的语法。
+        401 Unauthorized：请求要求身份验证。
+        403 Forbidden：服务器拒绝请求。
+        ⭐️404 Not Found：服务器找不到请求的网页。
+        405 Method Not Allowed：禁用请求中指定的方法。
+        406 Not Acceptable：无法使用请求的内容特性响应请求的网页。
+        407 Proxy Authentication Required：请求者应当使用代理进行授权。
+        408 Request Timeout：服务器等候请求时发生超时。
+        409 Conflict：服务器在完成请求时发生冲突。
+        410 Gone：请求的资源已被永久删除。
+        411 Length Required：服务器不接受不含有效内容长度标头字段的请求。
+        412 Precondition Failed：服务器未满足请求者在请求中设置的其中一个前提条件。
+        413 Payload Too Large：请求实体过大。
+        414 URI Too Long：请求的URI过长。
+        415 Unsupported Media Type：请求的格式不受请求页面的支持。
+        416 Range Not Satisfiable：如果页面无法提供请求的范围，则服务器会返回此状态码。
+        417 Expectation Failed：服务器未满足"期望"请求标头字段的要求。
+    5. 服务器错误（5xx）
+    表示服务器在尝试处理请求时发生了错误。
+        500 Internal Server Error：服务器遇到错误，无法完成请求。
+        501 Not Implemented：服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**put VS post **
+    PUT and POST are two of the HTTP methods for send data to server.
+    POST
+        POST用于在服务器上创建一个新资源，不需要指定URI。
+        使用POST时，服务器负责生成新资源的URI。
+        POST请求不是幂等idempotent的。这意味着多次执行相同的POST请求可能会每次都产生不同的结果或副作用。
+        当成功创建新资源时，通常返回HTTP状态码201 Created。如果执行的操作未导致创建，可能返回200 OK或202 Accepted。
+    PUT
+        PUT用于更新资源或在指定URI不存在时创建新资源，换句话说用上传的内容替换目标资源的所有当前表示。
+        使用PUT时，客户端指定资源的确切URI。
+        PUT请求是幂等idempotent的，这意味着多次执行相同的PUT请求总是会产生相同的结果，没有额外的副作用。
+        当现有资源成功更新时，通常返回200 OK或204 No Content。如果创建了新资源，服务器可能返回201 Created。
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** JavaScript **
+
+-------------------------------------------------------------------------------
+* == vs. === *
+    ==Compare values, but perform type conversion
+    ===Comparing Values and Types
+-------------------------------------------------------------------------------
+* var, let, const *
+var、let 和 const 都用于声明变量，但它们有不同的作用域和使用场景
+var, let, and const are all used to declare variables, but they have different scopes and usage scenarios.
+var
+    函数作用域(Function Scope)：在整个函数内可见 Visible throughout the function
+    变量提升：var 声明的变量会被提升到其作用域的顶部 Variable promotion: var declared variables are promoted to the top of their scope
+    可以重复声明：同一作用域内可以多次声明同名变量 Can be declared repeatedly: variables with the same name can be declared multiple times in the same scope
+    可以在声明前使用（虽然值为 undefined） Can be used before declaration (although the value is undefined)
+let
+    是ES6引入的，用于声明块级作用域的变量constant
+    块级作用域：只在声明的块内有效。
+    不会被提升：在声明前使用会导致ReferenceError。
+    不可以重复声明
+    可以重新赋值 Can be reassigned
+const
+    也是ES6引入的，用于声明常量：
+    块级作用域
+    不会被提升
+    不允许重复声明，必须在声明时初始化
+    不能重新赋值，但如果是对象或数组，其属性可以被修改(对象和数组的属性是指它们所包含的数据项)
+-------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** React **
+TODO
+
+-------------------------------------------------------------------------------
+* react promise, async, await *
+React本身并不直接处理Promise、async和await，这些都是JavaScript的特性
+Promise
+    What is：Promise是JavaScript中用于处理异步操作的对象（Promise is an object used in JavaScript to handle asynchronous operations）
+    Use Cases
+        Data Fetching
+            Usually done in the useEffect hook
+            or triggered by user interaction (such as form submission)
+    Promise Ex.
+            function DataFetcher() {
+              const [data, setData] = useState(null);
+              useEffect(() => {
+                fetch('https://api.example.com/data') //fetch返回一个 Promise
+                  // Promise 的 then 方法用于处理 Promise 成功解决（resolved）的情况
+                  // 每个 then 也返回一个新的 Promise
+                  .then(response => response.json())
+                  .then(data => setData(data))
+                  // catch 方法用于处理 Promise 被拒绝（rejected）的情况
+                  .catch(error => console.error('Error:', error));
+              }, []);
+              return <div>{data ? JSON.stringify(data) : 'Loading...'}</div>;
+            }
+async/await
+    What is：
+        async 用于声明一个异步函数；async is used to declare an asynchronous function;
+        await 只能在 async 函数内部使用，它用于等待一个 Promise 解决
+        Can only be used inside an async function, it is used to wait for a Promise to resolve
+    With Promise：
+        async/await是基于Promise的语法糖，使异步代码更简洁
+        `async/await` is syntactic sugar based on Promises, making asynchronous code more concise
+    Commonly use:
+        使用async/await来处理数据获取，并使用state来管理加载状态、错误和数据
+    async/await Ex.
+            // 每个 await 关键字后面都跟着一个 Promise。await 会等待 Promise 解决，然后返回解决的值
+            // Each await keyword is followed by a Promise. await waits for the Promise to resolve and then returns the resolved value.
+            async function fetchData() {
+              try {
+                const response = await fetch('https://api.example.com/data');
+                const data = await response.json();
+                setData(data);
+              } catch (error) {
+                console.error('Error:', error);
+              }
+            }
+-------------------------------------------------------------------------------
+* React state *
+What is: state是一个JavaScript对象,用于管理组件的内部数据
+         state is a JavaScript object used to manage the internal data of a component.
+Feature
+    与props不同,state是可变的。组件可以通过setState()方法更新
+    state Unlike props, state is mutable. Components can update state through the setState() method
+    state是组件私有的,只能在定义它的组件内部访问和修改
+    State is private to the component and can only be accessed and modified inside the component that defines it
+    当state更新时,React会重新渲染组件,but setState()是异步的,多个setState()调用可能会被批处理
+    When state is updated, React will re-render the component, But setState() is asynchronous, and multiple setState() calls may be batched
+    在函数组件中,使用useState Hook来管理state
+    In functional components, use the useState Hook to manage state
+-------------------------------------------------------------------------------
+* Batch Processing *
+What is: 在React的上下文中特指状态更新的一种优化机制，React将多个状态更新操作合并到一次重新渲染中的过程
+         In the context of React, it specifically refers to an optimization mechanism for state updates.
+         React merges multiple state update operations into one re-rendering process.
+Ads:
+    提高性能：减少不必要的重复渲染 Reduce unnecessary re-rendering
+    确保状态一致性：多个更新在同一个渲染周期内完成 Ensure state consistency: multiple updates are done in the same rendering cycle
+Details:
+    当您在React中连续多次调用setState()时，React不会立即执行每次更新并重新渲染组件
+    When you call setState() multiple times in a row in React, React does not immediately perform each update and re-render the component.
+    相反，它会将这些更新操作放入一个队列中，然后在一次渲染周期内一起处理
+     Instead, it queues the updates and processes them together in one rendering cycle.
+-------------------------------------------------------------------------------
+* React props *
+What is：React中的属性(props)是一个对象,包含了传递给组件的所有属性，用于将数据从父组件传递到子组件
+Feature
+    只读性：props是只读的,子组件不能直接修改接收到的props
+    Read-only: props are read-only, and subcomponents cannot directly modify the received props
+-------------------------------------------------------------------------------
+* How to fetch data *
+用useState定义状态值和更新状态的函数；
+Use useState to define the state value and the function that updates the state;
+用useEffect Hook来定义副作用(获取数据);
+then use the useEffect Hook to define the side effect (get data);
+然后在useEffect内部使用promise处理异步操作并获取数据；
+then use promise inside useEffect to handle asynchronous operations and get data;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------

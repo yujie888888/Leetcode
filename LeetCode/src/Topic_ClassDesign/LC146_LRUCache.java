@@ -12,70 +12,89 @@ import java.util.HashMap;
  * 基本上这两点确定其他的都是逻辑问题
  *
  */
-class DListNode {
+class Node {
     int key;
     int val;
-    DListNode pre;
-    DListNode next;
+    Node next;
+    Node prev;
 
-    public DListNode(){}
+    public Node() {
+    }
 
-    public DListNode(int key, int val){
+    public Node(int key, int val) {
+        this.val = val;
         this.key = key;
+    }
+
+    public void setVal(int val) {
         this.val = val;
     }
 }
 
 class LRUCache {
     int capacity;
-    HashMap<Integer, DListNode> Map;
-    DListNode head;
-    DListNode tail;
+    HashMap<Integer, Node> map;
+    Node dummy;
+    Node tail;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        Map = new HashMap<>();
-        head = new DListNode();
-        tail = new DListNode();
-        head.next = tail;
-        tail.pre = head;
+        map = new HashMap<>();
+        dummy = new Node();
+        tail = new Node();
+        dummy.next = tail;
+        tail.prev = dummy;
     }
+
     public int get(int key) {
-        if(!Map.containsKey(key)){
+        if (!map.containsKey(key)) {
             return -1;
         }
-        DListNode node = Map.get(key);
-        remove(node);
-        addToHead(node);
+        //removeNode
+        Node node = map.get(key);
+        removeNode(node);
+        // update
+        update(node);
         return node.val;
     }
 
     public void put(int key, int value) {
-        if(Map.containsKey(key)){
-            remove(Map.get(key));
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            // 更新值
+            node.setVal(value);
+            // 删除旧node的位置
+            removeNode(node);
+            // update order
+            update(node);
+        } else {
+            if (map.size() == capacity) {
+                // remove
+                Node node = tail.prev;
+                removeNode(node);
+                map.remove(node.key);
+            }
+            map.put(key, new Node(key, value));
+            // update order
+            update(map.get(key));
+
         }
-        DListNode node = new DListNode(key,value);
-        if(Map.size() == capacity){
-            DListNode deleteNode = tail.pre;
-            remove(deleteNode);
-        }
-        addToHead(node);
     }
 
-    public void remove(DListNode node){
-        node.pre.next = node.next;
-        node.next.pre = node.pre;
-        Map.remove(node.key);
-    }
-    public void addToHead(DListNode node){
-        DListNode temp = head.next;
-        head.next = node;
-        node.pre = head;
-        temp.pre = node;
+    public void update(Node node) {
+        Node temp = dummy.next;
+        dummy.next = node;
+        node.prev = dummy;
         node.next = temp;
-        Map.put(node.key, node);
+        temp.prev = node;
+    }
+
+    public void removeNode(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
 }
+
 public class LC146_LRUCache {
     public static void main(String[] args) {
         LRUCache cache = new LRUCache(3);
