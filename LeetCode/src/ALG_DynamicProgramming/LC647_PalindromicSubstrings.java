@@ -15,7 +15,7 @@
  * s consists of lowercase English letters.
  */
 package ALG_DynamicProgramming;
-public class P647_PalindromicSubstrings {
+public class LC647_PalindromicSubstrings {
     public static void main(String[] args) {
         String s = "ababa";
         System.out.println(countSubstrings1(s));

@@ -1,8 +1,7 @@
 package DataStruc_StackQueue;
 
 import java.util.Arrays;
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.Stack;
 
 public class LC735_AsteroidCollision {
     public static void main(String[] args) {
@@ -10,65 +9,48 @@ public class LC735_AsteroidCollision {
         System.out.println(Arrays.toString(asteroidCollision(asteroids)));
     }
 
-    /**代码逻辑题
+    /**Stack
      * O(n)
      * O(n)
      * Ideas:
-     * 不难想，但是细节逻辑实施快给我写抽筋了
-     * 巧思：用flag存标记
+     * 用一个栈来模拟小行星的运动和碰撞过程。栈非常适合这个问题，因为我们只需要关注最近添加的小行星。
+     * 碰撞检测：
+     *    对于每个小行星，检查它是否会与之前的小行星发生碰撞。碰撞只会发生在以下情况：
+     *    - 当前小行星向左移动（值为负）&& 栈顶的小行星向右移动（值为正）
+     * 碰撞处理：
+     *    - 如果当前小行星较大，栈顶小行星被摧毁（出栈），继续检查下一个栈顶元素
+     *    - 如果大小相等，两个小行星都被摧毁（当前的不入栈，栈顶出栈）
+     *    - 如果栈顶小行星较大，当前小行星被摧毁（不入栈）
+     * Pay Attention:
+     * 只有当右移（正值）小行星位于左移（负值）小行星的左侧时，才会发生碰撞
      */
     public static int[] asteroidCollision(int[] asteroids) {
-        Deque<Integer> stack = new ArrayDeque<>();
-        for (int i = 0; i < asteroids.length; i++) {
-            // System.out.println(stack);
-            if (stack.isEmpty()) {
-                stack.push(asteroids[i]);
-                continue;
-            }
-            if(!willCollision(asteroids[i], stack.peek())){
-                stack.push(asteroids[i]);
-                continue;
-            }
-            //如果stack不为空，而且新星会和stack.peek()相撞
-            int flag = 0;
-            while (!stack.isEmpty() && willCollision(asteroids[i], stack.peek())){
-                // 挑战成功，asteroids[i]待进入
-                if ((Math.abs(asteroids[i]) > Math.abs(stack.peek()))) {
-                    stack.poll();
-                    flag = 1;
-                }
-                // 势均力敌，一起毁灭
-                else if (Math.abs(asteroids[i]) == Math.abs(stack.peek())) {
-                    stack.poll();
-                    flag = 0;
+        Stack<Integer> stack = new Stack<>();
+        for(int num : asteroids){
+            boolean survive = true;
+            while(!stack.isEmpty() && (stack.peek()>0 && stack.peek() * num<0)){
+                if(stack.peek() > -num){
+                    survive = false;
                     break;
                 }
-                // 挑战失败，asteroids[i]不进入
-                else {
-                    flag = 0;
+                else if(stack.peek() == -num){
+                    stack.pop();
+                    survive = false;
                     break;
                 }
+                else{
+                    stack.pop();
+                    survive = true;
+                }
             }
-            if(flag == 1) stack.push(asteroids[i]);
+            if(survive) stack.push(num);
         }
-
         int[] res = new int[stack.size()];
-        for (int i = stack.size() - 1; i >= 0; i--) {
-            res[i] = stack.poll();
+        int i = stack.size() - 1;
+        while (!stack.isEmpty()) {
+            res[i] = stack.pop();
+            i--;
         }
-        // System.out.println(Arrays.toString(res));
         return res;
-    }
-
-    private static boolean willCollision(int a, int b) {
-        if (a > 0 && b > 0) {
-            return false;
-        } else if (a < 0 && b < 0) {
-            return false;
-        }
-        else if(a>0 && b<0){
-            return false;
-        }
-        return true;
     }
 }

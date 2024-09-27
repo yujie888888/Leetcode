@@ -1,6 +1,5 @@
 package DataStruc_StackQueue;
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.Stack;
 
 public class LC71_SimplifyPath {
     public static void main(String[] args) {
@@ -17,31 +16,34 @@ public class LC71_SimplifyPath {
      *  其他的就直接加入queue
      * 注意对于String，比较的时候要用equal()
      */
-    public String simplifyPath(String path) {
-        Deque<String> queue = new ArrayDeque<>();
-        String[] dic = path.split("/");
+    public static String simplifyPath(String path) {
+        Stack<String> stack = new Stack<>();
+        String[] names = path.split("/");
+        //System.out.println(Arrays.toString(names));
 
-        for(String str : dic){
-            if(str.equals(".") || str.equals("")){
-                continue;
-            }
-            else if(str.equals("..")){
-                if(!queue.isEmpty()){
-                    queue.removeLast();
+        for(String str : names){
+            if(!str.isEmpty()){
+                if(str.equals("..")){
+                    if(!stack.isEmpty()){
+                        stack.pop();
+                        continue;
+                    }
+                    else{
+                        continue;
+                    }
                 }
-            }
-            else{
-                queue.addLast(str);
+                else if(str.equals(".")){
+                    continue;
+                }
+                stack.push(str);
             }
         }
-
-        if(queue.isEmpty()) return new String("/");
-
-        StringBuilder sb = new StringBuilder();
-        while(!queue.isEmpty()){
-            sb.append("/");
-            sb.append(queue.remove());
+        StringBuilder res = new StringBuilder();
+        for(String str : stack){
+            res.append('/');
+            res.append(str);
         }
-        return sb.toString();
+        if(res.length() == 0) res.append('/');
+        return res.toString();
     }
 }
