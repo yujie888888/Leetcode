@@ -1,5 +1,4 @@
 package Topic_Parentheses;
-
 import java.util.Stack;
 
 public class LC1249_MakeValidParentheses {
