@@ -29,9 +29,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**BackTracking
- * O(2^n) "Two to the nth power" or "Two to the n"
- * O(n)
+ * O()
+ * O()
  * Ideas:
+ * 1.nums[]中的元素会有重复的
+ * 2.resL要unique
  * 求组合问题-->不关注顺序
  * 单一集合-->用start
  * 组合中的元素只能用一次-->用i+1使得每次回溯的层数都从i+1的位置开始
@@ -46,30 +48,29 @@ import java.util.List;
  *     4.如果元素不相同，继续下一层寻找
  * 4.所以去重判断是i>start而不是i>0,为的就是确定每一层的范围
  */
-public class P40_CombinationSumII {
-    static List<Integer> resL = new ArrayList<>();
-    static List<List<Integer>> res = new ArrayList<>();
+public class LC40_CombinationSumII {
     public static void main(String[] args) {
-        int[] candidates = {10,1,2,7,6,1,5};
-        int target = 8;
-        res.clear();
-        Arrays.sort(candidates);
-        backtracking(candidates,target,0);
-        System.out.println(res);
+
     }
-    private static void backtracking(int[] candidates, int target, int start){
-        if(target == 0){
+    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        return bk(new ArrayList<>(), new ArrayList<>(), candidates, target, 0, 0);
+    }
+    public static List<List<Integer>> bk(List<List<Integer>> res, List<Integer> resL, int[] nums, int target, int start, int sum){
+        if(sum == target){
             res.add(new ArrayList<>(resL));
-            return;
+            return res;
         }
-        for(int i=start; i<candidates.length; i++){
-            if(i>start && candidates[i] == candidates[i-1]) continue;//去重
-            if(target-candidates[i]<0) break; //剪枝
-            target -= candidates[i];
-            resL.add(candidates[i]);
-            backtracking(candidates,target,i+1);//递归
-            resL.remove(resL.size()-1);//回溯
-            target += candidates[i];//回溯
+
+        for(int i=start; i<nums.length; i++){
+            if(i>start && nums[i] == nums[i-1]){
+                continue;
+            }
+            if(sum + nums[i] > target) continue;
+            resL.add(nums[i]);
+            bk(res, resL, nums, target, i+1, sum+nums[i]);
+            resL.remove(resL.size()-1);
         }
+        return res;
     }
 }

@@ -1,29 +1,11 @@
-/**
- * Given the root of a binary tree, return the level order traversal of its nodes' values.
- * (i.e., from left to right, level by level).
- * Example 1:
- * Input: root = [3,9,20,null,null,15,7]
- * Output: [[3],[9,20],[15,7]]
- * Example 2:
- * Input: root = [1]
- * Output: [[1]]
- * Example 3:
- * Input: root = []
- * Output: []
- * Constraints:
- * The number of nodes in the tree is in the range [0, 2000].
- * -1000 <= Node.val <= 1000
- */
 package ALG_BreadthFirstSearch;
 import Class_ListTree.TreeNode;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Queue;
 
-public class BinaryTreeLevelOrderTraversal102 {
-    static List<List<Integer>> res1 = new ArrayList<>();
-    static List<List<Integer>> res2 = new ArrayList<>();
+public class LC102_BinaryTreeLevelOrderTraversal {
     public static void main(String[] args) {
         TreeNode n9 = new TreeNode(4);
         TreeNode n8 = new TreeNode(7);
@@ -35,18 +17,13 @@ public class BinaryTreeLevelOrderTraversal102 {
         TreeNode n2 = new TreeNode(5,n4,n5);
         TreeNode n1 = new TreeNode(3,n2,n3);
 
-        res1.clear();
-        levelOrder1(n1);
-        System.out.println(res1);
-
-        res2.clear();
-        levelOrder2(n1,0);
-        System.out.println(res2);
+        levelOrder(n1);
+        System.out.println(levelOrder(n1));
     }
     /**BFS借助队列
-     * O(n) n是结点树，对每个结点进行操作(入队+出队) Beats 90%
-     * O(kn) queue的储存空间为n res的储存空间为n Beats 50%
-     * 思路：
+     * O(n) n is number of tree node
+     * O(n) queue的储存空间为n res的储存空间为n
+     * Idea:
      * 借助队列实现BFS
      * 对于每一层，其实就是，在将当前层的结点放入list的时候，将某一层的左右子结点也放入队列，这样下次遍历队列就是同一层的
      * 这里len非常关键，是区分每一层的flag
@@ -59,28 +36,30 @@ public class BinaryTreeLevelOrderTraversal102 {
      *      }
      *  }
      */
-    public static void levelOrder1(TreeNode root) {
-        if(root == null) System.out.println(res1);
-        Queue<TreeNode> queue = new LinkedList<>();
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        if(root == null) return new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
+        List<List<Integer>> res = new ArrayList<>();
         while(!queue.isEmpty()){
-            int len = queue.size();
-            List<Integer> resL = new ArrayList<>();
-            for(int i=0; i<len; i++){
+            res.add(new ArrayList<>());
+            int size = queue.size();
+            for(int i=0; i<size; i++){
                 TreeNode node = queue.poll();
-                resL.add(node.getVal());
+                res.get(res.size()-1).add(node.getVal());
                 if(node.left != null) queue.add(node.left);
                 if(node.right != null) queue.add(node.right);
             }
-            res1.add(resL);
         }
+        return res;
     }
-    /**DFS(用deep标记)
-     * O(n) 遍历每个结点，对每个结点add操作 Beats 100%
-     * O(n+n) Beats 65%
+    /**DFS
+     * O(n)
+     * O(n+n)
      *   递归栈的深度最差是n，最好是logn
      *   存储空间是n
-     * 思路：
+     * Ideas:
+     * 用deep标记所在层数，也行，但不如queue直观
      * 用dfs遍历每个结点，用deep标记结点是哪一层
      * 1.终止条件：root == null
      * 2.递归逻辑：遍历所有结点；根据结点的deep值将结点的val add进不同的内list中
@@ -88,15 +67,15 @@ public class BinaryTreeLevelOrderTraversal102 {
      *          根据比较结果决定是不是创建一个新的内list
      * 3.参数确定：root，deep
      */
-    public static void levelOrder2(TreeNode root, int deep) {
-        if(root == null) return;
-
-        if(deep >= res2.size()){
-            List<Integer> resL = new ArrayList<>();
-            res2.add(resL);
-        }
-        res2.get(deep).add(root.getVal());
-        levelOrder2(root.left,deep+1);
-        levelOrder2(root.right,deep+1);
-    }
+//    public static void levelOrder2(TreeNode root, int deep) {
+//        if(root == null) return;
+//
+//        if(deep >= res2.size()){
+//            List<Integer> resL = new ArrayList<>();
+//            res2.add(resL);
+//        }
+//        res2.get(deep).add(root.getVal());
+//        levelOrder2(root.left,deep+1);
+//        levelOrder2(root.right,deep+1);
+//    }
 }

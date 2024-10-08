@@ -1,29 +1,3 @@
-/**
- * Given an array of distinct integers nums and a target integer target, return the number of possible combinations that add up to target.
- * The test cases are generated so that the answer can fit in a 32-bit integer.
- * Example 1:
- * Input: nums = [1,2,3], target = 4
- * Output: 7
- * Explanation:
- * The possible combination ways are:
- * (1, 1, 1, 1)
- * (1, 1, 2)
- * (1, 2, 1)
- * (1, 3)
- * (2, 1, 1)
- * (2, 2)
- * (3, 1)
- * Note that different sequences are counted as different combinations.
- * Example 2:
- * Input: nums = [9], target = 3
- * Output: 0
- * Constraints:
- * 1 <= nums.length <= 200
- * 1 <= nums[i] <= 1000
- * All the elements of nums are unique.
- * 1 <= target <= 1000
- * Follow up: What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?
- */
 package ALG_DynamicProgramming;
 
 public class LC377_CombinationSumIV {
@@ -58,27 +32,30 @@ public class LC377_CombinationSumIV {
         return dp[target];
     }
 
-    /**BT
-     * 超时了
+    /**BackTracking
+     * Time Limit Exceeded
+     * O()
+     * O()
+     * Ideas:
+     * 元素不重复，元素可重复使用
+     * 这里传递int类型的res和传递引用类型的list不一样，res并没有在递归中改变，所以要用static int
      */
-    static int res2 = 0;
-    static int sum2 = 0;
-    public static int combinationSumBT(int[] nums, int target) {
-        res2 = 0;
-        sum2 = 0;
-        backtracking(nums, target);
-        return res2;
+    public static int combinationSum2(int[] nums, int target) {
+        res = 0;
+        bk(nums, target, 0);
+        return res;
     }
-    private static void backtracking(int[] nums, int target){
-        if(sum2 == target){
-            res2++;
-            return;
+    static int res = 0;
+    public static void bk(int[] nums, int target, int sum){
+        if(sum == target){
+            res++;
         }
+
         for(int i=0; i<nums.length; i++){
-            if(sum2 + nums[i] > target) continue;
-            sum2 += nums[i];
-            backtracking(nums, target);
-            sum2 -= nums[i];
+            if(sum + nums[i] > target){
+                continue;
+            }
+            bk(nums, target, sum+nums[i]);
         }
     }
 }

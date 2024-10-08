@@ -3,7 +3,6 @@ package _MethodDemo;
 public class StringMethod {
     public static void main(String[] args) {
         // 1. .indexOf() 查找子字符串或字符在字符串中第一次出现位置的方法
-
         // indexOf(char ch) 查找字符 ch 在字符串中第一次出现的位置，返回对应的索引 O(n)
         String str = "hello world";
         int index1 = str.indexOf('o'); // 返回 4，'o' 第一次出现的位置
@@ -24,7 +23,7 @@ public class StringMethod {
         int index = str2.indexOf("world"); // 返回 6
 
 
-        // 3. .valueOf(String str) 将不同类型的数据转换为字符串
+        // 3. .valueOf() 将不同类型的数据转换为字符串
             // String.valueOf() 支持以下数据类型的转换：
             // 基本数据类型：int、long、float、double、char、boolean
             // 对象类型：Object（通过调用 toString() 方法）
@@ -58,7 +57,7 @@ public class StringMethod {
         // 8. .equals(Object obj) / .equalsIgnoreCase(String anotherString)
         // equals() 比较两个字符串的内容是否相等。equalsIgnoreCase() 忽略大小写进行比较
 
-        // 9. .tartsWith(String prefix) / endsWith(String suffix)
+        // 9. .startsWith(String prefix) / endsWith(String suffix)
         // 判断字符串是否以指定前缀 prefix 开头或以指定后缀 suffix 结尾
 
         // 10. .isEmpty() / isBlank()
@@ -75,5 +74,14 @@ public class StringMethod {
 
         // 13. .compareTo(String anotherString) / compareToIgnoreCase(String str)
         // 按字典顺序比较两个字符串。compareToIgnoreCase() 忽略大小写进行比较
+
+        //14. concatenation
+        String x = "10";
+        int y = 20;
+        String z = x + y;// "1020"
+
+        //15. special charactres
+        String txt = "Hel\blo World!";
+        System.out.println(txt);
     }
 }

@@ -1,16 +1,3 @@
-/**
- * Given a string s, return the longest palindromic substring in s.
- * Example 1:
- * Input: s = "babad"
- * Output: "bab"
- * Explanation: "aba" is also a valid answer.
- * Example 2:
- * Input: s = "cbbd"
- * Output: "bb"
- * Constraints:
- * 1 <= s.length <= 1000
- * s consist of only digits and English letters.
- */
 package Topic_Palindrome;
 public class LC5_LongestPalindromicSubstring {
     public static void main(String[] args) {
@@ -19,33 +6,47 @@ public class LC5_LongestPalindromicSubstring {
         System.out.println(longestPalindrome2(s));
         System.out.println(longestPalindrome3(s));
     }
-    /**DP
-     * O(n^2) Beats 40%
-     * O(n^2) Beats 20%
-     * 思路:
-     * 和P647思路一样
-     * 1.dp[i+1][j+1]: s在区间[i,j]内的substring是不是回文
-     * 2.if(s[i]==s[j])
-     *     if(i==j) dp[i+1][j+1] = true;
-     *     else if(j-i==1) dp[i+1][j+1] = true;
-     *     else dp[i+1][j+1] = dp[i+2][j];
-     * 3.遍历顺序
+    /**Manacher's Algorithm
+     * O(n)
+     *
      */
-    public static String longestPalindrome1(String s) {
+
+
+
+    /**DP
+     * O(n^2)
+     * O(n^2)
+     * Indeas:
+     * 1.dp[i][j]: determining whether substring[i-1,j-1] is palindrome
+     * 2.if(s[i]==s[j])
+     *     if(i==j) dp[i][j] = true;
+     *     else if(j-i==1) dp[i][j] = true;
+     *     else dp[i][j] = dp[i + 1][j - 1];
+     * 3.遍历顺序-> ordered according to the state transfer equation
+     */
+    public static String longestPalindrome(String s) {
         int n = s.length();
-        boolean[][] dp = new boolean[n+1][n+1];
-        int maxLen = 0;
+        if(n == 1) return s;
+        boolean[][] dp = new boolean[n + 1][n + 1];
+        // state transfer equation
         String res = "";
-        for(int i=n-1; i>=0; i--){
-            for(int j=i; j<n; j++){
-                if(s.charAt(i) == s.charAt(j)){
-                    if(j-i<=1) dp[i+1][j+1] = true;
-                    else dp[i+1][j+1] = dp[i+2][j];
+        dp[n][n] = true;
+        for (int i = n-1; i >= 1; i--) {
+            for (int j = i; j <= n; j++) {
+                if (s.charAt(i - 1) == s.charAt(j - 1)) {
+                    if(i == j){
+                        dp[i][j] = true;
+                    }
+                    else if((j-1==i)){
+                        dp[i][j] = true;
+                    }
+                    else{
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
                 }
-                if(dp[i+1][j+1]){
-                    if(j-i+1 > maxLen){
-                        maxLen = j-i+1;
-                        res = s.substring(i,j+1);
+                if (dp[i][j]){
+                    if (j - i + 1 > res.length()) {
+                        res = s.substring(i - 1, j);
                     }
                 }
             }
@@ -53,13 +54,13 @@ public class LC5_LongestPalindromicSubstring {
         return res;
     }
 
-    /**Double points(substring)
-     * O(n^2) Beats 40%
-     * O(n) Beats 65%
+    /**Expand Method(substring)
+     * O(n^2)
+     * O(n)
      * 思路:
-     * 和P642的双指针做法思路一样
+     * 和P647的双指针做法思路一样
      */
-    public static String longestPalindrome2(String s) {
+    public static String longestPalindrome1(String s) {
         String res = "";
         String temp = "";
         for(int i=0; i<s.length(); i++){
@@ -86,7 +87,7 @@ public class LC5_LongestPalindromicSubstring {
      * 思路：
      * 多次substring影响时间复杂度，换成返回len，利用i和len来获得遍历到i时的substring
      */
-    public static String longestPalindrome3(String s) {
+    public static String longestPalindrome2(String s) {
         String res = "";
         int len1,len2,temp;
         for(int i=0; i<s.length(); i++){
@@ -109,5 +110,36 @@ public class LC5_LongestPalindromicSubstring {
             j++;
         }
         return maxLen;
+    }
+
+
+    /**Brute Force
+     * O(n^3)
+     * O(1)
+     * Ideas:
+     * 遍历每一种substring并判断是不是palidrome
+     */
+    public static String longestPalindrome3(String s) {
+        String res = "";
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                if (isPalindrome3(i, j, s)) {
+                    if (j - i + 1 > res.length()) {
+                        res = s.substring(i, j + 1);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    public static boolean isPalindrome3(int left, int right, String s) {
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 }

@@ -20,14 +20,14 @@ package ALG_BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-class P17_LetterCombinationsofaPhoneNumber {
+class LC17_LetterCombinationsofaPhoneNumber {
     public static void main(String[] args) {
         String digits = "5689";
         System.out.println(letterCombinations1(digits));
         System.out.println(letterCombinations2(digits));
     }
-    /**BackTracking(Map-String[])
-     * O(n*(4^n)) 100%
+    /**BackTracking
+     * O(n* 4^n)) 100%
      *   第一个n是.toSting(),4是数字对应的字母长度，第二个n是树的深度 Beats
      * O(n + n*4^n) Beats 95%
      *   4^n表示有多少种结果,n表示每个结果的长度，n是递归栈空间
@@ -44,32 +44,28 @@ class P17_LetterCombinationsofaPhoneNumber {
      * 3.(可选)letters中对于0和1的情况置空
      * 4.选择StringBuilder因为string需要频繁增删，sb效率更高
      */
-    static List<String> res = new ArrayList<>();
-    public static List<String> letterCombinations1(String digits){
-        res.clear();
-        int n = digits.length();
-        if(n==0) return res;
-        String[] letters = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        StringBuilder sb1 = new StringBuilder();
-        int[] index = new int[n];
-        for(int i=0; i<n; i++){
-            index[i] = digits.charAt(i) -'0';
-            //System.out.println(index[i]);
+    public static List<String> letterCombinations1(String digits) {
+        if(digits.length() == 0) return new ArrayList<>();
+        String[] map = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        return backtracking(new ArrayList<>(), digits, map, new StringBuilder(), 0);
+    }
+    public static List<String> backtracking(List<String> res, String digits, String[] map, StringBuilder sb, int index){
+        if(sb.length() == digits.length()){
+            res.add(sb.toString());
+            return res;
         }
-        backtracking1(index,0,digits,n,letters,sb1);
+
+        String curStr = map[digits.charAt(index)-'0'];
+        for(int i=0; i<curStr.length(); i++){
+            sb.append(curStr.charAt(i));
+            backtracking(res, digits, map, sb, index+1);
+            sb.deleteCharAt(sb.length()-1);
+        }
+
         return res;
     }
-    public static void backtracking1(int[] index, int start, String digits, int n, String[] letters, StringBuilder sb1){
-        if(sb1.length() == n){
-            res.add(sb1.toString());
-            return;
-        }
-        for(char c : letters[index[start]].toCharArray()){
-            sb1.append(c);
-            backtracking1(index,start+1,digits,n,letters,sb1);
-            sb1.deleteCharAt(sb1.length()-1);
-        }
-    }
+
+
     /**BackTracking(Map-Array[][])
      * O(n*(4^n)) 100%
      * O(n + n*4^n)

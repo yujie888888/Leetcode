@@ -43,32 +43,35 @@
 
 ##分类总结##
     #组合问题#
-        P77
-        P216
-        P17
-        P39
-        P40
-    #分类
-        *1.resL是unique的，nums中的每个元素有无限个，nums中的元素是distinct的（P39）
-            -实现 unique resL：forloop(这一层可选的元素){}
-            -实现可选择无限个数的某个元素：pass in start = i
-        *2.resL是unique的，nums中的每个元素只有一个，nums中的元素会重复（P40）
-            -实现 unique resL：
-                在P39中避免duplicate resL的方法是用forloop(这一层可选的元素)，直接避免同一层会选择相同的元素从而造成duplicate的resL (其实因为P39的元素是unique的所以这个forloop没有实现这个功能)
-                但是在P40中，element 会重复，为了避免出现同样的resL：
-                    先Arrays.sort(nums)
-                    再forloop(num in nums){ if nusm[i] == nums[i-1] 说明这一层选择num[i]的情况前面出现过了，直接pass }
-            -实现 每个元素只能用一次：
-                pass in start=i+1 (这个还实现了避免重复resL的作用，unique resL的实现其实就是在这个基础上加了个nums[i]?nums[i-1]的判断)
-       *3. unique resL && 规定层数为k && nums中的每个元素只有一个, nums中的元素是distinct的（P216）
-            P40的简单版
-            -unique resL：forloop(i:satrt->n){}
-            -实现 每个元素只能用一次：start = i+1;
+        P77,P78,P216  -> *1
+        P39,P1415     -> *2
+        P40,P90       -> *3
+        P377          -> *4
+        P17           -> *5
 
-       *4. non-unique resL && nums中的元素可用多次 && nums中的元素是distinct的（P377）
-            -non-unique resL：forloop(i:0->n){}
-            -实现 每个元素用多次：start = 0;
-            这道题用BT超时，可以用DP做
+    #分类
+        *1. unique resL; nums中的元素是distinct的，nums中的每个元素只用一次 (P77, P78, P216)
+                for(i=start, ,) & bk(i+1)  =>  only use once for every element
+                                           =>  resL is unique
+
+        *2. resL必须是unique的; nums[]的元素是distinct的，可以重复使用;（P39）
+                for(i=start, ,)  =>  resL is unique
+                    i is not from 0, is from i, means can only select the elements that behind nums[i](included)
+                    举个例子就可以看明白，如果[3,6,2,7]中，选3的这一层有答案[3,2,2], 选2的这一层没有答案，这样就排除了[2,2,3]这个重复的答案
+                bk(,i), pass in start = i  =>  can select duplicate same element
+
+        *3.resL必须是unique的; nums中会有重复元素，每个元素只能用一次;（P40, P90）
+            for(i=start, ,) & bk(i+1)  =>  only use once for every element
+            if(nums[i] == nums[i-1]) continue  =>  remove duplicate resL (because of the duplicate emelents)
+                                               =>  resL is unique
+
+
+
+       *4. Non-unique resL；nums中的元素是distinct的，nums中的元素可重复使用（P377）
+            377用BT会超时，但是作为一个例子说下无妨
+            几乎没有任何限制，所以就是最简单的bk模板，不用传递start，不用check nums[i]和nums[i-1]
+
+       *5. unique resL; 不同集合中选择元素 (P17)
 
     #分割问题#
         P131
